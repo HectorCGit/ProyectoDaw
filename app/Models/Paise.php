@@ -26,12 +26,7 @@ class Paise extends Model
 {
 	protected $table = 'paises';
 	protected $primaryKey = 'id_pais';
-	public $incrementing = false;
 	public $timestamps = false;
-
-	protected $casts = [
-		'id_pais' => 'int'
-	];
 
 	protected $fillable = [
 		'nombre',

@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $id_pais
  * 
  * @property Paise|null $paise
- * @property ClienteEmpresa|null $cliente_empresa
+ * @property UsuarioEmpresa|null $usuario_empresa
  * @property Collection|Billete[] $billetes
  * @property Collection|ValoracionVuelo[] $valoracion_vuelos
  *
@@ -32,11 +32,9 @@ class Vuelo extends Model
 {
 	protected $table = 'vuelos';
 	protected $primaryKey = 'id_vuelo';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_vuelo' => 'int',
 		'id_empresa' => 'int',
 		'num_pasajeros' => 'int',
 		'num_asientos' => 'int',
@@ -59,9 +57,9 @@ class Vuelo extends Model
 		return $this->belongsTo(Paise::class, 'id_pais');
 	}
 
-	public function cliente_empresa()
+	public function usuario_empresa()
 	{
-		return $this->belongsTo(ClienteEmpresa::class, 'id_empresa');
+		return $this->belongsTo(UsuarioEmpresa::class, 'id_empresa');
 	}
 
 	public function billetes()

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Premio
  * 
- * @property int $Id_premio
+ * @property int $id_premio
  * @property string|null $tipo
  *
  * @package App\Models
@@ -19,13 +19,8 @@ use Illuminate\Database\Eloquent\Model;
 class Premio extends Model
 {
 	protected $table = 'premios';
-	protected $primaryKey = 'Id_premio';
-	public $incrementing = false;
+	protected $primaryKey = 'id_premio';
 	public $timestamps = false;
-
-	protected $casts = [
-		'Id_premio' => 'int'
-	];
 
 	protected $fillable = [
 		'tipo'

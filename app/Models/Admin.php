@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  * Class Admin
  * 
  * @property int $id_admin
- * @property int|null $id_usuario
+ * @property int $id_usuario
  * 
- * @property Usuario|null $usuario
+ * @property Usuario $usuario
  *
  * @package App\Models
  */
@@ -22,11 +22,9 @@ class Admin extends Model
 {
 	protected $table = 'admin';
 	protected $primaryKey = 'id_admin';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_admin' => 'int',
 		'id_usuario' => 'int'
 	];
 

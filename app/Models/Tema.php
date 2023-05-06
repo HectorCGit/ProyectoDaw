@@ -23,13 +23,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tema extends Model
 {
-	protected $table = 'tema';
+	protected $table = 'temas';
 	protected $primaryKey = 'id_tema';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_tema' => 'int',
 		'fechayHora' => 'datetime'
 	];
 

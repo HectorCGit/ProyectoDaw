@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $precio_mayores
  * @property int|null $id_descuento
  * 
- * @property ClienteEmpresa|null $cliente_empresa
+ * @property UsuarioEmpresa|null $usuario_empresa
  * @property Paise|null $paise
  * @property Collection|Billete[] $billetes
  *
@@ -30,11 +30,9 @@ class PrecioBillete extends Model
 {
 	protected $table = 'precio_billete';
 	protected $primaryKey = 'id_precio';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_precio' => 'int',
 		'id_empresa' => 'int',
 		'id_pais' => 'int',
 		'precio_niños' => 'int',
@@ -52,9 +50,9 @@ class PrecioBillete extends Model
 		'id_descuento'
 	];
 
-	public function cliente_empresa()
+	public function usuario_empresa()
 	{
-		return $this->belongsTo(ClienteEmpresa::class, 'id_empresa');
+		return $this->belongsTo(UsuarioEmpresa::class, 'id_empresa');
 	}
 
 	public function paise()

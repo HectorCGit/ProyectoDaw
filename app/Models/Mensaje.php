@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Mensaje
  * 
- * @property int $Id_mensaje
+ * @property int $id_mensaje
  * @property int|null $id_usuario
  * @property int|null $id_tema
  * @property Carbon|null $fechayHora
@@ -25,13 +25,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Mensaje extends Model
 {
-	protected $table = 'mensaje';
-	protected $primaryKey = 'Id_mensaje';
-	public $incrementing = false;
+	protected $table = 'mensajes';
+	protected $primaryKey = 'id_mensaje';
 	public $timestamps = false;
 
 	protected $casts = [
-		'Id_mensaje' => 'int',
 		'id_usuario' => 'int',
 		'id_tema' => 'int',
 		'fechayHora' => 'datetime'

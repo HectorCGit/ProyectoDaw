@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $check_in
  * @property int|null $num_maletas
  * 
- * @property ClientePasajero|null $cliente_pasajero
+ * @property UsuarioPasajero|null $usuario_pasajero
  * @property Descuento|null $descuento
  * @property PrecioBillete|null $precio_billete
  * @property Vuelo|null $vuelo
@@ -30,11 +30,9 @@ class Billete extends Model
 {
 	protected $table = 'billetes';
 	protected $primaryKey = 'id_billete';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_billete' => 'int',
 		'id_vuelo' => 'int',
 		'id_pasajero' => 'int',
 		'id_descuento' => 'int',
@@ -52,9 +50,9 @@ class Billete extends Model
 		'num_maletas'
 	];
 
-	public function cliente_pasajero()
+	public function usuario_pasajero()
 	{
-		return $this->belongsTo(ClientePasajero::class, 'id_pasajero');
+		return $this->belongsTo(UsuarioPasajero::class, 'id_pasajero');
 	}
 
 	public function descuento()

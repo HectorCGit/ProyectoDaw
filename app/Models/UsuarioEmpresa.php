@@ -10,13 +10,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ClienteEmpresa
+ * Class UsuarioEmpresa
  * 
  * @property int $id_empresa
  * @property int|null $id_usuario
- * @property string|null $Nombre
- * @property int|null $Telefono
- * @property string|null $email
+ * @property string|null $nombre
+ * @property int|null $telefono
  * 
  * @property Usuario|null $usuario
  * @property Collection|PrecioBillete[] $precio_billetes
@@ -25,24 +24,21 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class ClienteEmpresa extends Model
+class UsuarioEmpresa extends Model
 {
-	protected $table = 'cliente_empresa';
+	protected $table = 'usuario_empresa';
 	protected $primaryKey = 'id_empresa';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_empresa' => 'int',
 		'id_usuario' => 'int',
-		'Telefono' => 'int'
+		'telefono' => 'int'
 	];
 
 	protected $fillable = [
 		'id_usuario',
-		'Nombre',
-		'Telefono',
-		'email'
+		'nombre',
+		'telefono'
 	];
 
 	public function usuario()

@@ -10,15 +10,14 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ClientePasajero
+ * Class UsuarioPasajero
  * 
  * @property int $id_pasajero
  * @property int|null $id_usuario
- * @property string|null $Nombre
- * @property string|null $Apellidos
- * @property int|null $Telefono
- * @property string|null $Email
- * @property string|null $DNI
+ * @property string|null $nombre
+ * @property string|null $apellidos
+ * @property int|null $telefono
+ * @property string|null $dni
  * @property float|null $puntos
  * 
  * @property Usuario|null $usuario
@@ -27,27 +26,24 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class ClientePasajero extends Model
+class UsuarioPasajero extends Model
 {
-	protected $table = 'cliente_pasajero';
+	protected $table = 'usuario_pasajero';
 	protected $primaryKey = 'id_pasajero';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_pasajero' => 'int',
 		'id_usuario' => 'int',
-		'Telefono' => 'int',
+		'telefono' => 'int',
 		'puntos' => 'float'
 	];
 
 	protected $fillable = [
 		'id_usuario',
-		'Nombre',
-		'Apellidos',
-		'Telefono',
-		'Email',
-		'DNI',
+		'nombre',
+		'apellidos',
+		'telefono',
+		'dni',
 		'puntos'
 	];
 
