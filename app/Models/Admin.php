@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  * Class Admin
  * 
  * @property int $id_admin
- * @property int $id_usuario
+ * @property int $id_users
  * 
- * @property Usuario $usuario
+ * @property User $user
  *
  * @package App\Models
  */
@@ -25,15 +25,15 @@ class Admin extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'id_usuario' => 'int'
+		'id_users' => 'int'
 	];
 
 	protected $fillable = [
-		'id_usuario'
+		'id_users'
 	];
 
-	public function usuario()
+	public function user()
 	{
-		return $this->belongsTo(Usuario::class, 'id_usuario');
+		return $this->belongsTo(User::class, 'id_users');
 	}
 }
