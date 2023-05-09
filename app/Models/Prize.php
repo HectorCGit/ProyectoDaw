@@ -9,17 +9,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Award
+ * Class Prize
  * 
- * @property int $id_award
+ * @property int $id_prize
  * @property string|null $type
  *
  * @package App\Models
  */
-class Award extends Model
+class Prize extends Model
 {
-	protected $table = 'awards';
-	protected $primaryKey = 'id_award';
+	protected $table = 'prizes';
+	protected $primaryKey = 'id_prize';
 	public $timestamps = false;
 
 	protected $fillable = [
