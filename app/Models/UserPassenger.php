@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class UserPassenger
- * 
+ *
  * @property int $id_passenger
  * @property int|null $id_users
  * @property string|null $name
@@ -19,14 +19,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $telephone
  * @property string|null $dni
  * @property float|null $points
- * 
+ *
  * @property User|null $user
  * @property Collection|Discount[] $discounts
  * @property Collection|Ticket[] $tickets
  *
  * @package App\Models
  */
-class UserPassenger extends Model
+class UserPassenger extends User
 {
 	protected $table = 'user_passenger';
 	protected $primaryKey = 'id_passenger';

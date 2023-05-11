@@ -11,12 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class UserCompany
- * 
+ *
  * @property int $id_company
  * @property int|null $id_users
  * @property string|null $name
  * @property int|null $telephone
- * 
+ *
  * @property User|null $user
  * @property Collection|FlightAssessment[] $flight_assessments
  * @property Collection|Flight[] $flights
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class UserCompany extends Model
+class UserCompany extends User
 {
 	protected $table = 'user_company';
 	protected $primaryKey = 'id_company';

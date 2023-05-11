@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserCompany;
+use App\Models\UserPassenger;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,12 +29,31 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Mostrar vista de registro de pasajero
+     *
+     */
+    public function showPassengerRegistrationForm()
+    {
+        return view('auth.registerPassenger');
+    }
+
+    /**
+     * Mostrar vista de registro de empresa
+     *
+     */
+    public function showCompanyRegistrationForm()
+    {
+        return view('auth.registerCompany');
+    }
 
     /**
      * Create a new controller instance.
@@ -58,18 +81,49 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Manejar registro de pasajero
      *
-     * @param  array  $data
-     * @return \App\Models\User
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    protected function create(array $data)
+    public function registerPassenger(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->createPassenger($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
+    }
+
+    /**
+     * Manejar registro de compañia
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function registerCompany(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->createCompany($request->all())));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     /**
@@ -80,9 +134,38 @@ class RegisterController extends Controller
      */
     protected function createCompany(array $data)
     {
-        return UserCompany::createCompany([
+        $user= User::create([
             'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+         UserCompany::create([
+             'id_users'=>$user->id,
+             'name' => $data['name'],
             'telephone' =>$data['telephone']
         ]);
+         return $user;
+    }
+    /**
+     * Crear nuevo pasajero
+     *
+     * @param  array  $data
+     * @return \App\Models\UserPassenger
+     */
+    protected function createPassenger(array $data)
+    {
+        $user= User::create([
+            'name' => $data['name']." ".$data['surname'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+         UserPassenger::create([
+             'id_users'=>$user->id,
+             'name' => $data['name'],
+            'surname' => $data['surname'],
+            'telephone' =>$data['telephone'],
+            'dni' =>$data['dni'],
+        ]);
+         return $user;
     }
 }
