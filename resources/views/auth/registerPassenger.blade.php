@@ -102,6 +102,15 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="agree" class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+
+                            <div class="col-md-6">
+                                <p><input type="checkbox" name="checkbox" value="check" > Quiero enterarme de las mejores promociones de Aeroweb y de sus partners. <a href="">Ver condiciones.</a></p>
+                                <p><input type="checkbox" required name="checkbox" value="check" id="condiciones"> Acepto los <a href="">términos y condiciones de Aeroweb</a> y la  <a href="">Política de privacidad de Aeroweb.</a></p>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

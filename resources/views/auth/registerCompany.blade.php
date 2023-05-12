@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registro Empresa') }}</div>
+                <div class="card-header">{{ __('Registro') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register.company.submit') }}">
@@ -73,6 +73,14 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="agree" class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
+
+                            <div class="col-md-6">
+                                <p><input type="checkbox" class="form-check-input" name="checkbox" value="check" > Quiero enterarme de las mejores promociones de Aeroweb y de sus partners. <a href="">Ver condiciones.</a></p>
+                                <p><input type="checkbox" class="form-check-input" required name="checkbox" value="check" id="condiciones"> Acepto los <a href="">términos y condiciones de Aeroweb</a> y la  <a href="">Política de privacidad de Aeroweb.</a></p>
                             </div>
                         </div>
 
