@@ -71,12 +71,29 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validatorCompany(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'telephone'=>['required','min:10000000','max:1000000000','integer'],
+        ]);
+    }
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validatorPassenger(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'telephone'=>['required','min:10000000','max:1000000000','integer'],
+            'dni'=>['required','regex:/^[0-9]{8}[A-Z]{1}$/'],
         ]);
     }
 
@@ -88,7 +105,7 @@ class RegisterController extends Controller
      */
     public function registerPassenger(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $this->validatorPassenger($request->all())->validate();
 
         event(new Registered($user = $this->createPassenger($request->all())));
 
@@ -111,7 +128,7 @@ class RegisterController extends Controller
      */
     public function registerCompany(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $this->validatorCompany($request->all())->validate();
 
         event(new Registered($user = $this->createCompany($request->all())));
 
