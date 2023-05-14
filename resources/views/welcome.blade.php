@@ -27,6 +27,7 @@
     @else
             @extends('layouts.app')
             @section('content')
+
                 <div class="text-center items-center">
                     <form>
                         <table style="border:1px black solid">
@@ -40,14 +41,14 @@
                                     <label>Paises</label>
                                     <input list="paises" name="paises" />
                                     <datalist id="paises">
-                                        <option value="españa">
-                                        <option value="francia">
-                                        <option>3
-                                        <option>4
-                                        <option>5
-                                        <option>6
-                                        <option>7
-                                        <option>8
+                                        <option value={{$countries[0]->name}}>
+                                        <option value={{$countries[10]->name}}>
+                                        <option value={{$countries[8]->name}}>
+                                        <option value={{$countries[3]->name}}>
+                                        <option value={{$countries[20]->name}}>
+                                        <option value={{$countries[5]->name}}>
+                                        <option value={{$countries[15]->name}}>
+                                        <option value={{$countries[7]->name}}>
                                     </datalist>
                                 </td>
                                 <td></td>
