@@ -23,14 +23,52 @@
                         <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
                 </div>
             @endif
-
-                <div><h1>Bienvenido a Aeroweb</h1></div>
-
         </div>
     @else
             @extends('layouts.app')
             @section('content')
-            <div style="position: relative; float: left;"><h1>Bienvenido a Aeroweb</h1></div>
+                <div class="text-center items-center">
+                    <form>
+                        <table style="border:1px black solid">
+                            <tr>
+                                <th>Origen</th>
+                                <th></th>
+                                <th>Destino</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>Paises</label>
+                                    <input list="paises" name="paises" />
+                                    <datalist id="paises">
+                                        <option value="españa">
+                                        <option value="francia">
+                                        <option>3
+                                        <option>4
+                                        <option>5
+                                        <option>6
+                                        <option>7
+                                        <option>8
+                                    </datalist>
+                                </td>
+                                <td></td>
+                                <td>
+                                    <label>Ciudades</label>
+                                    <input list="ciudades" name="ciudades" />
+                                    <datalist id="ciudades">
+                                        <option value="madrid">
+                                        <option value="paris">
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                    </datalist>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
             @endsection
     @endauth
     </body>
