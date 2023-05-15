@@ -41,14 +41,9 @@
                                     <label>Paises</label>
                                     <input list="paises" name="paises" />
                                     <datalist id="paises">
-                                        <option value={{$countries[0]->name}}>
-                                        <option value={{$countries[10]->name}}>
-                                        <option value={{$countries[8]->name}}>
-                                        <option value={{$countries[3]->name}}>
-                                        <option value={{$countries[20]->name}}>
-                                        <option value={{$countries[5]->name}}>
-                                        <option value={{$countries[15]->name}}>
-                                        <option value={{$countries[7]->name}}>
+                                        @foreach ($countries as $country)
+                                            <option value={{$country->name}}>
+                                        @endforeach
                                     </datalist>
                                 </td>
                                 <td></td>
