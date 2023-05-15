@@ -21,10 +21,6 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-
-                <div class="dropdown-menu dropdown-menu-end" id="sidebar">
-
-                </div>
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="function closeNav() {
                         document.getElementById('mySidebar').style.width = '0';
@@ -44,8 +40,6 @@
                         }
                         openNav()">☰</button>
             </div>
-
-
 
             <div class="container">
 
@@ -115,6 +109,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @extends('layouts.footer')
     </div>
 </body>
 </html>
