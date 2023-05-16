@@ -14,9 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id_country
  * @property string|null $name
- * @property string|null $capital
- * @property string|null $airport
  * 
+ * @property Collection|City[] $cities
  * @property Collection|Flight[] $flights
  * @property Collection|TicketPrice[] $ticket_prices
  *
@@ -29,10 +28,13 @@ class Country extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'name',
-		'capital',
-		'airport'
+		'name'
 	];
+
+	public function cities()
+	{
+		return $this->hasMany(City::class, 'id_country');
+	}
 
 	public function flights()
 	{
