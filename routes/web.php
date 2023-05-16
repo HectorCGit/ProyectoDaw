@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->name('mostrar');
-Route::get('/ciudades','App\Http\Controllers\WelcomeController@mostrarCiudades')->name('mostrarCiudades');
+//Route::get('/','App\Http\Controllers\WelcomeController@mostrarCiudades')->name('mostrarCiudades');
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');
 Route::post('register/passenger','App\Http\Controllers\Auth\RegisterController@registerPassenger')->name('register.passenger.submit');

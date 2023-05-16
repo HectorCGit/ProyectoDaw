@@ -15,8 +15,8 @@
         </style>
 
         <script>
-            function datos(){
-                axios.post('App/Http/Controllers/WelcomeController@mostrarCiudades',document.querySelector('#paises').value());
+            function async datos(){
+              const response= await  axios.post('/',document.querySelector('#paises').value);
 
             }
         </script>
@@ -44,8 +44,8 @@
                             <tr>
                                 <td>
                                     <label>Paises</label>
-                                    <input list="paises" name="paises" id="paises" onfocusout="datos()">
-                                    <datalist >
+                                    <input list="paises" name="paises" id="paises"  onfocusout="datos()" >
+                                    <datalist>
                                         @foreach ($countries as $country)
                                             <option value={{$country->name}}>
                                         @endforeach
@@ -70,7 +70,7 @@
                             <tr>
                                 <td>
                                     <label>Paises</label>
-                                    <input list="paises" name="paises" onfocusout="datos()" />
+                                    <input list="paises" name="paises" />
                                     <datalist id="paises">
                                         @foreach ($countries as $country)
                                             <option value={{$country->name}}>
@@ -96,38 +96,19 @@
                         </table>
                     </form>
                 </div>
-                <script>
-                    function datos(){
-                        axios.post('App/Http/Controllers/WelcomeController@mostrarCiudades',document.querySelector('#paises').value());
-
-                    }
-                </script>
                 {{-- Carrusel de fotos  --}}
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://elviajerofeliz.com/wp-content/uploads/2019/11/Qu%C3%A9-ver-en-Liubliana-Castillo-.jpg" alt="First slide">
+                            <img class="d-block w-100" src="https://www.felicesvacaciones.es/blog/pics/2014/12/secret-retreats-discoveries-thailand-phuket-2.webp" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="https://www.felicesvacaciones.es/blog/pics/2014/12/secret-retreats-discoveries-thailand-phuket-2.webp" alt="Second slide">
+                            <img class="d-block w-100" src="https://elviajerofeliz.com/wp-content/uploads/2019/11/Qu%C3%A9-ver-en-Liubliana-Castillo-.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="..." alt="Third slide">
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
             @endsection
     @endauth
