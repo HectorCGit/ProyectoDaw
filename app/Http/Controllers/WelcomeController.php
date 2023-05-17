@@ -9,17 +9,9 @@ use App\Models\Country;
 class WelcomeController extends Controller
 {
     public function mostrarUbicaciones(){
-        $countries=Country::query()->select("name")->get();
-        $selectedCountry=Country::query()->select('id_country')->where('name','=',request('paises'))->get();
-
-        $cities=City::query()->select('name')->where('id_country','=',$selectedCountry);
-        return view('welcome', compact('countries'),compact('cities'));
-    }
-    public function mostrarCiudades(){
-
-        $selectedCountry=Country::query()->select('id_country')->where('name','=',request('paises'))->get();
-
-        $cities=City::query()->select('name')->where('id_country','=',$selectedCountry);
-        return view('welcome',compact('cities'));
+        $cities=City::query()->select('cities.name as city','countries.name as country')
+            ->join('countries','cities.id_country','=','countries.id_country')
+            ->get();
+        return view('welcome', compact('cities'));
     }
 }

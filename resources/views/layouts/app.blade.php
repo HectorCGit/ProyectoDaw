@@ -20,7 +20,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm"></nav>
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="function closeNav() {
                         document.getElementById('mySidebar').style.width = '0';

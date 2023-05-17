@@ -5,7 +5,7 @@
 </head>
 <body>
  <footer>
-     <nav class="navbar fixed-bottom w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
+     <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
         <div class="w-100 d-flex ">
             <div class="p-3" >
                 <h5>Contacto</h5>
