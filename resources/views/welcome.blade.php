@@ -26,22 +26,24 @@
     @else
             @extends('layouts.app')
             @section('content')
-                {{-- Buscadores --}}
-                <div>
-                    <div class="text-center items-center">
+
+
+                <div style="position:relative">
+                    {{-- Buscadores --}}
+                    <div class="text-center items-center p-2" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:1;">
                         <form>
-                            <table style="border:1px black solid">
+                            <table style="border:2px white solid" class="w-100 p-2 bg-warning">
                                 <tr>
                                     <th>Origen</th>
                                     <th>Destino</th>
                                     <th>Fecha de ida</th>
                                     <th>Fecha de vuelta</th>
+                                    <th>Billetes</th>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Ciudad</label>
-                                        <input list="ciudades" name="ciudades" />
-                                        <datalist id="ciudades">
+                                        <input list="origen" name="origen" />
+                                        <datalist id="origen">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
                                             @endforeach
@@ -49,9 +51,8 @@
                                     </td>
 
                                     <td>
-                                        <label>Ciudad</label>
-                                        <input list="paises" name="paises" />
-                                        <datalist id="paises">
+                                        <input list="destino" name="destino" />
+                                        <datalist id="destino">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
                                             @endforeach
@@ -64,7 +65,6 @@
                                         <input type="date">
                                     </td>
                                     <td>
-                                        <label>Billetes</label>
                                         <input type="number">
                                     </td>
                                     <td>
@@ -75,12 +75,12 @@
                             </table>
                         </form>
                     </div>
-                </div>
+
 
                 {{-- Carrusel de fotos  --}}
 
                 <!-- Carousel -->
-                <div id="demo" class="carousel slide" data-bs-ride="carousel">
+                <div id="demo" class="carousel slide " data-bs-ride="carousel">
 
                     <!-- Indicators/dots -->
                     <div class="carousel-indicators">
@@ -92,13 +92,13 @@
                     <!-- The slideshow/carousel -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://elviajerofeliz.com/wp-content/uploads/2019/11/Qu%C3%A9-ver-en-Liubliana-Castillo-.jpg" alt="Los Angeles" class="d-block" style="width:100%">
+                            <img src="https://elviajerofeliz.com/wp-content/uploads/2019/11/Qu%C3%A9-ver-en-Liubliana-Castillo-.jpg" alt="Los Angeles" class="d-block w-100" style=" height: 70vh">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://img.freepik.com/foto-gratis/pareja-familia-viajando-juntos_1150-7772.jpg" alt="Chicago" class="d-block" style="width:100%">
+                            <img src="https://img.freepik.com/foto-gratis/pareja-familia-viajando-juntos_1150-7772.jpg" alt="Chicago" class="d-block w-100" style="height: 70vh">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="New York" class="d-block" style="width:100%">
+                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" alt="New York" class="d-block w-100" style="height: 70vh">
                         </div>
                     </div>
 
@@ -110,7 +110,7 @@
                         <span class="carousel-control-next-icon"></span>
                     </button>
                 </div>
-
+                </div>
 
             @endsection
     @endauth

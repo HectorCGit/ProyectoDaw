@@ -1,9 +1,4 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <title>Aeroweb</title>
-</head>
-<body>
+
  <footer>
      <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
         <div class="w-100 d-flex ">
@@ -49,6 +44,3 @@
 
      </nav>
     </footer>
-
-</body>
-</html>

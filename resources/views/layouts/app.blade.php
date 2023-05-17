@@ -21,7 +21,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm"></nav>
-        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="function closeNav() {
                         document.getElementById('mySidebar').style.width = '0';
@@ -107,10 +107,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
-        @extends('layouts.footer')
+
     </div>
+    @extends('layouts.footer')
 </body>
 </html>
