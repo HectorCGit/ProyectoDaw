@@ -15,19 +15,24 @@
 
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/jsapp/.js'])
     @vite(['resources/css/sidebar.css'])
-    sc
+    <script type="text/javascript" defer>
+        function openNav() {
+            document.getElementById('mySidebar').style.width = '250px';
+            document.getElementById('main').style.marginLeft = '250px';
+        }
+        function closeNav() {
+            document.getElementById('mySidebar').style.width = '0';
+            document.getElementById('main').style.marginLeft= '0';
+        }
+    </script>
 </head>
 <body>
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div id="mySidebar" class="sidebar">
-                <a href="javascript:void(0)" class="closebtn" onclick="function closeNav() {
-                        document.getElementById('mySidebar').style.width = '0';
-                        document.getElementById('main').style.marginLeft= '0';
-                        }
-                        closeNav()">×</a>
+                <a  class="closebtn" onclick="closeNav()">×</a>
                 <a href="#">Principal</a>
                 <a href="#">Ruleta</a>
                 <a href="#">Ofertas</a>
@@ -35,12 +40,7 @@
             </div>
 
             <div id="main">
-                <button class="openbtn" onclick="function openNav() {
-                        document.getElementById('mySidebar').style.width = '250px';
-                        document.getElementById('main').style.marginLeft = '250px';
-                        document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
-                }
-                        openNav()">☰</button>
+                <button class="openbtn" onclick="openNav()">☰</button>
             </div>
 
             <div class="container">
