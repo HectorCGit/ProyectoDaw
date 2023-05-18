@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $airport
  * 
  * @property Country $country
+ * @property Collection|Flight[] $flights
  *
  * @package App\Models
  */
@@ -39,5 +41,10 @@ class City extends Model
 	public function country()
 	{
 		return $this->belongsTo(Country::class, 'id_country');
+	}
+
+	public function flights()
+	{
+		return $this->hasMany(Flight::class, 'id_destination_city');
 	}
 }

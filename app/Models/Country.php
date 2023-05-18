@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $name
  * 
  * @property Collection|City[] $cities
- * @property Collection|Flight[] $flights
  * @property Collection|TicketPrice[] $ticket_prices
  *
  * @package App\Models
@@ -34,11 +33,6 @@ class Country extends Model
 	public function cities()
 	{
 		return $this->hasMany(City::class, 'id_country');
-	}
-
-	public function flights()
-	{
-		return $this->hasMany(Flight::class, 'id_country');
 	}
 
 	public function ticket_prices()

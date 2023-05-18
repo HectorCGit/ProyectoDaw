@@ -1,0 +1,34 @@
+#divGeneral{
+    position: relative;
+}
+.formu{
+    align-items: center;
+    text-align: center;
+    padding: 2px;
+    position:absolute;
+    width: 70%;
+    height: 40%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index:1;
+}
+.tablaFormu{
+    border: 1px white solid;
+    align-items: center;
+    padding: 2px;
+    width: 100%;
+    height: 35%;
+    background-color: #ffead8;
+    box-shadow: 5px 10px 5px gray;
+}
+
+.buscar{
+    background-color: orange;
+    color: white;
+    padding: 5px;
+    cursor:pointer;
+}
+.buscar:hover{
+    background-color: darkorange;
+}

@@ -19,9 +19,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $num_seat
  * @property int|null $check_in
  * @property Carbon|null $dateAndTime
- * @property int|null $id_country
+ * @property int $id_origin_city
+ * @property int $id_destination_city
+ * @property string $flight_hours
  * 
- * @property Country|null $country
+ * @property City $city
  * @property UserCompany|null $user_company
  * @property Collection|FlightAssessment[] $flight_assessments
  * @property Collection|Ticket[] $tickets
@@ -40,7 +42,8 @@ class Flight extends Model
 		'num_seat' => 'int',
 		'check_in' => 'int',
 		'dateAndTime' => 'datetime',
-		'id_country' => 'int'
+		'id_origin_city' => 'int',
+		'id_destination_city' => 'int'
 	];
 
 	protected $fillable = [
@@ -49,12 +52,14 @@ class Flight extends Model
 		'num_seat',
 		'check_in',
 		'dateAndTime',
-		'id_country'
+		'id_origin_city',
+		'id_destination_city',
+		'flight_hours'
 	];
 
-	public function country()
+	public function city()
 	{
-		return $this->belongsTo(Country::class, 'id_country');
+		return $this->belongsTo(City::class, 'id_destination_city');
 	}
 
 	public function user_company()

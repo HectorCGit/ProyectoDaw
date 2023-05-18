@@ -16,7 +16,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @vite(['resources/css/sidebar.css', 'resources/js/sidebar.js'])
+    @vite(['resources/css/sidebar.css'])
 </head>
 <body>
     <div id="app">
@@ -107,7 +107,7 @@
             </div>
         </nav>
 
-        <main class="">
+        <main>
             @yield('content')
         </main>
 

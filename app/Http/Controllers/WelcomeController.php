@@ -17,12 +17,12 @@ class WelcomeController extends Controller
     }
 
     public function getVuelos(){
-            $flights= Flight::query()->select('id_flight','id_company','num_passenger','num_seat','check_in','dateAndTime','origin.name','cities.name','destination.name')
+            $flights= Flight::query()->select('id_flight','user_company.id_company','num_passenger','num_seat','check_in','dateAndTime','origin.name','destination.name')
                 ->join("cities as origin","id_origin_city","=",'origin.id_city')
                 ->join("cities as destination","id_destination_city","=",'destination.id_city')
-                ->join("user_company",'id_company','=','id_company')
+                ->join("user_company",'user_company.id_company','=','flights.id_company')
                 ->where(['origin.name'=>request('origen'),'destination.name'=>request('destino')])
                 ->get();
-            return view('vistaporhacer',compact('flights'));
+            return view('vuelos',compact('flights'));
     }
 }
