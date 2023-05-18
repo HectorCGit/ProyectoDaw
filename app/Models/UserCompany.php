@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $telephone
  *
  * @property User|null $user
- * @property Collection|FlightAssessment[] $flight_assessments
+ * @property Collection|FlightRating[] $flight_ratings
  * @property Collection|Flight[] $flights
  * @property Collection|TicketPrice[] $ticket_prices
  *
@@ -46,9 +46,9 @@ class UserCompany extends User
 		return $this->belongsTo(User::class, 'id_users');
 	}
 
-	public function flight_assessments()
+	public function flight_ratings()
 	{
-		return $this->hasMany(FlightAssessment::class, 'id_company');
+		return $this->hasMany(FlightRating::class, 'id_company');
 	}
 
 	public function flights()

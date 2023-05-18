@@ -16,13 +16,15 @@ class WelcomeController extends Controller
         return view('welcome', compact('cities'));
     }
 
-    public function getVuelos(){
-            $flights= Flight::query()->select('id_flight','user_company.id_company','num_passenger','num_seat','check_in','dateAndTime','origin.name','destination.name')
+    public function getVuelos()
+    {
+            $flights= Flight::query()->select('id_flight','user_company.name as company','num_passengers','num_seats','num_check_in','departing','returning','origin.name as origin','destination.name as destination')
                 ->join("cities as origin","id_origin_city","=",'origin.id_city')
                 ->join("cities as destination","id_destination_city","=",'destination.id_city')
                 ->join("user_company",'user_company.id_company','=','flights.id_company')
                 ->where(['origin.name'=>request('origen'),'destination.name'=>request('destino')])
                 ->get();
-            return view('vuelos',compact('flights'));
+                return view('vuelos',compact('flights'));
     }
+
 }

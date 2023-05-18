@@ -6,7 +6,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color:  #e28743 ;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -36,7 +36,7 @@
 .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background-color: #FFA07A ;
     color: white;
     padding: 10px 15px;
     border: none;

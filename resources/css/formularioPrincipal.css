@@ -19,7 +19,7 @@
     padding: 2px;
     width: 100%;
     height: 35%;
-    background-color: #ffead8;
+    background-color: whitesmoke;
     box-shadow: 5px 10px 5px gray;
 }
 
@@ -31,4 +31,11 @@
 }
 .buscar:hover{
     background-color: darkorange;
+}
+#vuelta{
+    display: none;
+}
+#titulovuelta{
+    display: none;
+
 }

@@ -17,10 +17,10 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/sidebar.css'])
+    sc
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm"></nav>
         <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div id="mySidebar" class="sidebar">
                 <a href="javascript:void(0)" class="closebtn" onclick="function closeNav() {
@@ -28,17 +28,18 @@
                         document.getElementById('main').style.marginLeft= '0';
                         }
                         closeNav()">×</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
+                <a href="#">Principal</a>
+                <a href="#">Ruleta</a>
+                <a href="#">Ofertas</a>
+                <a href="#">Contacto</a>
             </div>
 
             <div id="main">
                 <button class="openbtn" onclick="function openNav() {
                         document.getElementById('mySidebar').style.width = '250px';
                         document.getElementById('main').style.marginLeft = '250px';
-                        }
+                        document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
+                }
                         openNav()">☰</button>
             </div>
 

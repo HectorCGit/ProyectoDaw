@@ -6,6 +6,22 @@
         <title>Aeroweb</title>
         <!-- Styles -->
         @vite(['resources/css/formularioPrincipal.css'])
+        <script type="text/javascript" defer>
+            function mostrarVuelta(){
+                let checkbox=document.getElementById('idayvuelta');
+                let campoVuelta =document.getElementById("vuelta");
+                let textoVuelta =document.getElementById("titulovuelta");
+                if (checkbox.checked===true){
+                    campoVuelta.style.display="table-cell";
+                    textoVuelta.style.display="table-cell";
+
+
+                }else {
+                    campoVuelta.style.display="none";
+                    textoVuelta.style.display="none";
+                }
+            }
+        </script>
     </head>
     <body class="antialiased">
     @auth
@@ -21,19 +37,20 @@
             @section('content')
                 <div id="divGeneral">
                     {{-- Buscador Principal --}}
-                    <form>
+                    <form action="{{ route('getVuelos') }}" method="post" autocomplete="off">
+                        @csrf
                         <div class="formu">
                             <table class="tablaFormu">
                                 <tr>
                                     <th>Origen</th>
                                     <th>Destino</th>
                                     <th>Fecha de ida</th>
-                                    <th>Fecha de vuelta</th>
+                                    <th id="titulovuelta">Fecha de vuelta</th>
                                     <th>Billetes</th>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input list="origen" name="origen" />
+                                        <input list="origen" name="origen" placeholder="origen"/>
                                         <datalist id="origen">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -42,7 +59,7 @@
                                     </td>
 
                                     <td>
-                                        <input list="destino" name="destino" />
+                                        <input list="destino" name="destino" placeholder="destino"/>
                                         <datalist id="destino">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -50,17 +67,22 @@
                                         </datalist>
                                     </td>
                                     <td>
+                                        <input type="date" name="ida" id="ida">
+                                    </td>
+                                    <td id="vuelta">
                                         <input type="date">
                                     </td>
                                     <td>
-                                        <input type="date">
+                                        <input type="number" name="billetes" id="billetes">
                                     </td>
                                     <td>
-                                        <input type="number">
+                                        <label for="idayvuelta">Ida y vuelta</label>
+                                        <input type="checkbox" name="idayvuelta" id="idayvuelta" onclick="mostrarVuelta()">
                                     </td>
                                     <td>
                                         <input type="submit" value="Consultar Disponibilidad" class="buscar">
                                     </td>
+
                                 </tr>
 
                             </table>

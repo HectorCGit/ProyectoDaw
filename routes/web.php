@@ -19,8 +19,7 @@ use Illuminate\Support\Facades\Route;
 });*/
 Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->name('mostrar');
 
-Route::get('/mostrarVuelos','App\Http\Controllers\WelcomeController@getVuelos')->name('mostrarVuelos');
-
+Route::post('/getVuelos','App\Http\Controllers\WelcomeController@getVuelos')->name('getVuelos');
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');
 Route::post('register/passenger','App\Http\Controllers\Auth\RegisterController@registerPassenger')->name('register.passenger.submit');

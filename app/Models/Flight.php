@@ -15,17 +15,18 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id_flight
  * @property int|null $id_company
- * @property int|null $num_passenger
- * @property int|null $num_seat
- * @property int|null $check_in
- * @property Carbon|null $dateAndTime
+ * @property int|null $num_passengers
+ * @property int|null $num_seats
+ * @property int|null $num_check_in
+ * @property Carbon|null $departing
  * @property int $id_origin_city
  * @property int $id_destination_city
  * @property string $flight_hours
+ * @property Carbon $returning
  * 
  * @property City $city
  * @property UserCompany|null $user_company
- * @property Collection|FlightAssessment[] $flight_assessments
+ * @property Collection|FlightRating[] $flight_ratings
  * @property Collection|Ticket[] $tickets
  *
  * @package App\Models
@@ -38,23 +39,25 @@ class Flight extends Model
 
 	protected $casts = [
 		'id_company' => 'int',
-		'num_passenger' => 'int',
-		'num_seat' => 'int',
-		'check_in' => 'int',
-		'dateAndTime' => 'datetime',
+		'num_passengers' => 'int',
+		'num_seats' => 'int',
+		'num_check_in' => 'int',
+		'departing' => 'datetime',
 		'id_origin_city' => 'int',
-		'id_destination_city' => 'int'
+		'id_destination_city' => 'int',
+		'returning' => 'datetime'
 	];
 
 	protected $fillable = [
 		'id_company',
-		'num_passenger',
-		'num_seat',
-		'check_in',
-		'dateAndTime',
+		'num_passengers',
+		'num_seats',
+		'num_check_in',
+		'departing',
 		'id_origin_city',
 		'id_destination_city',
-		'flight_hours'
+		'flight_hours',
+		'returning'
 	];
 
 	public function city()
@@ -67,9 +70,9 @@ class Flight extends Model
 		return $this->belongsTo(UserCompany::class, 'id_company');
 	}
 
-	public function flight_assessments()
+	public function flight_ratings()
 	{
-		return $this->hasMany(FlightAssessment::class, 'id_flight');
+		return $this->hasMany(FlightRating::class, 'id_flight');
 	}
 
 	public function tickets()

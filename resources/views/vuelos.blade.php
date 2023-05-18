@@ -19,7 +19,34 @@
 @else
     @extends('layouts.app')
     @section('content')
+        <div class="formu">
 
+        @foreach ($flights as $flight)
+                <table class="tablaFormu">
+            <tr>
+               <td>Compañia: {{ $flight->company}}</td>
+            </tr>
+            <tr>
+               <td>Ciudad de orígen: {{ $flight->origin}}</td>
+            </tr>
+            <tr>
+               <td>Ciudad de destino: {{ $flight->destination}}</td>
+            </tr>
+            <tr>
+               <td>Asientos disponibles: {{ ($flight->num_seat - $flight->num_passenger) }}</td>
+            </tr>
+            <tr>
+               <td>Fecha y hora de la ida: {{ $flight->departing}}</td>
+            </tr>
+            @if($flight->returning != null)
+            <tr>
+               <td>Fecha y hora de la vuelta: {{ $flight->returning}}</td>
+            </tr>
+            @endif
+                </table>
+        @endforeach
+
+        </div>
     @endsection
 
 @endauth
