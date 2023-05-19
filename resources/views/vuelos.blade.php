@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
     <!-- Styles -->
-    @vite(['resources/css/formularioPrincipal.css'])
+    @vite(['resources/css/formularioIda.css'])
 </head>
 <body class="antialiased">
 @auth
@@ -24,6 +24,7 @@
 
         @if(!$flights->isEmpty())
                 @foreach ($flights as $flight)
+                    @if(($flight->num_seats - $flight->num_passengers)>=$billetes )
                     <table class="tablaFormu">
                         <tr>
                             <td>Compañia: {{ $flight->company}}</td>
@@ -41,6 +42,9 @@
                             <td>Fecha y hora: {{ $flight->departing}}</td>
                         </tr>
                     </table>
+                    @else
+                        <h2>NO HAY VUELOS DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+                    @endif
                 @endforeach
         @else
             <h2>NO HAY VUELOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
