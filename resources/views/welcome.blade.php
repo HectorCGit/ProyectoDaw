@@ -26,11 +26,16 @@
                 }
             }
             function validacionDestino(){
-                let origen= document.getElementById("origen");
-                let destino= document.getElementById("destino");
+                let origen= document.getElementById("campoOrigen");
+                let destino= document.getElementById("campoDestino");
+                console.log(destino.value);
+                let error=document.getElementById("error");
                 if(origen.value===destino.value){
-                    alert("Origen y destino no pueden coincidir");
+                  error.style.display = "block";
                     return false;
+                }else{
+                    error.style.display = "none";
+                    return true;
                 }
             }
         </script>
@@ -49,10 +54,13 @@
             @section('content')
                 <div id="divGeneral">
                     {{-- Buscador Principal --}}
-                    <form action="{{ route('getVuelos') }}" method="post" autocomplete="off" onsubmit=" return validacionDestino()">
+                    <form action="{{ route('getVuelos') }}" method="post" autocomplete="off" onsubmit="return validacionDestino()">
                         @csrf
                         <div class="formu">
                             <table class="tablaFormu">
+                                <div id="error" >
+                                    Destino y origen no deben coincidir
+                                </div>
                                 <tr>
                                     <th>Origen</th>
                                     <th>Destino</th>
@@ -62,7 +70,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input list="origen" name="origen" placeholder="origen" required/>
+                                        <input list="origen" name="origen" placeholder="origen"  id="campoOrigen" required/>
                                         <datalist id="origen">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -71,7 +79,7 @@
                                     </td>
 
                                     <td>
-                                        <input list="destino" name="destino" placeholder="destino" required/>
+                                        <input list="destino" name="destino" placeholder="destino" id="campoDestino" required/>
                                         <datalist id="destino">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
