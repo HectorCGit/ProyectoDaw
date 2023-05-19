@@ -20,31 +20,32 @@
     @extends('layouts.app')
     @section('content')
         <div class="formu">
+            <h1>Vuelos de ida</h1>
 
-        @foreach ($flights as $flight)
-                <table class="tablaFormu">
-            <tr>
-               <td>Compañia: {{ $flight->company}}</td>
-            </tr>
-            <tr>
-               <td>Ciudad de orígen: {{ $flight->origin}}</td>
-            </tr>
-            <tr>
-               <td>Ciudad de destino: {{ $flight->destination}}</td>
-            </tr>
-            <tr>
-               <td>Asientos disponibles: {{ ($flight->num_seat - $flight->num_passenger) }}</td>
-            </tr>
-            <tr>
-               <td>Fecha y hora de la ida: {{ $flight->departing}}</td>
-            </tr>
-            @if($flight->returning != null)
-            <tr>
-               <td>Fecha y hora de la vuelta: {{ $flight->returning}}</td>
-            </tr>
-            @endif
-                </table>
-        @endforeach
+        @if(!$flights->isEmpty())
+                @foreach ($flights as $flight)
+                    <table class="tablaFormu">
+                        <tr>
+                            <td>Compañia: {{ $flight->company}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ciudad de orígen: {{ $flight->origin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ciudad de destino: {{ $flight->destination}}</td>
+                        </tr>
+                        <tr>
+                            <td>Asientos disponibles: {{ ($flight->num_seats - $flight->num_passengers) }}</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha y hora: {{ $flight->departing}}</td>
+                        </tr>
+                    </table>
+                @endforeach
+        @else
+            <h2>NO HAY VUELOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+        @endif
+
 
         </div>
     @endsection

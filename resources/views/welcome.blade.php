@@ -9,16 +9,28 @@
         <script type="text/javascript" defer>
             function mostrarVuelta(){
                 let checkbox=document.getElementById('idayvuelta');
-                let campoVuelta =document.getElementById("vuelta");
+                let campoVuelta =document.getElementById("campoVuelta");
                 let textoVuelta =document.getElementById("titulovuelta");
+                let inputVuelta= document.getElementById("vuelta");
                 if (checkbox.checked===true){
                     campoVuelta.style.display="table-cell";
                     textoVuelta.style.display="table-cell";
-
+                    inputVuelta.setAttribute("required", "");
+                    inputVuelta.required = true;
 
                 }else {
                     campoVuelta.style.display="none";
                     textoVuelta.style.display="none";
+                    inputVuelta.removeAttribute("required");
+
+                }
+            }
+            function validacionDestino(){
+                let origen= document.getElementById("origen");
+                let destino= document.getElementById("destino");
+                if(origen.value===destino.value){
+                    alert("Origen y destino no pueden coincidir");
+                    return false;
                 }
             }
         </script>
@@ -37,7 +49,7 @@
             @section('content')
                 <div id="divGeneral">
                     {{-- Buscador Principal --}}
-                    <form action="{{ route('getVuelos') }}" method="post" autocomplete="off">
+                    <form action="{{ route('getVuelos') }}" method="post" autocomplete="off" onsubmit=" return validacionDestino()">
                         @csrf
                         <div class="formu">
                             <table class="tablaFormu">
@@ -50,7 +62,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input list="origen" name="origen" placeholder="origen"/>
+                                        <input list="origen" name="origen" placeholder="origen" required/>
                                         <datalist id="origen">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -59,7 +71,7 @@
                                     </td>
 
                                     <td>
-                                        <input list="destino" name="destino" placeholder="destino"/>
+                                        <input list="destino" name="destino" placeholder="destino" required/>
                                         <datalist id="destino">
                                             @foreach ($cities as $city)
                                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -67,13 +79,13 @@
                                         </datalist>
                                     </td>
                                     <td>
-                                        <input type="date" name="ida" id="ida">
+                                        <input type="date" name="ida" id="ida" required>
                                     </td>
-                                    <td id="vuelta">
-                                        <input type="date">
+                                    <td id="campoVuelta">
+                                        <input type="date" name="vuelta" id="vuelta">
                                     </td>
                                     <td>
-                                        <input type="number" name="billetes" id="billetes">
+                                        <input type="number" min="1"  name="billetes" id="billetes" required>
                                     </td>
                                     <td>
                                         <label for="idayvuelta">Ida y vuelta</label>

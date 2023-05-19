@@ -15,7 +15,7 @@
 
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/jsapp/.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/sidebar.css'])
     <script type="text/javascript" defer>
         function openNav() {
@@ -111,8 +111,8 @@
         <main>
             @yield('content')
         </main>
-
+        <div>
+            @extends('layouts.footer')</div>
     </div>
-    @extends('layouts.footer')
 </body>
 </html>
