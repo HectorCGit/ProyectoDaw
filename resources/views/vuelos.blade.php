@@ -27,7 +27,7 @@
                     @if(($flight->num_seats - $flight->num_passengers)>=$billetes )
                     <table class="tablaFormu">
                         <tr>
-                            <td>Compañia: {{ $flight->company}}</td>
+                            <td><h5>{{ $flight->company}}</h5></td>
                         </tr>
                         <tr>
                             <td>Ciudad de orígen: {{ $flight->origin}}</td>

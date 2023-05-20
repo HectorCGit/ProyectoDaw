@@ -58,16 +58,16 @@
                 randomNum2 = Math.floor(Math.random() * arrayImagenes.length);
                 randomNum3 = Math.floor(Math.random() * arrayImagenes.length);
                 randomNum4 = Math.floor(Math.random() * arrayImagenes.length);
-                while (randomNum1==randomNum2 || randomNum1==randomNum3 || randomNum1==randomNum4 ){
+                while (randomNum1===randomNum2 || randomNum1===randomNum3 || randomNum1===randomNum4 ){
                     randomNum1 = Math.floor(Math.random() * arrayImagenes.length);
                 }
-                while (randomNum1==randomNum2 || randomNum2==randomNum3 || randomNum2==randomNum4){
+                while (randomNum1===randomNum2 || randomNum2===randomNum3 || randomNum2===randomNum4){
                     randomNum2 = Math.floor(Math.random() * arrayImagenes.length);
                 }
-                while ( randomNum1==randomNum3 || randomNum2==randomNum3 ||randomNum3==randomNum4){
+                while ( randomNum1===randomNum3 || randomNum2===randomNum3 ||randomNum3===randomNum4){
                     randomNum3 = Math.floor(Math.random() * arrayImagenes.length);
                 }
-                while ( randomNum4==randomNum1 || randomNum4==randomNum2 ||randomNum3==randomNum4){
+                while ( randomNum4===randomNum1 || randomNum4===randomNum2 ||randomNum3===randomNum4){
                     randomNum4 = Math.floor(Math.random() * arrayImagenes.length);
                 }
                 document.getElementById("img1").src = arrayImagenes[randomNum1];
@@ -178,19 +178,19 @@
                 <div class="container ">
                     <div class=" d-block ">
                         <div class="d-flex justify-content-center pb-4">
-                            <div class="w-50 h-50"><img id="img1" class="w-100 h-100" src="https://img.freepik.com/foto-gratis/pareja-familia-viajando-juntos_1150-7772.jpg"></div>
+                            <div class="w-50 h-50"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
                             <div class="w-50 h-50"><h1>Texto</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
-                            <div class="w-50 h-50"><img id="img2" class="w-100 h-100" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2020/06/hipertextual-2020097436.jpg?fit=1500%2C917&quality=50&strip=all&ssl=1"></div>
+                            <div class="w-50 h-50"><img id="img2" class="w-100 h-100" src="" alt="img de Viaje"></div>
                             <div class="w-50 h-50"><h1>Texto</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
-                            <div class="w-50 h-50"><img id="img3" class="w-100 h-100" src="https://img.freepik.com/foto-gratis/pareja-familia-viajando-juntos_1150-7772.jpg"></div>
+                            <div class="w-50 h-50"><img id="img3" class="w-100 h-100" src="" alt="img de Viaje"></div>
                             <div class="w-50 h-50"><h1>Texto</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4"  >
-                            <div class="w-50 h-50"><img id="img4" class="w-100 h-100" src="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2020/06/hipertextual-2020097436.jpg?fit=1500%2C917&quality=50&strip=all&ssl=1"></div>
+                            <div class="w-50 h-50"><img id="img4" class="w-100 h-100" src="" alt="img de Viaje"></div>
                             <div class="w-50 h-50"><h1>Texto</h1></div>
                         </div>
                     </div>
