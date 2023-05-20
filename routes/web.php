@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+Route::get('/phpmyadmin', function () {
+    return redirect('/ProyectoDaw/vendor/phpmyadmin/phpmyadmin/index.php');
+});
+
 Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->name('mostrar');
 
 Route::post('/getVuelos','App\Http\Controllers\WelcomeController@getVuelos')->name('getVuelos');
