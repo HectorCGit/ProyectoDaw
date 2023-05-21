@@ -1,6 +1,6 @@
-<footer class="bottom-0 ">/{{--fixed-bottom--}}
+<footer class="bottom-0 w-100 position-absolute ">{{--fixed-bottom--}}
      <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
-        <div class="w-100 d-flex justify-content-center">
+        <div class=" w-100 d-flex justify-content-center">
             <div class="p-3" >
                 <h5>Contacto</h5>
                 <ul class="list-unstyled">

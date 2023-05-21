@@ -28,7 +28,7 @@
         }
     </script>
 </head>
-<body>
+<body class="min-vh-100 position-relative pb-auto">
     <div id="app">
         <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div id="mySidebar" class="sidebar">
@@ -108,11 +108,11 @@
             </div>
         </nav>
 
-        <main>
+        <main class="m-auto">
             @yield('content')
         </main>
-        <div>
-            @extends('layouts.footer')</div>
+
     </div>
+        @extends('layouts.footer')
 </body>
 </html>

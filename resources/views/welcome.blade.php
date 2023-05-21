@@ -77,7 +77,7 @@
             }
         </script>
     </head>
-    <body class="antialiased" onload="imagenAleatoria()">
+    <body class="min-vh-100 position-relative pb-3" onload="imagenAleatoria()">
     @auth
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
@@ -180,25 +180,25 @@
                     <div class=" d-block ">
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>{{$flights[0]}}</h1></div>
+                            //<div class="w-50 h-50"><h1>{{$flights[0]}}</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img2" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>{{$flights[1]}}</h1></div>
+                            //<div class="w-50 h-50"><h1>{{$flights[1]}}</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img3" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>{{$flights[2]}}</h1></div>
+                            //<div class="w-50 h-50"><h1>{{$flights[2]}}</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4"  >
                             <div class="w-50 h-50"><img id="img4" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>{{$flights[3]}}</h1></div>
+                            //<div class="w-50 h-50"><h1>{{$flights[3]}}</h1></div>
                         </div>
                     </div>
                 </div>--}}
             @endsection
 
     @endauth
-
+    @extends('layouts.footer')
     </body>
 </html>
