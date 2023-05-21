@@ -179,19 +179,19 @@
                     <div class=" d-block ">
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>Texto</h1></div>
+                            <div class="w-50 h-50"><h1>{{$flights[0]}}</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img2" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>Texto</h1></div>
+                            <div class="w-50 h-50"><h1>{{$flights[1]}}</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img3" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>Texto</h1></div>
+                            <div class="w-50 h-50"><h1>{{$flights[2]}}</h1></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4"  >
                             <div class="w-50 h-50"><img id="img4" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            <div class="w-50 h-50"><h1>Texto</h1></div>
+                            <div class="w-50 h-50"><h1>{{$flights[3]}}</h1></div>
                         </div>
                     </div>
                 </div>
