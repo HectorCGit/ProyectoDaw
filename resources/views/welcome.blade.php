@@ -175,27 +175,89 @@
                         </button>
                     </div>
                 </div>
-                {{--
+
                 <div class="container ">
                     <div class=" d-block ">
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"><h1>{{$flights[0]}}</h1></div>
+                            //<div class="w-50 h-50">
+                                <table>
+                                    <tr>
+                                        <th>Compañia</th>
+                                        <td>{{$randomFlights[0]->company}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Origen</th>
+                                        <td>{{$randomFlights[0]->origin}}</td>
+                                        <th>Destino</th>
+                                        <td>{{$randomFlights[0]->destination}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha y hora</th>
+                                        <td>{{$randomFlights[0]->departing}}</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img2" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"><h1>{{$flights[1]}}</h1></div>
+                            //<div class="w-50 h-50"> <table>
+                                    <tr>
+                                        <th>Compañia</th>
+                                        <td>{{$randomFlights[1]->company}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Origen</th>
+                                        <td>{{$randomFlights[1]->origin}}</td>
+                                        <th>Destino</th>
+                                        <td>{{$randomFlights[1]->destination}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha y hora</th>
+                                        <td>{{$randomFlights[1]->departing}}</td>
+                                    </tr>
+                                </table></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
                             <div class="w-50 h-50"><img id="img3" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"><h1>{{$flights[2]}}</h1></div>
+                            //<div class="w-50 h-50"> <table>
+                                    <tr>
+                                        <th>Compañia</th>
+                                        <td>{{$randomFlights[2]->company}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Origen</th>
+                                        <td>{{$randomFlights[2]->origin}}</td>
+                                        <th>Destino</th>
+                                        <td>{{$randomFlights[2]->destination}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha y hora</th>
+                                        <td>{{$randomFlights[2]->departing}}</td>
+                                    </tr>
+                                </table></div>
                         </div>
                         <div class="d-flex justify-content-center pb-4"  >
                             <div class="w-50 h-50"><img id="img4" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"><h1>{{$flights[3]}}</h1></div>
+                            //<div class="w-50 h-50"> <table>
+                                    <tr>
+                                        <th>Compañia</th>
+                                        <td>{{$randomFlights[3]->company}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Origen</th>
+                                        <td>{{$randomFlights[3]->origin}}</td>
+                                        <th>Destino</th>
+                                        <td>{{$randomFlights[3]->destination}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fecha y hora</th>
+                                        <td>{{$randomFlights[3]->departing}}</td>
+                                    </tr>
+                                </table></div>
                         </div>
                     </div>
-                </div>--}}
+                </div>
             @endsection
 
     @endauth
