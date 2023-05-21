@@ -28,7 +28,7 @@ class WelcomeController extends Controller
             ->get();
         return view('vuelos', compact('flights'), compact('billetes'));
     }
-
+/*
     public function vuelosRandom()
     {
         $randomFlights = Flight::query()->
@@ -39,6 +39,6 @@ class WelcomeController extends Controller
             ->get();
 
         return view('welcome', compact('randomFlights'));
-    }
+    }*/
 
 }

@@ -22,7 +22,7 @@ Route::get('/phpmyadmin', function () {
 });
 
 Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->name('mostrar');
-Route::get('/','App\Http\Controllers\WelcomeController@vuelosRandom')->name('aleatorios');
+//Route::get('/','App\Http\Controllers\WelcomeController@vuelosRandom')->name('aleatorios');
 
 Route::post('/getVuelos','App\Http\Controllers\WelcomeController@getVuelos')->name('getVuelos');
 

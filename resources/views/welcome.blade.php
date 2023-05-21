@@ -175,6 +175,7 @@
                         </button>
                     </div>
                 </div>
+                {{--
                 <div class="container ">
                     <div class=" d-block ">
                         <div class="d-flex justify-content-center pb-4">
@@ -194,7 +195,7 @@
                             <div class="w-50 h-50"><h1>{{$flights[3]}}</h1></div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             @endsection
 
     @endauth
