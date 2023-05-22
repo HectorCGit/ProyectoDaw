@@ -1,5 +1,5 @@
 #divGeneral{
-
+align-content: center;
 }
 .formu{
     padding: 20px;
@@ -8,6 +8,7 @@
     top:50%;
     left:50%;
     margin: 5px;
+    align-items: center;
 }
 .tablaFormu{
     border: 1px white solid;

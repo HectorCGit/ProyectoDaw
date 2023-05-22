@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+
 Route::get('/phpmyadmin', function () {
     return redirect('/vendor/phpmyadmin/phpmyadmin/index.php');
 });

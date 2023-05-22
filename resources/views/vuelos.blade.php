@@ -19,6 +19,7 @@
 @else
     @extends('layouts.app')
     @section('content')
+        <div class="container" id="divGeneral">
         <div class="formu">
             <h1>Vuelos de ida</h1>
 
@@ -54,37 +55,38 @@
         </div>
 
         <div class="formu">
-            <h1>Vuelos de vuelta</h1>
-
-            @if(!$vuelta->isEmpty())
+            @if($vuelta!="sin vuelta")
+                @if(!$vuelta->isEmpty())
+                    <h1>Vuelos de vuelta</h1>
                 @foreach ($vuelta as $v)
-                    @if(($v->num_seats - $v->num_passengers)>=$billetes )
-                        <table class="tablaFormu">
-                            <tr>
-                                <td><h5>{{ $v->company}}</h5></td>
-                            </tr>
-                            <tr>
-                                <td>Ciudad de orígen: {{ $v->origin}}</td>
-                            </tr>
-                            <tr>
-                                <td>Ciudad de destino: {{ $v->destination}}</td>
-                            </tr>
-                            <tr>
-                                <td>Asientos disponibles: {{ ($v->num_seats - $v->num_passengers) }}</td>
-                            </tr>
-                            <tr>
-                                <td>Fecha y hora: {{ $v->departing}}</td>
-                            </tr>
-                        </table>
-                    @else
-                        <h2>NO HAY VUELOS DE VUELTA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
-                    @endif
-                @endforeach
-            @else
-                <h2>NO HAY VUELOS DE VUELTA DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+                            @if(($v->num_seats - $v->num_passengers)>=$billetes )
+                             <table class="tablaFormu">
+                                <tr>
+                                    <td><h5>{{$v->company}}</h5></td>
+                                </tr>
+                                <tr>
+                                    <td>Ciudad de orígen: {{ $v->origin}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Ciudad de destino: {{ $v->destination}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Asientos disponibles: {{ ($v->num_seats - $v->num_passengers) }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fecha y hora: {{ $v->departing}}</td>
+                                </tr>
+                            </table>
+                        @else
+                            <h2>NO HAY VUELOS DE VUELTA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+                        @endif
+                    @endforeach
+                @else
+                    <h2>NO HAY VUELOS DE VUELTA DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+                @endif
             @endif
 
-
+        </div>
         </div>
     @endsection
 

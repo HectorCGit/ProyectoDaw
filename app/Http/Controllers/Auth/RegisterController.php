@@ -31,7 +31,7 @@ class RegisterController extends Controller
 
 
     /**
-     * Where to redirect users after registration.
+     * Redirección tras registro
      *
      * @var string
      */
@@ -56,7 +56,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Create a new controller instance.
+     *
      *
      * @return void
      */
@@ -66,7 +66,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Validación compañía
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
@@ -81,7 +81,7 @@ class RegisterController extends Controller
         ]);
     }
     /**
-     * Get a validator for an incoming registration request.
+     * Validación pasajero
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
