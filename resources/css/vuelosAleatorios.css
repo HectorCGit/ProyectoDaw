@@ -1,0 +1,35 @@
+.tablaVuelosAleatorios{
+    padding: 20px;
+    margin:10px;
+    width: 100%;
+    height: 35%;
+    cursor: pointer;
+    color:black;
+    text-align: center;
+}
+.divVueloAleatorio{
+    border: #cc8e43 solid;
+    background: whitesmoke;
+    border-radius: 20px 20px ;
+    box-shadow: 5px 10px 5px #cc8e43;
+    margin-left: 40px;
+}
+.divVueloAleatorio:hover{
+    border: 3px white dotted;
+    border-radius: 20px 20px ;
+    background-color: #e28743;
+}
+.tablaVuelosAleatorios:hover{
+    color:white;
+}
+.enlaceVueloAleatorio{
+    text-decoration: none;
+}
+.bordeImagenAleatoria{
+    border: 4px gray solid;
+    box-shadow: 5px 10px 5px gray;
+
+
+}
+
+

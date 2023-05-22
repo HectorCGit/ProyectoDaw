@@ -22,33 +22,67 @@
         <div class="formu">
             <h1>Vuelos de ida</h1>
 
-        @if(!$flights->isEmpty())
-                @foreach ($flights as $flight)
-                    @if(($flight->num_seats - $flight->num_passengers)>=$billetes )
+        @if(!$ida->isEmpty())
+                @foreach ($ida as $i)
+                    @if(($i->num_seats - $i->num_passengers)>=$billetes )
                     <table class="tablaFormu">
                         <tr>
-                            <td><h5>{{ $flight->company}}</h5></td>
+                            <td><h5>{{ $i->company}}</h5></td>
                         </tr>
                         <tr>
-                            <td>Ciudad de orígen: {{ $flight->origin}}</td>
+                            <td>Ciudad de orígen: {{ $i->origin}}</td>
                         </tr>
                         <tr>
-                            <td>Ciudad de destino: {{ $flight->destination}}</td>
+                            <td>Ciudad de destino: {{ $i->destination}}</td>
                         </tr>
                         <tr>
-                            <td>Asientos disponibles: {{ ($flight->num_seats - $flight->num_passengers) }}</td>
+                            <td>Asientos disponibles: {{ ($i->num_seats - $i->num_passengers) }}</td>
                         </tr>
                         <tr>
-                            <td>Fecha y hora: {{ $flight->departing}}</td>
+                            <td>Fecha y hora: {{ $i->departing}}</td>
                         </tr>
                     </table>
                     @else
-                        <h2>NO HAY VUELOS DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+                        <h2>NO HAY VUELOS DE IDA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
                     @endif
                 @endforeach
         @else
-            <h2>NO HAY VUELOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+            <h2>NO HAY VUELOS DE IDA DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
         @endif
+
+
+        </div>
+
+        <div class="formu">
+            <h1>Vuelos de vuelta</h1>
+
+            @if(!$vuelta->isEmpty())
+                @foreach ($vuelta as $v)
+                    @if(($v->num_seats - $v->num_passengers)>=$billetes )
+                        <table class="tablaFormu">
+                            <tr>
+                                <td><h5>{{ $v->company}}</h5></td>
+                            </tr>
+                            <tr>
+                                <td>Ciudad de orígen: {{ $v->origin}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ciudad de destino: {{ $v->destination}}</td>
+                            </tr>
+                            <tr>
+                                <td>Asientos disponibles: {{ ($v->num_seats - $v->num_passengers) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha y hora: {{ $v->departing}}</td>
+                            </tr>
+                        </table>
+                    @else
+                        <h2>NO HAY VUELOS DE VUELTA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+                    @endif
+                @endforeach
+            @else
+                <h2>NO HAY VUELOS DE VUELTA DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
+            @endif
 
 
         </div>

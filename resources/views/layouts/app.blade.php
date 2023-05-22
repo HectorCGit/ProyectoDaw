@@ -34,9 +34,13 @@
             <div id="mySidebar" class="sidebar">
                 <a  class="closebtn" onclick="closeNav()">×</a>
                 <a href="#">Principal</a>
-                <a href="#">Ruleta</a>
+               @auth
+                    <a href="#">Ruleta</a>
+                    <a href="#">Check-in</a>
+                @endauth
                 <a href="#">Ofertas</a>
                 <a href="#">Contacto</a>
+                <a href="#">Información</a>
             </div>
 
             <div id="main">
@@ -108,11 +112,13 @@
             </div>
         </nav>
 
-        <main class="m-auto">
+        <main >
             @yield('content')
+
         </main>
 
     </div>
-        @extends('layouts.footer')
+    @extends('layouts.footer')
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-<footer class="bottom-0 w-100 position-absolute ">{{--fixed-bottom--}}
+<footer class="bottom-0 w-100  position-absolute pt-lg-4">{{--fixed-bottom--}}
      <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
         <div class=" w-100 d-flex justify-content-center">
             <div class="p-3" >

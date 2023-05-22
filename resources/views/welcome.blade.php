@@ -6,6 +6,7 @@
         <title>Aeroweb</title>
         <!-- Styles -->
         @vite(['resources/css/formularioPrincipal.css'])
+        @vite(['resources/css/vuelosAleatorios.css'])
         <script type="text/javascript" defer>
             function mostrarVuelta(){
                 let checkbox=document.getElementById('idayvuelta');
@@ -77,7 +78,7 @@
             }
         </script>
     </head>
-    <body class="min-vh-100 position-relative pb-3" onload="imagenAleatoria()">
+    <body class="min-vh-100 position-relative pb-xxl-5" onload="imagenAleatoria()">
     @auth
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
@@ -147,7 +148,7 @@
                     </form>
 
                 {{-- Carrusel de fotos  --}}
-                    <div id="fotosCarousel" class="carousel slide pb-4" data-bs-ride="carousel">
+                    <div id="fotosCarousel" class="carousel slide pb-5" data-bs-ride="carousel">
                         <!-- Indicators/dots -->
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#fotosCarousel" data-bs-slide-to="0" class="active"></button>
@@ -179,88 +180,111 @@
                 <div class="container ">
                     <div class=" d-block ">
                         <div class="d-flex justify-content-center pb-4">
-                            <div class="w-50 h-50"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50">
-                                <table>
+                            <div class="w-50 h-50 bordeImagenAleatoria"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
+                            <div class="w-50 h-50 divVueloAleatorio">
+                                <a class="enlaceVueloAleatorio" href="">
+                                <table class="tablaVuelosAleatorios">
                                     <tr>
-                                        <th>Compañia</th>
-                                        <td>{{$randomFlights[0]->company}}</td>
+                                        <th><h2>{{$randomFlights[0]->company}}</h2></th>
                                     </tr>
                                     <tr>
-                                        <th>Origen</th>
-                                        <td>{{$randomFlights[0]->origin}}</td>
-                                        <th>Destino</th>
-                                        <td>{{$randomFlights[0]->destination}}</td>
+                                        <th>Origen-Destino</th>
+                                        <td><h5>{{$randomFlights[0]->origin}} - {{$randomFlights[0]->destination}}</h5></td>
                                     </tr>
                                     <tr>
-                                        <th>Fecha y hora</th>
-                                        <td>{{$randomFlights[0]->departing}}</td>
+                                        <th>Fecha</th>
+                                        <td>{{substr($randomFlights[0]->departing,0,10)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Hora</th>
+                                        <td>{{substr($randomFlights[0]->departing,11,5)}}</td>
                                     </tr>
                                 </table>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-center pb-4">
+                            <div class="w-50 h-50 bordeImagenAleatoria"><img id="img2" class="w-100 h-100" src="" alt="img de Viaje"></div>
+                            <div class="w-50 h-50 divVueloAleatorio">
+                                <a class="enlaceVueloAleatorio" href="">
+                                    <table class="tablaVuelosAleatorios">
+                                        <tr>
+                                            <th><h2>{{$randomFlights[1]->company}}</h2></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Origen-Destino</th>
+                                            <td><h5>{{$randomFlights[1]->origin}} - {{$randomFlights[1]->destination}}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <td>{{substr($randomFlights[1]->departing,0,10)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Hora</th>
+                                            <td>{{substr($randomFlights[1]->departing,11,5)}}</td>
+                                        </tr>
+                                    </table>
+                                </a>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center pb-4">
-                            <div class="w-50 h-50"><img id="img2" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"> <table>
-                                    <tr>
-                                        <th>Compañia</th>
-                                        <td>{{$randomFlights[1]->company}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Origen</th>
-                                        <td>{{$randomFlights[1]->origin}}</td>
-                                        <th>Destino</th>
-                                        <td>{{$randomFlights[1]->destination}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fecha y hora</th>
-                                        <td>{{$randomFlights[1]->departing}}</td>
-                                    </tr>
-                                </table></div>
-                        </div>
-                        <div class="d-flex justify-content-center pb-4">
-                            <div class="w-50 h-50"><img id="img3" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"> <table>
-                                    <tr>
-                                        <th>Compañia</th>
-                                        <td>{{$randomFlights[2]->company}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Origen</th>
-                                        <td>{{$randomFlights[2]->origin}}</td>
-                                        <th>Destino</th>
-                                        <td>{{$randomFlights[2]->destination}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fecha y hora</th>
-                                        <td>{{$randomFlights[2]->departing}}</td>
-                                    </tr>
-                                </table></div>
+                            <div class="w-50 h-50 bordeImagenAleatoria"><img id="img3" class="w-100 h-100" src="" alt="img de Viaje"></div>
+                            <div class="w-50 h-50 divVueloAleatorio">
+                                <a class="enlaceVueloAleatorio" href="">
+                                    <table class="tablaVuelosAleatorios">
+                                        <tr>
+                                            <th><h2>{{$randomFlights[2]->company}}</h2></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Origen-Destino</th>
+                                            <td><h5>{{$randomFlights[2]->origin}} - {{$randomFlights[2]->destination}}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <td>{{substr($randomFlights[2]->departing,0,10)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Hora</th>
+                                            <td>{{substr($randomFlights[2]->departing,11,5)}}</td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </div>
                         </div>
                         <div class="d-flex justify-content-center pb-4"  >
-                            <div class="w-50 h-50"><img id="img4" class="w-100 h-100" src="" alt="img de Viaje"></div>
-                            //<div class="w-50 h-50"> <table>
-                                    <tr>
-                                        <th>Compañia</th>
-                                        <td>{{$randomFlights[3]->company}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Origen</th>
-                                        <td>{{$randomFlights[3]->origin}}</td>
-                                        <th>Destino</th>
-                                        <td>{{$randomFlights[3]->destination}}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fecha y hora</th>
-                                        <td>{{$randomFlights[3]->departing}}</td>
-                                    </tr>
-                                </table></div>
+                            <div class="w-50 h-50 bordeImagenAleatoria"><img id="img4" class="w-100 h-100" src="" alt="img de Viaje"></div>
+                            <div class="w-50 h-50 divVueloAleatorio">
+                                <a class="enlaceVueloAleatorio" href="">
+                                    <table class="tablaVuelosAleatorios">
+                                        <tr>
+                                            <th><h2>{{$randomFlights[3]->company}}</h2></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Origen-Destino</th>
+                                            <td><h5>{{$randomFlights[3]->origin}} - {{$randomFlights[0]->destination}}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <td>{{substr($randomFlights[3]->departing,0,10)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Hora</th>
+                                            <td>{{substr($randomFlights[3]->departing,11,5)}}</td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </div>
                         </div>
+
+                        <div   style="width: 300px; height: 300px" >
+
                     </div>
                 </div>
+
             @endsection
 
     @endauth
-    @extends('layouts.footer')
+
     </body>
 </html>
