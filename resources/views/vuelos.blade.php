@@ -20,13 +20,17 @@
     @extends('layouts.app')
     @section('content')
         <div class="container" id="divGeneral">
+
         <div class="formu">
             <h1>Vuelos de ida</h1>
 
         @if(!$ida->isEmpty())
                 @foreach ($ida as $i)
                     @if(($i->num_seats - $i->num_passengers)>=$billetes )
+
                     <table class="tablaFormu">
+
+
                         <tr>
                             <td><h5>{{ $i->company}}</h5></td>
                         </tr>
@@ -42,7 +46,12 @@
                         <tr>
                             <td>Fecha y hora: {{ $i->departing}}</td>
                         </tr>
+                        <tr>
+                            <td>Precio: {{$i->normal_price}}</td>
+                            <td>Precio Niño: {{$i->children_price}}</td>
+                        </tr>
                     </table>
+
                     @else
                         <h2>NO HAY VUELOS DE IDA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
                     @endif
@@ -76,6 +85,10 @@
                                 <tr>
                                     <td>Fecha y hora: {{ $v->departing}}</td>
                                 </tr>
+                                 <tr>
+                                     <td>Precio: {{$v->normal_price}}</td>
+                                     <td>Precio Niño: {{$v->children_price}}</td>
+                                 </tr>
                             </table>
                         @else
                             <h2>NO HAY VUELOS DE VUELTA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>

@@ -7,6 +7,7 @@
         <!-- Styles -->
         @vite(['resources/css/formularioPrincipal.css'])
         @vite(['resources/css/vuelosAleatorios.css'])
+
         <script type="text/javascript" defer>
             function mostrarVuelta(){
                 let checkbox=document.getElementById('idayvuelta');
@@ -191,6 +192,14 @@
                                         <th>Hora</th>
                                         <td>{{substr($randomFlights[0]->departing,11,5)}}</td>
                                     </tr>
+                                    <tr>
+                                        <th>Precio</th>
+                                        <td>{{$randomFlights[0]->normal_price}}€</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Precio niño</th>
+                                        <td>{{$randomFlights[0]->children_price}}€</td>
+                                    </tr>
                                 </table>
                                 </a>
                             </div>
@@ -216,6 +225,14 @@
                                             <th>Hora</th>
                                             <td>{{substr($randomFlights[1]->departing,11,5)}}</td>
                                         </tr>
+                                        <tr>
+                                            <th>Precio</th>
+                                            <td>{{$randomFlights[1]->normal_price}}€</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Precio niño</th>
+                                            <td>{{$randomFlights[1]->children_price}}€</td>
+                                        </tr>
                                     </table>
                                 </a>
                             </div>
@@ -240,6 +257,14 @@
                                             <th>Hora</th>
                                             <td>{{substr($randomFlights[2]->departing,11,5)}}</td>
                                         </tr>
+                                        <tr>
+                                            <th>Precio</th>
+                                            <td>{{$randomFlights[2]->normal_price}}€</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Precio niño</th>
+                                            <td>{{$randomFlights[2]->children_price}}€</td>
+                                        </tr>
                                     </table>
                                 </a>
                             </div>
@@ -263,6 +288,14 @@
                                         <tr>
                                             <th>Hora</th>
                                             <td>{{substr($randomFlights[3]->departing,11,5)}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Precio</th>
+                                            <td>{{$randomFlights[3]->normal_price}}€</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Precio niño</th>
+                                            <td>{{$randomFlights[3]->children_price}}€</td>
                                         </tr>
                                     </table>
                                 </a>
