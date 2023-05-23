@@ -84,73 +84,12 @@
             </div>
         </div>
 
-        <div>
-            <div class="formu">
 
-                @if($vuelta!="sin vuelta")
-                    @if(!$vuelta->isEmpty())
-                        <h1>Vuelos de vuelta</h1>
-                        @foreach ($vuelta as $v)
-                            <div id="divGeneral">
-                                <div class="divGen">
-                                    @if(($v->num_seats - $v->num_passengers)>=$billetes )
-                                        <table class="tablaFormu">
-                                            <tr>
-                                                <td><h5>{{$v->company}}</h5></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ciudad de orígen: {{ $v->origin}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ciudad de destino: {{ $v->destination}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Asientos
-                                                    disponibles: {{ ($v->num_seats - $v->num_passengers) }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fecha y hora: {{ $v->departing}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label>Precio</label>
-                                                    <select name="precioVuelta" id="precioVuelta">
-                                                        <option value="{{$i->economic_price}}">
-                                                            Económico: {{$i->economic_price}}</option>
-                                                        <option value="{{$i->business_price}}">
-                                                            Business: {{$i->business_price}}</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    @else
-                                        <h2>NO HAY VUELOS DE VUELTA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA.
-                                            PRUEBE CON OTRA FECHA </h2>
-                                    @endif
-                                </div>
-                                <div class="w-30 h-50 p-3">
-                                    @auth
-                                        <form>
-                                            <input type="hidden" name="company" value="{{$i->company}}">
-                                            <input type="hidden" name="origin" value="{{$i->origin}}">
-                                            <input type="hidden" name="destination" value="{{$i->destination}}">
-                                            <input type="submit" value="Agregar">
-                                        </form>
-                                    @else
-                                        <button><a href="{{route('login')}}"
-                                                   style="text-decoration: none; color: white"> Agregar </a></button>
-                                    @endauth
-                                </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <h2>NO HAY VUELOS DE VUELTA DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
-                    @endif
-                @endif
-
-            </div>
-        </div>
-            <form action="" style="display: none">
+            <form method="post" action={{route('getVuelosVuelta')}}>
+                @csrf
+                <input type="hidden" name="diaVuelta" value="{{$diaVuelta}}">
+                <input type="hidden" name="origin" value="{{$origen}}">
+                <input type="hidden" name="destination" value="{{$destino}}">
                 <input type="submit" value="siguiente">
             </form>
     </div>

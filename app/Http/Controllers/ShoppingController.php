@@ -21,6 +21,7 @@ class ShoppingController extends Controller
         DB::insert('Insert into tickets (id_flight,id_passenger,num_suitcases,price)
         values (' . request('idFlight') . ',' . $id . ',2,' . request('precioIda') . ') ');
 
+        return view('vuelos');
 
     }
 

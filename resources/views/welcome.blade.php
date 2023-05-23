@@ -85,7 +85,7 @@
             @section('content')
                 <div id="divGeneral">
                     {{-- Buscador Principal --}}
-                    <form action="{{ route('getVuelos') }}" method="post" autocomplete="off" onsubmit="return validacionDestino()">
+                    <form action="{{ route('getVuelosIda') }}" method="post" autocomplete="off" onsubmit="return validacionDestino()">
                         @csrf
                         <div class="formu">
                             <table class="tablaFormu">

@@ -22,7 +22,9 @@ Route::get('/phpmyadmin', function () {
 Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->name('mostrar');
 
 
-Route::post('/getVuelos','App\Http\Controllers\WelcomeController@getVuelos')->name('getVuelos');
+Route::post('/getVuelosIda','App\Http\Controllers\WelcomeController@getVuelosIda')->name('getVuelosIda');
+Route::post('/getVuelosVuelta','App\Http\Controllers\WelcomeController@getVuelosVuelta')->name('getVuelosVuelta');
+
 
 Route::post('/comprar','App\Http\Controllers\ShoppingController@comprarBilletes')->name('comprar');
 

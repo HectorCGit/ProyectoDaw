@@ -34,9 +34,12 @@ class WelcomeController extends Controller
      * Devuelve los resultados de la busqueda de vuelos, tanto ida como vuelta
      *
      */
-    public function getVuelos()
+    public function getVuelosIda()
     {
+        $diaVuelta=request('vuelta');
         $billetes = request('billetes');
+        $origen=request('origen');
+        $destino=request('destino');
         $ida = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
             ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
@@ -58,8 +61,25 @@ class WelcomeController extends Controller
             $vuelta="sin vuelta";
         }
 
-        return view('vuelos', compact('ida'), compact('billetes','vuelta'));
+        return view('vuelos', compact('ida'), compact('billetes','vuelta','diaVuelta','origen','destino'));
     }
 
+    public function getVuelosVuelta(){
+        $billetes = request('billetes');
+
+        if(request('diaVuelta')!=null){
+            $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
+                ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
+                ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
+                ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')
+                ->join("flights_price", 'flights_price.id_price', '=', 'flights.id_price')
+                ->where(['destination.name' => request('origin'), 'origin.name' => request('destination')])
+                ->whereDate('departing', '=', request('diaVuelta'))
+                ->get();
+                         return view('vuelosVuelta', compact('billetes','vuelta'));
+        }else{
+            redirect('hacervistanombres');
+        }
+    }
 
 }
