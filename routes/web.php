@@ -24,6 +24,8 @@ Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->nam
 
 Route::post('/getVuelos','App\Http\Controllers\WelcomeController@getVuelos')->name('getVuelos');
 
+Route::post('/comprar','App\Http\Controllers\ShoppingController@comprarBilletes')->name('comprar');
+
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');
 Route::post('register/passenger','App\Http\Controllers\Auth\RegisterController@registerPassenger')->name('register.passenger.submit');
 

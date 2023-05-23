@@ -19,7 +19,7 @@ class WelcomeController extends Controller
             ->get();
 
         $randomFlights = Flight::query()->
-        select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','children_price','normal_price')
+        select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
             ->leftJoin("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->leftJoin("cities as destination", "id_destination_city", "=", 'destination.id_city')
             ->leftJoin("user_company", 'user_company.id_company', '=', 'flights.id_company')
@@ -37,7 +37,7 @@ class WelcomeController extends Controller
     public function getVuelos()
     {
         $billetes = request('billetes');
-        $ida = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','children_price','normal_price')
+        $ida = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
             ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
             ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')
@@ -46,7 +46,7 @@ class WelcomeController extends Controller
             ->whereDate('departing', '=', request('ida'))
             ->get();
         if(request('vuelta')!=null){
-            $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','children_price','normal_price')
+            $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
                 ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
                 ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
                 ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')

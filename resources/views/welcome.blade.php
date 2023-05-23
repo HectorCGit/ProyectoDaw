@@ -193,12 +193,12 @@
                                         <td>{{substr($randomFlights[0]->departing,11,5)}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Precio</th>
-                                        <td>{{$randomFlights[0]->normal_price}}€</td>
+                                        <th>Economic Class</th>
+                                        <td>{{$randomFlights[0]->economic_price}}€</td>
                                     </tr>
                                     <tr>
-                                        <th>Precio niño</th>
-                                        <td>{{$randomFlights[0]->children_price}}€</td>
+                                        <th>Business Class</th>
+                                        <td>{{$randomFlights[0]->business_price}}€</td>
                                     </tr>
                                 </table>
                                 </a>
@@ -226,12 +226,12 @@
                                             <td>{{substr($randomFlights[1]->departing,11,5)}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Precio</th>
-                                            <td>{{$randomFlights[1]->normal_price}}€</td>
+                                            <th>Economic Class</th>
+                                            <td>{{$randomFlights[1]->economic_price}}€</td>
                                         </tr>
                                         <tr>
-                                            <th>Precio niño</th>
-                                            <td>{{$randomFlights[1]->children_price}}€</td>
+                                            <th>Business Class</th>
+                                            <td>{{$randomFlights[1]->business_price}}€</td>
                                         </tr>
                                     </table>
                                 </a>
@@ -258,12 +258,12 @@
                                             <td>{{substr($randomFlights[2]->departing,11,5)}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Precio</th>
-                                            <td>{{$randomFlights[2]->normal_price}}€</td>
+                                            <th>Economic Class</th>
+                                            <td>{{$randomFlights[2]->economic_price}}€</td>
                                         </tr>
                                         <tr>
-                                            <th>Precio niño</th>
-                                            <td>{{$randomFlights[2]->children_price}}€</td>
+                                            <th>Business Class</th>
+                                            <td>{{$randomFlights[2]->business_price}}€</td>
                                         </tr>
                                     </table>
                                 </a>
@@ -290,12 +290,12 @@
                                             <td>{{substr($randomFlights[3]->departing,11,5)}}</td>
                                         </tr>
                                         <tr>
-                                            <th>Precio</th>
-                                            <td>{{$randomFlights[3]->normal_price}}€</td>
+                                            <th>Economic Class</th>
+                                            <td>{{$randomFlights[3]->economic_price}}€</td>
                                         </tr>
                                         <tr>
-                                            <th>Precio niño</th>
-                                            <td>{{$randomFlights[3]->children_price}}€</td>
+                                            <th>Business Class</th>
+                                            <td>{{$randomFlights[3]->business_price}}€</td>
                                         </tr>
                                     </table>
                                 </a>
