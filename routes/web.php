@@ -19,14 +19,17 @@ Route::get('/phpmyadmin', function () {
     return redirect('/vendor/phpmyadmin/phpmyadmin/index.php');
 });
 
-Route::get('/','App\Http\Controllers\WelcomeController@mostrarUbicaciones')->name('mostrar');
+Route::get('/','App\Http\Controllers\WelcomeController@listarVuelosAleatorios')->name('inicio');
 
 
 Route::post('/getVuelosIda','App\Http\Controllers\WelcomeController@getVuelosIda')->name('getVuelosIda');
 Route::post('/getVuelosVuelta','App\Http\Controllers\WelcomeController@getVuelosVuelta')->name('getVuelosVuelta');
 
 
-Route::post('/comprar','App\Http\Controllers\ShoppingController@comprarBilletes')->name('comprar');
+Route::post('/getBilletesIda','App\Http\Controllers\ShoppingController@insertarBilleteIda')->name('getBilletesIda');
+Route::post('/getBilletesVuelta','App\Http\Controllers\ShoppingController@insertarBilleteVuelta')->name('getBilletesVuelta');
+Route::post('/getBilletesDatos','App\Http\Controllers\ShoppingController@insertarDatosBillete')->name('getBilletesDatos');
+
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');
 Route::post('register/passenger','App\Http\Controllers\Auth\RegisterController@registerPassenger')->name('register.passenger.submit');

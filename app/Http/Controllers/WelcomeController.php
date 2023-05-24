@@ -12,14 +12,14 @@ class WelcomeController extends Controller
      * Devuelve la lista de origenes y destinos y los vuelos aleatorios que se muestran en la página principal
      *
      */
-    public function mostrarUbicaciones()
+    public function listarVuelosAleatorios()
     {
         $cities = City::query()->select('cities.name as city', 'countries.name as country')
             ->join('countries', 'cities.id_country', '=', 'countries.id_country')
             ->get();
 
         $randomFlights = Flight::query()->
-        select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
+        select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination', 'economic_price', 'business_price')
             ->leftJoin("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->leftJoin("cities as destination", "id_destination_city", "=", 'destination.id_city')
             ->leftJoin("user_company", 'user_company.id_company', '=', 'flights.id_company')
@@ -36,11 +36,10 @@ class WelcomeController extends Controller
      */
     public function getVuelosIda()
     {
-        $diaVuelta=request('vuelta');
-        $billetes = request('billetes');
-        $origen=request('origen');
-        $destino=request('destino');
-        $ida = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
+        $fechaVuelta = request('vuelta');
+        $numBilletes = request('numBilletes');
+        $contador = 0;
+        $ida = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination', 'economic_price', 'business_price')
             ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
             ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')
@@ -48,7 +47,7 @@ class WelcomeController extends Controller
             ->where(['origin.name' => request('origen'), 'destination.name' => request('destino')])
             ->whereDate('departing', '=', request('ida'))
             ->get();
-        if(request('vuelta')!=null){
+        /*if(request('vuelta')!=null){
             $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
                 ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
                 ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
@@ -59,26 +58,32 @@ class WelcomeController extends Controller
                 ->get();
         }else{
             $vuelta="sin vuelta";
-        }
+        }*/
 
-        return view('vuelos', compact('ida'), compact('billetes','vuelta','diaVuelta','origen','destino'));
+        return view('vuelosIda', compact('ida'), compact('fechaVuelta', 'numBilletes', 'contador'));
     }
 
-    public function getVuelosVuelta(){
-        $billetes = request('billetes');
+    public function getVuelosVuelta()
+    {
+        $numBilletes = request('numBilletes');
+        $fechaVuelta = request('fechaVuelta');
+        $origen = request('origen');
+        $destino = request('destino');
+        $idVueloIda=request('idVueloIda');
+        $contador = 0;
 
-        if(request('diaVuelta')!=null){
-            $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
+        if (request('fechaVuelta') != null) {
+            $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination', 'economic_price', 'business_price')
                 ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
                 ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
                 ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')
                 ->join("flights_price", 'flights_price.id_price', '=', 'flights.id_price')
-                ->where(['destination.name' => request('origin'), 'origin.name' => request('destination')])
-                ->whereDate('departing', '=', request('diaVuelta'))
+                ->where(['destination.name' => $destino, 'origin.name' => $origen])
+                ->whereDate('departing', '=', $fechaVuelta)
                 ->get();
-                         return view('vuelosVuelta', compact('billetes','vuelta'));
-        }else{
-            redirect('hacervistanombres');
+            return view('vuelosVuelta', compact('vuelta'), compact('numBilletes', 'contador','idVueloIda'));
+        } else {
+            return redirect()->route('inicio');
         }
     }
 
