@@ -7,34 +7,6 @@
     <!-- Styles -->
     @vite(['resources/css/formularioIda.css'])
 
-    <script type="text/javascript" defer>
-
-        function creacionElementoNombre(i) {
-
-            let tr = document.getElementById('nuevoCampo');
-            let td = document.createElement('td');
-            let input = document.createElement('input');
-            input.setAttribute('type', 'hidden');
-            input.setAttribute('name', 'nombreCampo'.i);
-            input.setAttribute('value', document.getElementById('nombre').value);
-            td.appendChild(input);
-            tr.appendChild(td);
-
-
-        }
-
-        function creacionElementoApellido(i) {
-            let tr = document.getElementById('nuevoCampo');
-            let td = document.createElement('td');
-            let input = document.createElement('input');
-            input.setAttribute('type', 'hidden');
-            input.setAttribute('name', 'nombreCampo'.i);
-            input.setAttribute('value', document.getElementById('nombre').value);
-            td.appendChild(input);
-            tr.appendChild(td);
-        }
-    </script>
-
 
 </head>
 <body class="antialiased">
@@ -42,7 +14,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form method="post" action='{{route('nombresBilletes')}}'>
+        <form method="post" autocomplete="off" action='{{route('nombresBilletes')}}'>
             @csrf
             <table>
                 @for($i=1;$i<=$numBilletes;$i++)
@@ -58,9 +30,10 @@
                         <td><input type="text" name="apellidos[]" ></td>
                     </tr>
                 @endfor
-                <tr id="nuevoCampo">
+                <tr>
                     <td><input type="hidden" name="idVueloIda" value="{{$idVueloIda}}"></td>
                     <td><input type="hidden" name="idVueloVuelta" value="{{$idVueloVuelta}}"></td>
+                    <td><input type="hidden" name="numBilletes" value="{{$numBilletes}}"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" value="Siguiente"></td>

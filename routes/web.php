@@ -31,7 +31,7 @@ Route::post('/getBilletesVuelta','App\Http\Controllers\ShoppingController@insert
 Route::post('/getBilletesDatos','App\Http\Controllers\ShoppingController@insertarDatosBillete')->name('getBilletesDatos');
 Route::post('/nombresBilletes','App\Http\Controllers\ShoppingController@rellenarNombreBilletes')->name('nombresBilletes');
 
-//Route::post('/pago','App\Http\Controllers\ShoppingController@pagar')->name('pago');
+Route::post('/pagoFinal','App\Http\Controllers\ShoppingController@pagarFinal')->name('pagoFinal');
 
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');

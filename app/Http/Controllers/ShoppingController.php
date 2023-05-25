@@ -77,27 +77,42 @@ class ShoppingController extends Controller
 
     public function rellenarNombreBilletes()
     {
+        $numBilletes = request('numBilletes');
         $nombres = request('nombre');
         $apellidos = request('apellidos');
         $idVuelta = request('idVueloVuelta');
-        $pasajerosIda = Ticket::query()->select('id_ticket','id_flight','ticket_name_passenger','ticket_surname_passenger')
-            ->where('id_flight','=',request('idVueloIda'))->get();
+        $id = Auth::id();
+        $pasajerosIda = Ticket::query()->select('id_ticket', 'id_flight', 'ticket_name_passenger', 'ticket_surname_passenger')
+            ->where('id_flight', '=', request('idVueloIda'))->get();
 
-        for ($i = 0; $i <= (count($nombres)-1); $i++) {
-            $pasajerosIda[$i]->update(['ticket_name_passenger'=>$nombres[$i]]);
-            $pasajerosIda[$i]->update(['ticket_surname_passenger'=>$apellidos[$i]]);
+        for ($i = 0; $i < $numBilletes; $i++) {
+            $pasajerosIda[$i]->update(['ticket_name_passenger' => $nombres[$i]]);
+            $pasajerosIda[$i]->update(['ticket_surname_passenger' => $apellidos[$i]]);
 
         }
         if ($idVuelta != null) {
-            $pasajerosVuelta = Ticket::query()->select('id_ticket','id_flight','ticket_name_passenger','ticket_surname_passenger')
-                ->where('id_flight','=',$idVuelta)->get();
-            for ($i = 0; $i <= (count($nombres)-1); $i++) {
-                $pasajerosVuelta[$i]->update(['ticket_name_passenger'=>$nombres[$i]]);
-                $pasajerosVuelta[$i]->update(['ticket_surname_passenger'=>$apellidos[$i]]);
+            $pasajerosVuelta = Ticket::query()->select('id_ticket', 'id_flight', 'ticket_name_passenger', 'ticket_surname_passenger')
+                ->where('id_flight', '=', $idVuelta)->get();
+            for ($i = 0; $i < $numBilletes; $i++) {
+                $pasajerosVuelta[$i]->update(['ticket_name_passenger' => $nombres[$i]]);
+                $pasajerosVuelta[$i]->update(['ticket_surname_passenger' => $apellidos[$i]]);
             }
         }
-        return view('pago');
+        $ida = $this->conseguirbillete(request('idVueloIda'), $id);
+        $vuelta = $this->conseguirbillete($idVuelta, $id);
+        return view('pago', compact('ida', 'vuelta', 'numBilletes'));
 
     }
+
+    public function pagarFinal()
+    {
+        $id_ida=request('id_ida');
+        $id_vuelta=request('id_vuelta');
+        Ticket::query()->select('id_ticket','active')->where('id_ticket','=',$id_ida)->update(['active'=>1]);
+        Ticket::query()->select('id_ticket','active')->where('id_ticket','=',$id_vuelta)->update(['active'=>1]);
+
+        return view('pagoFinal');
+    }
+
 
 }
