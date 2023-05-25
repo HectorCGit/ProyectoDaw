@@ -80,7 +80,8 @@ class ShoppingController extends Controller
         $numBilletes = request('numBilletes');
         $nombres = request('nombre');
         $apellidos = request('apellidos');
-        $idVuelta = request('idVueloVuelta');
+        $idVueloVuelta = request('idVueloVuelta');
+        $idVueloIda=request('idVueloIda');
         $id = Auth::id();
         $pasajerosIda = Ticket::query()->select('id_ticket', 'id_flight', 'ticket_name_passenger', 'ticket_surname_passenger')
             ->where('id_flight', '=', request('idVueloIda'))->get();
@@ -90,26 +91,41 @@ class ShoppingController extends Controller
             $pasajerosIda[$i]->update(['ticket_surname_passenger' => $apellidos[$i]]);
 
         }
-        if ($idVuelta != null) {
+        if ($idVueloVuelta != null) {
             $pasajerosVuelta = Ticket::query()->select('id_ticket', 'id_flight', 'ticket_name_passenger', 'ticket_surname_passenger')
-                ->where('id_flight', '=', $idVuelta)->get();
+                ->where('id_flight', '=', $idVueloVuelta)->get();
             for ($i = 0; $i < $numBilletes; $i++) {
                 $pasajerosVuelta[$i]->update(['ticket_name_passenger' => $nombres[$i]]);
                 $pasajerosVuelta[$i]->update(['ticket_surname_passenger' => $apellidos[$i]]);
             }
         }
         $ida = $this->conseguirbillete(request('idVueloIda'), $id);
-        $vuelta = $this->conseguirbillete($idVuelta, $id);
-        return view('pago', compact('ida', 'vuelta', 'numBilletes'));
+        $vuelta = $this->conseguirbillete($idVueloVuelta, $id);
+        return view('pago', compact('ida', 'vuelta', 'numBilletes','idVueloIda','idVueloVuelta'));
 
     }
 
     public function pagarFinal()
     {
-        $id_ida=request('id_ida');
-        $id_vuelta=request('id_vuelta');
-        Ticket::query()->select('id_ticket','active')->where('id_ticket','=',$id_ida)->update(['active'=>1]);
-        Ticket::query()->select('id_ticket','active')->where('id_ticket','=',$id_vuelta)->update(['active'=>1]);
+        $idVueloIda=request('idVueloIda');
+        $idVueloVuelta=request('idVueloVuelta');
+        $queryIda=Ticket::query()->select('id_ticket')
+            ->where(['id_flight' => $idVueloIda])
+            ->get();
+        $queryVuelta=Ticket::query()->select('id_ticket')
+            ->where(['id_flight' => $idVueloVuelta])
+            ->get();
+
+        foreach ($queryIda as $q){
+            Ticket::query()->select('id_ticket','active')->where('id_ticket','=',$q->id_ticket)->update(['active'=>1]);
+
+        }
+        foreach ($queryVuelta as $q){
+            Ticket::query()->select('id_ticket','active')->where('id_ticket','=',$q->id_ticket)->update(['active'=>1]);
+
+        }
+
+
 
         return view('pagoFinal');
     }

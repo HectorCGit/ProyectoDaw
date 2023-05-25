@@ -132,8 +132,8 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" value="{{$ida[0]->id_ticket}}" name="id_ida">
-                        <input type="hidden" value="{{$vuelta[0]->id_ticket}}" name="id_vuelta">
+                        <input type="hidden" value="{{$idVueloIda}}" name="idVueloIda">
+                        <input type="hidden" value="{{$idVueloVuelta}}" name="idVueloVuelta">
                         <input type="submit" value="Finalizar pago" class="btn">
                     </form>
                 </div>
