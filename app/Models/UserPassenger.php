@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class UserPassenger
  *
  * @property int $id_passenger
- * @property int|null $id_users
+ * @property int $id_users
  * @property string|null $name
  * @property string|null $surname
  * @property int|null $telephone

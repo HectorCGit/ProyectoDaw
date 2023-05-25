@@ -42,7 +42,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <form method="post" action=''>
+        <form method="post" action='{{route('nombresBilletes')}}'>
+            @csrf
             <table>
                 @for($i=1;$i<=$numBilletes;$i++)
                     <tr>
@@ -50,19 +51,19 @@
                     </tr>
                     <tr>
                         <td>Nombre</td>
-                        <td><input type="text" name="nombre" id="nombre" onblur="creacionElementoNombre({{$i}})"></td>
+                        <td><input type="text" name="nombre[]" id="nombre" ></td>
                     </tr>
                     <tr>
                         <td>Apellidos</td>
-                        <td><input type="text" name="apellidos" onblur="creacionElementoApellido({{$i}})"></td>
+                        <td><input type="text" name="apellidos[]" ></td>
                     </tr>
                 @endfor
                 <tr id="nuevoCampo">
                     <td><input type="hidden" name="idVueloIda" value="{{$idVueloIda}}"></td>
-                    <td><input type="hidden" name="idVueloVuelto" value="{{$idVueloVuelta}}"></td>
+                    <td><input type="hidden" name="idVueloVuelta" value="{{$idVueloVuelta}}"></td>
                 </tr>
                 <tr>
-                    <td><input type="submit"></td>
+                    <td><input type="submit" value="Siguiente"></td>
                 </tr>
             </table>
 

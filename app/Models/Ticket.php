@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,13 +16,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $id_flight
  * @property int|null $id_passenger
  * @property int|null $id_discount
- * @property int|null $id_price
  * @property int|null $check_in
  * @property int|null $num_suitcases
+ * @property string $ticket_name_passenger
+ * @property string $ticket_surname_passenger
+ * @property int|null $price
+ * @property Carbon|null $shopping_date
+ * @property bool $active
  * 
  * @property UserPassenger|null $user_passenger
  * @property Discount|null $discount
- * @property TicketPrice|null $ticket_price
  * @property Flight|null $flight
  *
  * @package App\Models
@@ -36,18 +40,24 @@ class Ticket extends Model
 		'id_flight' => 'int',
 		'id_passenger' => 'int',
 		'id_discount' => 'int',
-		'id_price' => 'int',
 		'check_in' => 'int',
-		'num_suitcases' => 'int'
+		'num_suitcases' => 'int',
+		'price' => 'int',
+		'shopping_date' => 'datetime',
+		'active' => 'bool'
 	];
 
 	protected $fillable = [
 		'id_flight',
 		'id_passenger',
 		'id_discount',
-		'id_price',
 		'check_in',
-		'num_suitcases'
+		'num_suitcases',
+		'ticket_name_passenger',
+		'ticket_surname_passenger',
+		'price',
+		'shopping_date',
+		'active'
 	];
 
 	public function user_passenger()
@@ -58,11 +68,6 @@ class Ticket extends Model
 	public function discount()
 	{
 		return $this->belongsTo(Discount::class, 'id_discount');
-	}
-
-	public function ticket_price()
-	{
-		return $this->belongsTo(TicketPrice::class, 'id_price');
 	}
 
 	public function flight()

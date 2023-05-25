@@ -22,10 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_origin_city
  * @property int $id_destination_city
  * @property string $flight_hours
- * @property Carbon $returning
+ * @property int $id_price
  * 
  * @property City $city
  * @property UserCompany|null $user_company
+ * @property FlightsPrice $flights_price
  * @property Collection|FlightRating[] $flight_ratings
  * @property Collection|Ticket[] $tickets
  *
@@ -45,7 +46,7 @@ class Flight extends Model
 		'departing' => 'datetime',
 		'id_origin_city' => 'int',
 		'id_destination_city' => 'int',
-		'returning' => 'datetime'
+		'id_price' => 'int'
 	];
 
 	protected $fillable = [
@@ -57,7 +58,7 @@ class Flight extends Model
 		'id_origin_city',
 		'id_destination_city',
 		'flight_hours',
-		'returning'
+		'id_price'
 	];
 
 	public function city()
@@ -68,6 +69,11 @@ class Flight extends Model
 	public function user_company()
 	{
 		return $this->belongsTo(UserCompany::class, 'id_company');
+	}
+
+	public function flights_price()
+	{
+		return $this->belongsTo(FlightsPrice::class, 'id_price');
 	}
 
 	public function flight_ratings()

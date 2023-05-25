@@ -55,9 +55,4 @@ class UserCompany extends User
 	{
 		return $this->hasMany(Flight::class, 'id_company');
 	}
-
-	public function ticket_prices()
-	{
-		return $this->hasMany(TicketPrice::class, 'id_company');
-	}
 }

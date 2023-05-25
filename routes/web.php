@@ -29,6 +29,9 @@ Route::post('/getVuelosVuelta','App\Http\Controllers\WelcomeController@getVuelos
 Route::post('/getBilletesIda','App\Http\Controllers\ShoppingController@insertarBilleteIda')->name('getBilletesIda');
 Route::post('/getBilletesVuelta','App\Http\Controllers\ShoppingController@insertarBilleteVuelta')->name('getBilletesVuelta');
 Route::post('/getBilletesDatos','App\Http\Controllers\ShoppingController@insertarDatosBillete')->name('getBilletesDatos');
+Route::post('/nombresBilletes','App\Http\Controllers\ShoppingController@rellenarNombreBilletes')->name('nombresBilletes');
+
+//Route::post('/pago','App\Http\Controllers\ShoppingController@pagar')->name('pago');
 
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');

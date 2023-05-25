@@ -47,19 +47,6 @@ class WelcomeController extends Controller
             ->where(['origin.name' => request('origen'), 'destination.name' => request('destino')])
             ->whereDate('departing', '=', request('ida'))
             ->get();
-        /*if(request('vuelta')!=null){
-            $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','economic_price','business_price')
-                ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
-                ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
-                ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')
-                ->join("flights_price", 'flights_price.id_price', '=', 'flights.id_price')
-                ->where(['destination.name' => request('origen'), 'origin.name' => request('destino')])
-                ->whereDate('departing', '=', request('vuelta'))
-                ->get();
-        }else{
-            $vuelta="sin vuelta";
-        }*/
-
         return view('vuelosIda', compact('ida'), compact('fechaVuelta', 'numBilletes', 'contador'));
     }
 
@@ -83,6 +70,7 @@ class WelcomeController extends Controller
                 ->get();
             return view('vuelosVuelta', compact('vuelta'), compact('numBilletes', 'contador','idVueloIda'));
         } else {
+            //        return view('rellenoBilleteDatos',compact('numBilletes','idVueloIda','idVueloVuelta'));
             return redirect()->route('inicio');
         }
     }
