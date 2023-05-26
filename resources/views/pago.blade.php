@@ -22,7 +22,7 @@
                 alert('Número de tarjeta no válido');
                 return false;
             }
-            if (year.value === '' || isNaN(year.value) || parseInt(year.value) < (new Date().getFullYear())) {
+            if (year.value === '' || isNaN(year.value) || parseInt(year.value) < (new Date().getFullYear()) || parseInt(year.value) >2099) {
                 alert('Año no válido');
                 return false;
             }
@@ -65,33 +65,42 @@
                     </tr>
 
                 </table>
-                <table class="tablaFormu">
-                    <tr>
-                        <td><h5>{{$vuelta[0]->company}}</h5></td>
-                    </tr>
-                    <tr>
-                        <td>Ciudad de orígen: {{$vuelta[0]->origin}}</td>
-                    </tr>
-                    <tr>
-                        <td>Ciudad de destino: {{$vuelta[0]->destination}}</td>
-                    </tr>
-                    <tr>
-                        <td>Precio por billete: {{$vuelta[0]->price}}€</td>
-                    </tr>
-                    <tr>
-                        <td>{{$vuelta[0]->flight_hours}}</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha y hora: {{$vuelta[0]->departing}}</td>
-                    </tr>
-                    <tr>
-                        <td>PRECIO VUELTA:{{($vuelta[0]->price)*$numBilletes }}€</td>
-                    </tr>
+                @if($idVueloVuelta!=null)
+                    <table class="tablaFormu">
+                        <tr>
+                            <td><h5>{{$vuelta[0]->company}}</h5></td>
+                        </tr>
+                        <tr>
+                            <td>Ciudad de orígen: {{$vuelta[0]->origin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ciudad de destino: {{$vuelta[0]->destination}}</td>
+                        </tr>
+                        <tr>
+                            <td>Precio por billete: {{$vuelta[0]->price}}€</td>
+                        </tr>
+                        <tr>
+                            <td>{{$vuelta[0]->flight_hours}}</td>
+                        </tr>
+                        <tr>
+                            <td>Fecha y hora: {{$vuelta[0]->departing}}</td>
+                        </tr>
+                        <tr>
+                            <td>PRECIO VUELTA:{{($vuelta[0]->price)*$numBilletes }}€</td>
+                        </tr>
 
-                </table>
+                    </table>
+                @endif
             </div>
         </div>
-        <div><h2>TOTAL {{ (($ida[0]->price)*$numBilletes +($vuelta[0]->price)*$numBilletes) }}€</h2></div>
+        <div>
+            @if($idVueloVuelta!=null)
+                <h2>TOTAL {{ (($ida[0]->price)*$numBilletes +($vuelta[0]->price)*$numBilletes) }}€</h2>
+            @else
+                <h2>TOTAL {{ ($ida[0]->price)*$numBilletes }}€</h2>
+
+            @endif
+        </div>
 
         <!-- Formulario Validación Tarjeta de Crédito -->
         <div class="row">
@@ -133,7 +142,9 @@
                             </div>
                         </div>
                         <input type="hidden" value="{{$idVueloIda}}" name="idVueloIda">
-                        <input type="hidden" value="{{$idVueloVuelta}}" name="idVueloVuelta">
+                        @if($idVueloVuelta!=null)
+                            <input type="hidden" value="{{$idVueloVuelta}}" name="idVueloVuelta">
+                        @endif
                         <input type="submit" value="Finalizar pago" class="btn">
                     </form>
                 </div>

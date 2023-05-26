@@ -33,10 +33,11 @@
         <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div id="mySidebar" class="sidebar">
                 <a  class="closebtn" onclick="closeNav()">×</a>
-                <a href="#">Principal</a>
+                <a href="{{route('inicio')}}">Principal</a>
                @auth
-                    <a href="#">Ruleta</a>
+                    <a href="">Ruleta</a>
                     <a href="#">Check-in</a>
+                    <a href="{{route('carrito')}}">Carrito</a>
                 @endauth
                 <a href="#">Ofertas</a>
                 <a href="#">Contacto</a>

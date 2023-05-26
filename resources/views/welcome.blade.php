@@ -183,8 +183,7 @@
         @foreach($randomFlights as $randomF)
             <div class=" d-block ">
                 <div class="d-flex justify-content-center pb-4">
-                    <div class="w-50 h-50 bordeImagenAleatoria"><img id="img1" class="w-100 h-100" src=""
-                                                                     alt="img de Viaje"></div>
+                    <div class="w-50 h-50 bordeImagenAleatoria"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
                     <div class="w-50 h-50 divVueloAleatorio">
                         <a class="enlaceVueloAleatorio" href="">
                             <table class="tablaVuelosAleatorios">

@@ -30,8 +30,11 @@ Route::post('/getBilletesIda','App\Http\Controllers\ShoppingController@insertarB
 Route::post('/getBilletesVuelta','App\Http\Controllers\ShoppingController@insertarBilleteVuelta')->name('getBilletesVuelta');
 Route::post('/getBilletesDatos','App\Http\Controllers\ShoppingController@insertarDatosBillete')->name('getBilletesDatos');
 Route::post('/nombresBilletes','App\Http\Controllers\ShoppingController@rellenarNombreBilletes')->name('nombresBilletes');
-
 Route::post('/pagoFinal','App\Http\Controllers\ShoppingController@pagarFinal')->name('pagoFinal');
+
+Route::get('/carrito','App\Http\Controllers\ShoppingCartController@mostrarCarrito')->name('carrito');
+
+Route::post('/cancelarBillete','App\Http\Controllers\ShoppingCartController@cancelarBillete')->name('cancelarBillete');
 
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');

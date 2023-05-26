@@ -58,7 +58,6 @@ class WelcomeController extends Controller
         $destino = request('destino');
         $idVueloIda=request('idVueloIda');
         $contador = 0;
-
         if (request('fechaVuelta') != null) {
             $vuelta = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination', 'economic_price', 'business_price')
                 ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
@@ -70,8 +69,9 @@ class WelcomeController extends Controller
                 ->get();
             return view('vuelosVuelta', compact('vuelta'), compact('numBilletes', 'contador','idVueloIda'));
         } else {
-            //        return view('rellenoBilleteDatos',compact('numBilletes','idVueloIda','idVueloVuelta'));
-            return redirect()->route('inicio');
+            $contador=1;
+            return view('rellenoBilleteDatos',compact('numBilletes','idVueloIda','contador'));
+            //return redirect()->route('inicio');
         }
     }
 
