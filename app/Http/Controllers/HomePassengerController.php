@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Flight;
 
-class WelcomeController extends Controller
+class HomePassengerController extends Controller
 {
     /**
      * Devuelve la lista de origenes y destinos y los vuelos aleatorios que se muestran en la página principal
@@ -27,7 +27,7 @@ class WelcomeController extends Controller
             ->whereRaw('num_seats - num_passengers > 0')
             ->inRandomOrder()->limit(4)->get();
 
-        return view('welcome', compact('cities'), compact('randomFlights'));
+        return view('homePassenger', compact('cities'), compact('randomFlights'));
     }
 
     /**

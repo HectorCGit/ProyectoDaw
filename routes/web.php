@@ -19,11 +19,11 @@ Route::get('/phpmyadmin', function () {
     return redirect('/vendor/phpmyadmin/phpmyadmin/index.php');
 });
 
-Route::get('/','App\Http\Controllers\WelcomeController@listarVuelosAleatorios')->name('inicio');
+Route::get('/','App\Http\Controllers\HomePassengerController@listarVuelosAleatorios')->name('inicio');
 
 
-Route::post('/getVuelosIda','App\Http\Controllers\WelcomeController@getVuelosIda')->name('getVuelosIda');
-Route::post('/getVuelosVuelta','App\Http\Controllers\WelcomeController@getVuelosVuelta')->name('getVuelosVuelta');
+Route::post('/getVuelosIda','App\Http\Controllers\HomePassengerController@getVuelosIda')->name('getVuelosIda');
+Route::post('/getVuelosVuelta','App\Http\Controllers\HomePassengerController@getVuelosVuelta')->name('getVuelosVuelta');
 
 
 Route::post('/getBilletesIda','App\Http\Controllers\ShoppingController@insertarBilleteIda')->name('getBilletesIda');
@@ -44,6 +44,6 @@ Route::get('register/company','App\Http\Controllers\Auth\RegisterController@show
 Route::post('register/company','App\Http\Controllers\Auth\RegisterController@registerCompany')->name('register.company.submit');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeCompanyController::class, 'index'])->name('home');
 
 
