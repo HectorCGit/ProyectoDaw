@@ -20,9 +20,9 @@ class HomeCompanyController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return
      */
-    public function index()
+    public function mostrarHomeCompany()
     {
         /*$user=Auth::user();
         if($user->type === 'passenger'){
@@ -30,6 +30,6 @@ class HomeCompanyController extends Controller
         }elseif ($user->type === 'company'){
             return view('company.home');
         }*/
-        return view('home');
+        return view('homeCompany');
     }
 }

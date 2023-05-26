@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "phpmyadmin/phpmyadmin": "^4.7",
-        "reliese/laravel": "^1.2"
+        "reliese/laravel": "^1.2",
+        "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

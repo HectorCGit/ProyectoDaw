@@ -16,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/phpmyadmin', function () {
-    return redirect('/vendor/phpmyadmin/phpmyadmin/index.php');
+    return redirect('vendor\phpmyadmin\phpmyadmin\index.php');
 });
+Route::group(['middleware' => ['role:company']], function () {
+    Route::get('/','App\Http\Controllers\HomeCompanyController@mostrarhomeCompany')->name('homeCompany');
 
+});
 Route::get('/','App\Http\Controllers\HomePassengerController@listarVuelosAleatorios')->name('inicio');
+
 
 
 Route::post('/getVuelosIda','App\Http\Controllers\HomePassengerController@getVuelosIda')->name('getVuelosIda');
@@ -35,6 +39,8 @@ Route::post('/pagoFinal','App\Http\Controllers\ShoppingController@pagarFinal')->
 Route::get('/carrito','App\Http\Controllers\ShoppingCartController@mostrarCarrito')->name('carrito');
 
 Route::post('/cancelarBillete','App\Http\Controllers\ShoppingCartController@cancelarBillete')->name('cancelarBillete');
+
+
 
 
 Route::get('register/passenger','App\Http\Controllers\Auth\RegisterController@showPassengerRegistrationForm')->name('register.passenger');

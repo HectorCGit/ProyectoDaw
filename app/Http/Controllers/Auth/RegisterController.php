@@ -161,6 +161,7 @@ class RegisterController extends Controller
              'name' => $data['name'],
             'telephone' =>$data['telephone']
         ]);
+         $user->assignRole('company');
          return $user;
     }
     /**
@@ -183,6 +184,7 @@ class RegisterController extends Controller
             'telephone' =>$data['telephone'],
             'dni' =>$data['dni'],
         ]);
+        $user->assignRole('passenger');
          return $user;
     }
 }

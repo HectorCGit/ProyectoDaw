@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class UserCompany
@@ -20,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property User|null $user
  * @property Collection|FlightRating[] $flight_ratings
  * @property Collection|Flight[] $flights
- * @property Collection|TicketPrice[] $ticket_prices
  *
  * @package App\Models
  */
@@ -55,4 +55,7 @@ class UserCompany extends User
 	{
 		return $this->hasMany(Flight::class, 'id_company');
 	}
+
+
 }
+
