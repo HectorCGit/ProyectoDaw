@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
-  {{--  @vite('/resources/js/Winwheel.js','http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js')
-    @vite('/resources/css/ruleta.css')--}}
+
     <link rel="stylesheet" href="{{ mix('/resources/css/ruleta.css') }}">
 
 
@@ -16,12 +15,17 @@
 @section('content')
     <div align="center">
         <h1>RULETA DE PREMIOS</h1>
-
         <br />
+        <h2>PUNTOS DISPONIBLES: {{$puntos[0]->points}}</h2>
         <!-- Always set canvas to largest desired size, i.e. desktop PC size, it will be scaled down for smaller devices but never scaled up -->
-        <canvas id="canvas" width="500" height="500" style="background-color: silver;" data-responsiveMinWidth="180" data-responsiveScaleHeight="true">
+        <div id="canvasContainer">
+            <img id="prizePointer" src="{{Vite::asset('/storage/app/prize_pointer.png')}}" alt="V" />
+        <div id="canvasWrapper">
+        <canvas id="canvas" width="500" height="450" style="background-color: silver;" data-responsiveMinWidth="180" data-responsiveScaleHeight="true">
             <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
         </canvas>
+        </div>
+        </div>
         <br /><br />
         <p align="center">Tap the wheel to spin.</p>
     </div>
@@ -43,6 +47,15 @@
 
         // Start animation.
         theWheel.startAnimation();
+    }
+    // -------------------------------------------------------
+    // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters
+    // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
+    // -------------------------------------------------------
+    function alertPrize(indicatedSegment)
+    {
+        // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
+        alert("TU PREMIO: " + indicatedSegment.text);
     }
     document.addEventListener('DOMContentLoaded', function() {
          theWheel = new Winwheel({
@@ -70,6 +83,7 @@
                     'type': 'spinToStop',
                     'duration': 5,     // Duration in seconds.
                     'spins': 8,     // Number of complete spins.
+                    'callbackFinished':alertPrize
                 }
         });
 

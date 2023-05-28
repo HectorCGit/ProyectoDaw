@@ -1,3 +1,4 @@
+
 body
 {
     font-family: arial, serif;
@@ -15,4 +16,30 @@ h1 {
 
 p {
     font-size: 0.8em;
+}
+
+#canvasContainer {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: silver;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#canvasWrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#canvas {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+
+}
+
+#prizePointer {
+    position: relative;
+    z-index: 2;
 }
