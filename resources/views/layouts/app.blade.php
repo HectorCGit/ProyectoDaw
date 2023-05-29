@@ -35,7 +35,7 @@
                 <a  class="closebtn" onclick="closeNav()">×</a>
                 <a href="{{route('inicio')}}">Principal</a>
                @auth
-                    <a href="">Ruleta</a>
+                    <a href="{{ route('ruleta') }}">Ruleta</a>
                     <a href="#">Check-in</a>
                     <a href="{{route('carrito')}}">Carrito</a>
                 @endauth
