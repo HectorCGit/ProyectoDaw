@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use App\Models\Flight;
+use Illuminate\Support\Facades\Auth;
 
 class HomePassengerController extends Controller
 {
@@ -14,6 +15,7 @@ class HomePassengerController extends Controller
      */
     public function listarVuelosAleatorios()
     {
+
         $cities = City::query()->select('cities.name as city', 'countries.name as country')
             ->join('countries', 'cities.id_country', '=', 'countries.id_country')
             ->get();

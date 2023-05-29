@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\UserCompanyMiddleware;
+use App\Http\Middleware\UserPassengerMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,11 +65,15 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        //'company' => \App\Http\Middleware\UserCompanyMiddleware::class,
+        //'passenger' => \App\Http\Middleware\UserPassengerMiddleware::class,
     ];
 
     protected $routeMiddleware = [
         // ...
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        //'company' => UserCompanyMiddleware::class,
+        //'passenger' => UserPassengerMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];

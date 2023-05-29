@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
+    @vite(['resources/css/ruleta.css'])
 
     <link rel="stylesheet" href="{{ mix('/resources/css/ruleta.css') }}">
 
@@ -13,7 +14,7 @@
 
 @extends('layouts.app')
 @section('content')
-    <div align="center">
+    <div align="center" id="cuerpo">
         <h1>RULETA DE PREMIOS</h1>
         <br />
         <h2>PUNTOS DISPONIBLES: {{$puntos[0]->points}}</h2>
@@ -21,7 +22,7 @@
         <div id="canvasContainer">
             <img id="prizePointer" src="{{Vite::asset('/storage/app/prize_pointer.png')}}" alt="V" />
         <div id="canvasWrapper">
-        <canvas id="canvas" width="500" height="450" style="background-color: silver;" data-responsiveMinWidth="180" data-responsiveScaleHeight="true">
+        <canvas id="canvas" width="500" height="500" style="background-color: #f8f9fa;" data-responsiveMinWidth="180" data-responsiveScaleHeight="true">
             <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
         </canvas>
         </div>

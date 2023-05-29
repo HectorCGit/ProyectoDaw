@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -30,6 +31,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class UserPassenger extends User
 {
+    use HasFactory;
 	protected $table = 'user_passenger';
 	protected $primaryKey = 'id_passenger';
 	public $timestamps = false;

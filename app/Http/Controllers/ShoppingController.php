@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Flight;
 use App\Models\Ticket;
+use App\Models\UserPassenger;
 use Doctrine\DBAL\Types\IntegerType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,7 +13,7 @@ use Ramsey\Uuid\Type\Integer;
 
 class ShoppingController extends Controller
 {
-    public function conseguirBillete($idFlight, $id)
+    public function conseguirBillete($idFlight, $idPassenger)
     {
         return Ticket::query()
             ->select('tickets.id_flight', 'user_company.name as company', 'origin.name as origin', 'destination.name as destination', 'flight_hours', 'price', 'num_suitcases', 'departing')
@@ -21,7 +22,7 @@ class ShoppingController extends Controller
             ->leftJoin("cities as destination", "flights.id_destination_city", "=", 'destination.id_city')
             ->leftJoin("user_company", 'user_company.id_company', '=', 'flights.id_company')
             ->distinct()
-            ->where(['tickets.id_flight' => $idFlight, 'id_passenger' => $id, 'active' => 0])
+            ->where(['tickets.id_flight' => $idFlight, 'id_passenger' => $idPassenger, 'active' => 0])
             ->get();
     }
 
@@ -34,13 +35,14 @@ class ShoppingController extends Controller
         $fechaVuelta = request('fechaVuelta');
         $idFlight = request('idFlight');
         $numBilletes = request('numBilletes');
-        $id = Auth::id();
+        $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
+        $idPassenger = $queryIdPassenger[0]['id_passenger'];
 
         for ($i = 0; $i < $numBilletes; $i++) {
-            DB::insert('INSERT INTO tickets (id_flight,id_passenger,num_suitcases,price) values(' . request('idFlight') . ',' . $id . ',2,' . request('precioIda') . ') ');
+            DB::insert('INSERT INTO tickets (id_flight,id_passenger,num_suitcases,price) values(' . request('idFlight') . ',' . $idPassenger . ',2,' . request('precioIda') . ') ');
         }
         $contador = 1;
-        $billete = $this->conseguirBillete($idFlight, $id);
+        $billete = $this->conseguirBillete($idFlight, $idPassenger);
         return view('vuelosIda', compact('contador', 'numBilletes', 'fechaVuelta'), compact('billete'));
 
     }
@@ -54,13 +56,14 @@ class ShoppingController extends Controller
         $idFlight = request('idFlight');
         $numBilletes = request('numBilletes');
         $idVueloIda = request('idVueloIda');
-        $id = Auth::id();
+        $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
+        $idPassenger = $queryIdPassenger[0]['id_passenger'];
 
         for ($i = 0; $i < $numBilletes; $i++) {
-            DB::insert('INSERT INTO tickets (id_flight,id_passenger,num_suitcases,price) values(' . request('idFlight') . ',' . $id . ',2,' . request('precioIda') . ') ');
+            DB::insert('INSERT INTO tickets (id_flight,id_passenger,num_suitcases,price) values(' . request('idFlight') . ',' . $idPassenger . ',2,' . request('precioIda') . ') ');
         }
         $contador = 1;
-        $billete = $this->conseguirBillete($idFlight, $id);
+        $billete = $this->conseguirBillete($idFlight, $idPassenger);
         return view('vuelosVuelta', compact('contador', 'numBilletes', 'idVueloIda'), compact('billete'));
 
     }
@@ -82,9 +85,10 @@ class ShoppingController extends Controller
         $apellidos = request('apellidos');
         $idVueloVuelta = request('idVueloVuelta');
         $idVueloIda = request('idVueloIda');
-        $id = Auth::id();
+        $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
+        $idPassenger = $queryIdPassenger[0]['id_passenger'];
         $pasajerosIda = Ticket::query()->select('id_ticket', 'id_flight', 'ticket_name_passenger', 'ticket_surname_passenger')
-            ->where(['id_flight' => request('idVueloIda'), 'active' => 0, 'id_passenger' => $id])->get();
+            ->where(['id_flight' => request('idVueloIda'), 'active' => 0, 'id_passenger' => $idPassenger])->get();
 
         for ($i = 0; $i < $numBilletes; $i++) {
             $pasajerosIda[$i]->update(['ticket_name_passenger' => $nombres[$i]]);
@@ -93,15 +97,15 @@ class ShoppingController extends Controller
         }
         if ($idVueloVuelta != null) {
             $pasajerosVuelta = Ticket::query()->select('id_ticket', 'id_flight', 'ticket_name_passenger', 'ticket_surname_passenger')
-                ->where(['id_flight' => $idVueloVuelta, 'active' => 0, 'id_passenger' => $id])->get();
+                ->where(['id_flight' => $idVueloVuelta, 'active' => 0, 'id_passenger' => $idPassenger])->get();
 
             for ($i = 0; $i < $numBilletes; $i++) {
                 $pasajerosVuelta[$i]->update(['ticket_name_passenger' => $nombres[$i]]);
                 $pasajerosVuelta[$i]->update(['ticket_surname_passenger' => $apellidos[$i]]);
             }
         }
-        $ida = $this->conseguirBillete(request('idVueloIda'), $id);
-        $vuelta = $this->conseguirBillete($idVueloVuelta, $id);
+        $ida = $this->conseguirBillete(request('idVueloIda'), $idPassenger);
+        $vuelta = $this->conseguirBillete($idVueloVuelta, $idPassenger);
         return view('pago', compact('ida', 'vuelta', 'numBilletes', 'idVueloIda', 'idVueloVuelta'));
 
     }
@@ -110,12 +114,13 @@ class ShoppingController extends Controller
     {
         $idVueloIda = request('idVueloIda');
         $idVueloVuelta = request('idVueloVuelta');
-        $id = Auth::id();
+        $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
+        $idPassenger = $queryIdPassenger[0]['id_passenger'];
         $queryIda = Ticket::query()->select('id_ticket')
-            ->where(['id_flight' => $idVueloIda, 'active' => 0, 'id_passenger' => $id])
+            ->where(['id_flight' => $idVueloIda, 'active' => 0, 'id_passenger' => $idPassenger])
             ->get();
         $queryVuelta = Ticket::query()->select('id_ticket')
-            ->where(['id_flight' => $idVueloVuelta ,'active' => 0, 'id_passenger' => $id])
+            ->where(['id_flight' => $idVueloVuelta ,'active' => 0, 'id_passenger' => $idPassenger])
             ->get();
 
         foreach ($queryIda as $q) {

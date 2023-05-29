@@ -16,7 +16,9 @@
         <div class="formu">
             <div id="divGeneral">
                 <table class="tablaFormu">
-                    @empty($billetes)
+                    @if($billetes->isEmpty())
+                        <h1>NO HAY NADA EN EL CARRITO</h1>
+                    @else
                         @foreach($billetes as $b)
                             <tr>
                                 <td><h5 style="visibility: hidden">{{$b->id_ticket}}</h5></td>
@@ -54,9 +56,7 @@
                             <td>----------------------------------------</td>
                             </tr>
                         @endforeach
-                    @else
-                        <h1>NO HAY NADA EN EL CARRITO</h1>
-                    @endempty
+                    @endif
 
                 </table>
             </div>
