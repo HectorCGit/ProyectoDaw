@@ -17,6 +17,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/sidebar.css'])
+    @vite(['resources/css/footer.css'])
     <script type="text/javascript" defer>
         function openNav() {
             document.getElementById('mySidebar').style.width = '250px';
@@ -36,11 +37,13 @@
             <a class="closebtn" onclick="closeNav()">×</a>
             <a href="{{route('homePassenger')}}">Principal</a>
             @auth
+               @if( Auth::user()->hasRole('passenger'))
                 <a href="{{ route('ruleta') }}">Ruleta</a>
-                <a href="#">Check-in</a>
-                <a href="{{route('carrito')}}">Carrito</a>
+                <a href="{{route('billetesCheckIn')}}">Check-in</a>
+                <a href="{{route('billetesPassenger')}}">Mis Billetes</a>
+                @endif
             @endauth
-            <a href="#">Ofertas</a>
+            <a href="{{route('foro')}}">Foro</a>
             <a href="#">Contacto</a>
             <a href="#">Información</a>
         </div>
@@ -124,7 +127,7 @@
     </main>
 
 </div>
-{{--@extends('layouts.footer')--}}
+@extends('layouts.footer')
 
 </body>
 </html>

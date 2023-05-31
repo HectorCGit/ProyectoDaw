@@ -27,9 +27,7 @@
                                     </tr>
                                     <tr>
                                         <td><h1>{{ $flights->origin}}-{{ $flights->destination}}</h1></td>
-
                                     </tr>
-
                                     <tr>
                                         <td>Asientos
                                             disponibles: {{ ($flights->num_seats - $flights->num_passengers) }}</td>
@@ -41,34 +39,31 @@
                                             <form action="{{ route('eliminarVuelo')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
-                                                <input type="submit" class="bg-danger hover:bg-blue text-white font-bold py-2 px-4 rounded"
-                                                value="BORRAR">
+                                                <input type="submit"
+                                                       class="bg-danger hover:bg-blue text-white font-bold py-2 px-4 rounded"
+                                                       value="ELIMINAR">
                                             </form>
                                         </td>
-                                        <td><form action="{{ route('verBilletes')}}" method="post">
+                                        <td>
+                                            <form action="{{ route('verBilletes')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
-                                                <input type="submit" class="bg-warning hover:bg-blue text-white font-bold py-2 px-4 rounded"
+                                                <input type="submit"
+                                                       class="bg-warning hover:bg-blue text-white font-bold py-2 px-4 rounded"
                                                        value="BILLETES">
                                             </form>
                                         </td>
-
                                     </tr>
-
                                 </table>
                             </div>
-
                         </div>
                     @endforeach
-
                 @else
                     <h2>NO HAY VUELOS</h2>
                 @endif
             </div>
         </div>
-
     </div>
-
     <div>{{$companyFlights->links()}}</div>
 @endsection
 

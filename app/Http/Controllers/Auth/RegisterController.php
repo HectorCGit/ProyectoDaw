@@ -68,7 +68,7 @@ class RegisterController extends Controller
     /**
      * Validación compañía
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validatorCompany(array $data)
@@ -77,13 +77,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'telephone'=>['required','min:10000000','max:1000000000','integer'],
+            'telephone' => ['required', 'min:10000000', 'max:1000000000', 'integer'],
         ]);
     }
+
     /**
      * Validación pasajero
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validatorPassenger(array $data)
@@ -92,15 +93,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'telephone'=>['required','min:10000000','max:1000000000','integer'],
-            'dni'=>['required','regex:/^[0-9]{8}[A-Z]{1}$/'],
+            'telephone' => ['required', 'min:10000000', 'max:1000000000', 'integer'],
+            'dni' => ['required', 'regex:/^[0-9]{8}[A-Z]{1}$/'],
         ]);
     }
 
     /**
      * Manejar registro de pasajero
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function registerPassenger(Request $request)
@@ -123,7 +124,7 @@ class RegisterController extends Controller
     /**
      * Manejar registro de compañia
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function registerCompany(Request $request)
@@ -146,48 +147,50 @@ class RegisterController extends Controller
     /**
      * Crear nueva empresa
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\UserCompany
      */
     protected function createCompany(array $data)
     {
-        $user= User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-         UserCompany::create([
-             'id_users'=>$user->id,
-             'name' => $data['name'],
-            'telephone' =>$data['telephone']
+        UserCompany::create([
+            'id_users' => $user->id,
+            'name' => $data['name'],
+            'telephone' => $data['telephone']
         ]);
 
-         $user->assignRole('company');
+        $user->assignRole('company');
         $user->save();
-         return $user;
+        return $user;
     }
+
     /**
      * Crear nuevo pasajero
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\UserPassenger
      */
     protected function createPassenger(array $data)
     {
-        $user= User::create([
-            'name' => $data['name']." ".$data['surname'],
+        $user = User::create([
+            'name' => $data['name'] . " " . $data['surname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-         UserPassenger::create([
-             'id_users'=>$user->id,
-             'name' => $data['name'],
+        UserPassenger::create([
+            'id_users' => $user->id,
+            'name' => $data['name'],
             'surname' => $data['surname'],
-            'telephone' =>$data['telephone'],
-            'dni' =>$data['dni'],
+            'telephone' => $data['telephone'],
+            'dni' => $data['dni'],
+            'point' => 0,
         ]);
         $user->assignRole('passenger');
         $user->save();
-         return $user;
+        return $user;
     }
 }

@@ -22,7 +22,7 @@
                 alert('Número de tarjeta no válido');
                 return false;
             }
-            if (year.value === '' || isNaN(year.value) || parseInt(year.value) < (new Date().getFullYear()) || parseInt(year.value) >2099) {
+            if (year.value === '' || isNaN(year.value) || parseInt(year.value) < (new Date().getFullYear()) || parseInt(year.value) > 2099) {
                 alert('Año no válido');
                 return false;
             }
@@ -31,6 +31,25 @@
                 return false;
             }
             return true;
+        }
+
+        function seleccionarDescuento() {
+            let descuento = document.getElementById('descuento');
+            let divDescuento = document.getElementById('divDescuento');
+            divDescuento.innerHTML = '';
+            descuento=descuento.options[descuento.selectedIndex];
+            if (descuento.value !== 0) {
+                let input = document.createElement('input');
+                input.setAttribute('type', 'hidden');
+                input.setAttribute('name', 'descuento');
+                input.setAttribute('required','required');
+                input.value = descuento.value;
+                divDescuento.appendChild(input);
+
+            }
+
+
+
         }
     </script>
 </head>
@@ -95,12 +114,35 @@
         </div>
         <div>
             @if($idVueloVuelta!=null)
+                    <?php $total = (($ida[0]->price) * $numBilletes + ($vuelta[0]->price) * $numBilletes); ?>
                 <h2>TOTAL {{ (($ida[0]->price)*$numBilletes +($vuelta[0]->price)*$numBilletes) }}€</h2>
             @else
+                    <?php $total = ($ida[0]->price) * $numBilletes; ?>
                 <h2>TOTAL {{ ($ida[0]->price)*$numBilletes }}€</h2>
 
             @endif
         </div>
+        @if($descuentos!=null)
+            <div>
+                <table>
+                    <tr>
+                        <td><label>DESCUENTOS</label>
+                            <select name="descuento" id="descuento" onchange="seleccionarDescuento()" >
+                                <option value="0">NINGUN DESCUENTO</option>
+                                @foreach($descuentos as $desc)
+                                    @if($desc->percentage==0.85)
+                                        <option value="{{$desc->id_discount}}"> Descuento del 15% </option>
+                                    @else
+                                        <option value="{{$desc->id_discount}}"> Descuento del 20% </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        @endif
 
         <!-- Formulario Validación Tarjeta de Crédito -->
         <div class="row">
@@ -140,16 +182,17 @@
                                     <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3">
                                 </div>
                             </div>
+                            <input type="hidden" value="{{$idVueloIda}}" name="idVueloIda">
+                            <input type="hidden" value="{{$total}}" name="total">
+                            <div id="divDescuento"></div>
+                            @if($idVueloVuelta!=null)
+                                <input type="hidden" value="{{$idVueloVuelta}}" name="idVueloVuelta">
+                            @endif
+                            <input type="submit" value="Finalizar pago" class="btn">
                         </div>
-                        <input type="hidden" value="{{$idVueloIda}}" name="idVueloIda">
-                        @if($idVueloVuelta!=null)
-                            <input type="hidden" value="{{$idVueloVuelta}}" name="idVueloVuelta">
-                        @endif
-                        <input type="submit" value="Finalizar pago" class="btn">
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
     </div>

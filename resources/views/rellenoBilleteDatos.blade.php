@@ -7,18 +7,18 @@
     <!-- Styles -->
     @vite(['resources/css/formularioIda.css'])
     <script type="text/javascript" defer>
-        function validar(){
-            let nombres= document.getElementsByClassName('nombre');
+        function validar() {
+            let nombres = document.getElementsByClassName('nombre');
             let apellidos = document.getElementsByClassName('apellidos');
-            for (let i=0; i < nombres.length; i++){
-                if(nombres[i].value===''){
-                    alert('Debes rellenar el nombre del pasajero '+(i+1));
+            for (let i = 0; i < nombres.length; i++) {
+                if (nombres[i].value === '' || !isNaN(nombres[i].value)) {
+                    alert('Debes rellenar correctamente el nombre del pasajero ' + (i + 1));
                     return false;
                 }
             }
-            for (let i=0; i < apellidos.length; i++){
-                if(apellidos[i].value===''){
-                    alert('Debes rellenar el apellido del pasajero '+(i+1));
+            for (let i = 0; i < apellidos.length; i++) {
+                if (apellidos[i].value === '' || !isNaN(apellidos[i].value)) {
+                    alert('Debes rellenar correctamente el apellido del pasajero ' + (i + 1));
                     return false;
                 }
             }
@@ -66,10 +66,7 @@
                     </tr>
                 @endif
             </table>
-
-
         </form>
-
     </div>
 @endsection
 </body>

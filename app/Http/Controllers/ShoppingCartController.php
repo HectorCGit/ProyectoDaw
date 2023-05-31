@@ -13,7 +13,7 @@ use Ramsey\Uuid\Type\Integer;
 
 class ShoppingCartController extends Controller
 {
-    public function mostrarCarrito()
+    public function mostrarBilletesPassenger()
     {
         $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
         $idPassenger = $queryIdPassenger[0]['id_passenger'];

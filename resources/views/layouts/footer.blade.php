@@ -1,4 +1,4 @@
-<footer class="bottom-0 w-100  position-absolute pt-lg-4">{{--fixed-bottom--}}
+<footer class="footer bottom-0 w-100  position-absolute pt-lg-4">{{--fixed-bottom--}}
      <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
         <div class=" w-100 d-flex justify-content-center">
             <div class="p-3" >
@@ -11,9 +11,9 @@
             </div>
             <div class="p-3">
                 <h5>Más Información</h5>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled lwarning">
                     <li><a href="" >Inicio</a></li>
-                    <li><a href="" >Vuelos a Europa</a></li>
+                    <li><a href="" >Vuelos</a></li>
                     <li><a href="" >Preguntas frecuentes</a></li>
                     <li><a href="" >Trabaja con nosotros</a></li>
                     <li><a href="" >Contacto</a></li>
@@ -35,16 +35,13 @@
                     <li><a href="" >Aviso Legal</a></li>
                 </ul>
             </div>
-
         </div>
-
      </nav>
     <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white ">
         <div>
             <div class="d-block">
                 <p>©2023 · Todos los derechos reservados.</p>
             </div>
-
         </div>
     </nav>
 </footer>

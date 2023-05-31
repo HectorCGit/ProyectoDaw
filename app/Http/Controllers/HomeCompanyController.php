@@ -88,7 +88,6 @@ class HomeCompanyController extends Controller
 
     public function verBilletes()
     {
-
         $tickets = Ticket::query()
             ->select('id_ticket', 'tickets.id_flight', 'id_discount', 'check_in', 'num_suitcases', 'departing','ticket_name_passenger', 'ticket_surname_passenger', 'price','num_check_in','origin.name as origin', 'destination.name as destination','flight_hours')
             ->leftJoin('flights','flights.id_flight','=','tickets.id_flight')
@@ -96,7 +95,13 @@ class HomeCompanyController extends Controller
             ->leftJoin("cities as destination", "id_destination_city", "=", 'destination.id_city')
             ->where(['tickets.id_flight' => request('idFlight'),'active'=>1])
             ->get();
-
         return view('billetesVuelos', compact('tickets'));
+    }
+
+    public function eliminarBillete(){
+        $idBillete = request('idBillete');
+        Ticket::query()->find($idBillete)->delete();
+        $tipo = 'eliminar';
+        return view('creado', compact('tipo'));
     }
 }

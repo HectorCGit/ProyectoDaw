@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use App\Models\Flight;
 use App\Models\Ticket;
 use App\Models\UserPassenger;
@@ -38,9 +39,12 @@ class ShoppingController extends Controller
         $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
         $idPassenger = $queryIdPassenger[0]['id_passenger'];
 
+
         for ($i = 0; $i < $numBilletes; $i++) {
             DB::insert('INSERT INTO tickets (id_flight,id_passenger,num_suitcases,price) values(' . request('idFlight') . ',' . $idPassenger . ',2,' . request('precioIda') . ') ');
         }
+
+
         $contador = 1;
         $billete = $this->conseguirBillete($idFlight, $idPassenger);
         return view('vuelosIda', compact('contador', 'numBilletes', 'fechaVuelta'), compact('billete'));
@@ -62,6 +66,8 @@ class ShoppingController extends Controller
         for ($i = 0; $i < $numBilletes; $i++) {
             DB::insert('INSERT INTO tickets (id_flight,id_passenger,num_suitcases,price) values(' . request('idFlight') . ',' . $idPassenger . ',2,' . request('precioIda') . ') ');
         }
+
+
         $contador = 1;
         $billete = $this->conseguirBillete($idFlight, $idPassenger);
         return view('vuelosVuelta', compact('contador', 'numBilletes', 'idVueloIda'), compact('billete'));
@@ -106,21 +112,40 @@ class ShoppingController extends Controller
         }
         $ida = $this->conseguirBillete(request('idVueloIda'), $idPassenger);
         $vuelta = $this->conseguirBillete($idVueloVuelta, $idPassenger);
-        return view('pago', compact('ida', 'vuelta', 'numBilletes', 'idVueloIda', 'idVueloVuelta'));
+        $descuentos = Discount::query()
+            ->select('id_discount', 'percentage')
+            ->join('user_passenger', 'user_passenger.id_passenger', '=', 'discounts.id_passenger')
+            ->where('discounts.id_passenger', '=', $idPassenger)
+            ->get();
+
+
+        return view('pago', compact('ida', 'vuelta', 'numBilletes', 'idVueloIda', 'idVueloVuelta', 'descuentos'));
 
     }
 
     public function pagarFinal()
     {
+        $idDescuento = request('descuento');
+        if ($idDescuento != null) {
+            $queryDescuento = Discount::query()->select('percentage')->where('id_discount', '=', $idDescuento)->get();
+            $descuento = $queryDescuento[0]['percentage'];
+        } else {
+            $descuento = 0;
+        }
+
         $idVueloIda = request('idVueloIda');
         $idVueloVuelta = request('idVueloVuelta');
         $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
         $idPassenger = $queryIdPassenger[0]['id_passenger'];
-        $queryIda = Ticket::query()->select('id_ticket')
+        $queryPuntosActuales = UserPassenger::query()->select('points')->where('id_passenger', '=', $idPassenger)->get();
+        $puntosActuales = $queryPuntosActuales[0]['points'];
+        $puntosTotales = request('total') * 0.25 + $puntosActuales;
+        UserPassenger::query()->find($idPassenger)->update(['points' => $puntosTotales]);
+        $queryIda = Ticket::query()->select('id_ticket', 'price')
             ->where(['id_flight' => $idVueloIda, 'active' => 0, 'id_passenger' => $idPassenger])
             ->get();
-        $queryVuelta = Ticket::query()->select('id_ticket')
-            ->where(['id_flight' => $idVueloVuelta ,'active' => 0, 'id_passenger' => $idPassenger])
+        $queryVuelta = Ticket::query()->select('id_ticket', 'price')
+            ->where(['id_flight' => $idVueloVuelta, 'active' => 0, 'id_passenger' => $idPassenger])
             ->get();
 
         foreach ($queryIda as $q) {
@@ -128,13 +153,20 @@ class ShoppingController extends Controller
             $numPassengersIda = Flight::query()->select('id_flight', 'num_passengers')->where('id_flight', '=', $idVueloIda)->get();
             $numPassengers = ($numPassengersIda[0]->num_passengers);
             Flight::query()->select('id_flight', 'num_passengers')->where('id_flight', '=', $idVueloIda)->update(['num_passengers' => $numPassengers + 1]);
+            if ($descuento != 0) {
+                Ticket::query()->select('id_ticket', 'id_discount')->where('id_ticket', '=', $q->id_ticket)->update(['id_discount' => $descuento, 'price' => $q->price * $descuento]);
+            }
         }
         foreach ($queryVuelta as $q) {
             Ticket::query()->select('id_ticket', 'active')->where('id_ticket', '=', $q->id_ticket)->update(['active' => 1]);
             $numPassengersIda = Flight::query()->select('id_flight', 'num_passengers')->where('id_flight', '=', $idVueloVuelta)->get();
             $numPassengers = ($numPassengersIda[0]->num_passengers);
             Flight::query()->select('id_flight', 'num_passengers')->where('id_flight', '=', $idVueloVuelta)->update(['num_passengers' => $numPassengers + 1]);
+            if ($descuento != 0) {
+                Ticket::query()->select('id_ticket', 'id_discount')->where('id_ticket', '=', $q->id_ticket)->update(['id_discount' => $descuento, 'price' => $q->price * $descuento]);
+            }
         }
+
         return view('pagoFinal');
     }
 

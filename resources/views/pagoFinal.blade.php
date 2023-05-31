@@ -17,7 +17,7 @@
             <div id="divGeneral">
                 <h2>COMPRA REALIZADA CON EXITO</h2>
                 <a href="{{route('homePassenger')}}">Volver a la página principal</a>
-                <a href="{{route('carrito')}}">Ver mis billetes</a>
+                <a href="{{route('billetesPassenger')}}">Ver mis billetes</a>
             </div>
         </div>
     </div>

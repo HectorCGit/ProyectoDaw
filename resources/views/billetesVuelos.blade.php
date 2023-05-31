@@ -16,7 +16,7 @@
         <div class="formu">
         @foreach($tickets as $ticket)
             @csrf
-            <table>
+            <table class="tablaFormu">
                 <tr>
                     <td>
                         <label>Nº Ticket</label>
@@ -54,7 +54,6 @@
                     </td>
                 </tr>
                 <tr>
-
                     <td>
                         <label>Nº Maletas</label>
                     </td>
@@ -94,7 +93,6 @@
                         <label>Nº Check in</label>
                     </td>
                     <td>{{$ticket->num_check_in}}</td>
-
                     <td>
                         <label>Origen</label>
                     </td>
@@ -110,6 +108,17 @@
                         <label>Duración Vuelo</label>
                     </td>
                     <td>{{$ticket->flight_hours}}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form action="{{ route('eliminarBillete')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="idBillete" value="{{$ticket->id_ticket}}">
+                            <input type="submit"
+                                   class="bg-danger hover:bg-blue text-white font-bold py-2 px-4 rounded"
+                                   value="ELIMINAR">
+                        </form>
+                    </td>
                 </tr>
             </table>
             @endforeach
