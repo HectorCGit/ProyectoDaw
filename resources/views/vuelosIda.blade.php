@@ -55,13 +55,16 @@
                                             <input type="hidden" name="numBilletes" value="{{$numBilletes}}">
                                             <label>Precio</label>
                                             <select name="precioIda" id="precioIda">
-                                                <option value="{{$i->economic_price}}"> Económico: {{$i->economic_price}}</option>
-                                                <option value="{{$i->business_price}}"> Business: {{$i->business_price}}</option>
+                                                <option value="{{$i->economic_price}}">
+                                                    Económico: {{$i->economic_price}}</option>
+                                                <option value="{{$i->business_price}}">
+                                                    Business: {{$i->business_price}}</option>
                                             </select><br><br>
                                             <input type="submit" value="Agregar">
                                         </form>
                                     @else
-                                        <button><a href="{{route('login')}}" style="text-decoration: none; color: white">Agregar </a></button>
+                                        <button><a href="{{route('login')}}"
+                                                   style="text-decoration: none; color: white">Agregar </a></button>
                                     @endauth
                                 </div>
                             </div>
@@ -120,6 +123,8 @@
             <input type="hidden" name="idVueloIda" value="{{$billete[0]->id_flight}}">
             <input type="submit" value="siguiente">
         </form>
+        <div style="width: 400px; height: 400px">
+        </div>
     </div>
     @endif
 @endsection

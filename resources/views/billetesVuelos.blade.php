@@ -123,7 +123,8 @@
             </table>
             @endforeach
         </div>
-
+        <div style="width: 400px; height: 400px">
+        </div>
     </div>
 @endsection
 </body>

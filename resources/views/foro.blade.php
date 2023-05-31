@@ -61,6 +61,8 @@
         </div>
     </div>
     <div>{{$temas->links()}}</div>
+    <div style="width: 400px; height: 400px">
+    </div>
 @endsection
 </body>
 </html>

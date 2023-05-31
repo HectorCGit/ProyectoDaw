@@ -8,7 +8,7 @@
     <title>Aeroweb</title>
     @vite(['resources/css/formularioIda.css'])
     <script type="text/javascript" defer>
-        function crear(){
+        function crear() {
 
         }
     </script>
@@ -18,7 +18,9 @@
 @section('content')
     <div class='container'>
         <table>
-            <tr><td>{{$temaElegido[0]->content}}</td></tr>
+            <tr>
+                <td>{{$temaElegido[0]->content}}</td>
+            </tr>
         </table>
         <div class="formu">
             @foreach($mensajes as $mensaje)
@@ -46,11 +48,12 @@
                         </tr>
                     </table>
                 </form>
-                @endauth
+            @endauth
         </div>
-
+        <div>{{$mensajes->links()}}</div>
     </div>
-    <div>{{$mensajes->links()}}</div>
+    <div style="width: 400px; height: 400px">
+    </div>
 @endsection
 </body>
 </html>

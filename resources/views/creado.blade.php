@@ -10,11 +10,15 @@
 <body>
 @extends('layouts.app')
 @section('content')
-    @if($tipo==='crear')
-        <h1>CREADO CON EXITO</h1>
-    @else
-        <h1>ELIMINADO CON EXITO</h1>
-    @endif
+    <div class="container">
+        @if($tipo==='crear')
+            <h1>CREADO CON EXITO</h1>
+        @else
+            <h1>ELIMINADO CON EXITO</h1>
+        @endif
+        <div style="width: 400px; height: 400px">
+        </div>
+    </div>
 @endsection
 </body>
 </html>

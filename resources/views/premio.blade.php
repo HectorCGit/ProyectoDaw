@@ -9,6 +9,7 @@
 
 @extends('layouts.app')
 @section('content')
+    <div class="container">
     @switch($premio)
         @case('nada')
             <h1>LO SENTIMOS, NO HAS GANADO NADA</h1>
@@ -30,6 +31,9 @@
             <h1>HAS RECUPERADO TUS 500 PUNTOS, VUELVE A LA RULETA PARA TIRAR OTRA VEZ</h1>
             @break
     @endswitch
+        <div style="width: 400px; height: 400px">
+        </div>
+    </div>
 @endsection
 </body>
 </html>

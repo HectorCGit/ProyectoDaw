@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -81,7 +80,7 @@
         }
     </script>
 </head>
-<body class="min-vh-100 position-relative pb-xxl-5" onload="imagenAleatoria()">
+<body onload="imagenAleatoria()">
 
 @extends('layouts.app')
 @section('content')
@@ -125,7 +124,7 @@
                         <td><label>Fecha de ida </label>
                             <input type="date" name="ida" id="ida" required>
                         </td>
-                        <td id="campoVuelta" style="text-align: right"><label>Fecha de vuelta </label>
+                        <td id="campoVuelta" class="w-100"><label>Fecha de vuelta </label>
                             <input type="date" name="vuelta" id="vuelta">
                         </td>
                         <td><label>Billetes</label>
@@ -185,7 +184,8 @@
         @foreach($randomFlights as $randomF)
             <div class=" d-block ">
                 <div class="d-flex justify-content-center pb-4">
-                    <div class="w-50 h-50 bordeImagenAleatoria"><img id="img1" class="w-100 h-100" src="" alt="img de Viaje"></div>
+                    <div class="w-50 h-50 bordeImagenAleatoria"><img id="img1" class="w-100 h-100" src=""
+                                                                     alt="img de Viaje"></div>
                     <div class="w-50 h-50 divVueloAleatorio">
                         <a class="enlaceVueloAleatorio" href="">
                             <table class="tablaVuelosAleatorios">
@@ -217,10 +217,9 @@
                     </div>
                 </div>
                 @endforeach
-                <div style="width: 300px; height: 300px">
-                </div>
+                <div style="width: 400px; height: 400px"></div>
             </div>
-
+    </div>
 @endsection
 </body>
 </html>

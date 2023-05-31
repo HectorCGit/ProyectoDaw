@@ -54,8 +54,8 @@
 
         <div class="container">
 
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Aeroweb') }}
+            <a class="navbar-brand" href="{{ url('/') }}"><img style="width:100px;height:100px" src="{{ asset('imgLogo/logoAeroweb.png') }}" alt="Logo">
+
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

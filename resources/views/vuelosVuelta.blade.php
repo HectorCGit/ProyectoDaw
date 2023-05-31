@@ -13,7 +13,7 @@
 
 @extends('layouts.app')
 @section('content')
-    <div>
+    <div class="container">
         <div class="formu">
             <h1>Vuelos de vuelta</h1>
             @if($contador==0)
@@ -119,6 +119,8 @@
             <input type="hidden" name="numBilletes" value="{{$numBilletes}}">
             <input type="submit" value="siguiente">
         </form>
+        <div style="width: 400px; height: 400px">
+        </div>
     </div>
     @endif
 @endsection

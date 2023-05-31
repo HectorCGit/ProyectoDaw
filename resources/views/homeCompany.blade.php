@@ -63,8 +63,11 @@
                 @endif
             </div>
         </div>
+        <div>{{$companyFlights->links()}}</div>
+        <div style="width: 400px; height: 400px">
+        </div>
     </div>
-    <div>{{$companyFlights->links()}}</div>
+
 @endsection
 
 </body>

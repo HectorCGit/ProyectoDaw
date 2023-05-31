@@ -62,8 +62,10 @@ label.idayvuelta {
     display: block;
 }
 
+@media screen and (max-width: 576px) {
 
-@media screen and (max-width: 700px) {
+}
+@media screen and (max-width: 768px) {
     .tablaFormu {
         width: 100%;
     }
@@ -79,14 +81,18 @@ label.idayvuelta {
 
     table td {
         display: block;
-        text-align: right;
+        text-align: left;
         padding: 5px;
     }
 
 
     td label {
         display: block;
-        float: left;
+        float: right;
+    }
+    td#campoVuelta label {
+        display: block;
+        float: right;
     }
 
     table th {
