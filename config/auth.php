@@ -112,4 +112,8 @@ return [
 
     'password_timeout' => 10800,
 
+    'verification' => [
+        'expire' => 60,
+        'redirectTo' => '/email/verified', // Ruta de redirección
+    ],
 ];

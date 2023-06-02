@@ -11,12 +11,15 @@
     <script type="text/javascript" defer>
         function mostrarVuelta() {
             let checkbox = document.getElementById('idayvuelta');
-            let campoVuelta = document.getElementById("campoVuelta");
             let textoVuelta = document.getElementById("titulovuelta");
+            let campoVuelta = document.getElementById("campoVuelta");
             let inputVuelta = document.getElementById("vuelta");
             if (checkbox.checked === true) {
-                campoVuelta.style.display = "table-cell";
-                textoVuelta.style.display = "table-cell";
+
+                campoVuelta.style.display="block";
+                textoVuelta.style.display = "block";
+                campoVuelta.style.position="static";
+                textoVuelta.style.position="static";
                 inputVuelta.setAttribute("required", "");
                 inputVuelta.required = true;
 
@@ -124,7 +127,7 @@
                         <td><label>Fecha de ida </label>
                             <input type="date" name="ida" id="ida" required>
                         </td>
-                        <td id="campoVuelta" class="w-100"><label>Fecha de vuelta </label>
+                        <td id="campoVuelta"><label>Fecha de vuelta </label>
                             <input type="date" name="vuelta" id="vuelta">
                         </td>
                         <td><label>Billetes</label>

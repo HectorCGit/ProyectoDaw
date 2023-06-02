@@ -27,7 +27,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>Estas credenciales no concuerdan con nuestros registros</strong>
                                     </span>
                                 @enderror
                             </div>

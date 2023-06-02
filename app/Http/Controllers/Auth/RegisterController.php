@@ -187,10 +187,19 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'telephone' => $data['telephone'],
             'dni' => $data['dni'],
-            'point' => 0,
+            'points' => 0,
         ]);
         $user->assignRole('passenger');
         $user->save();
         return $user;
     }
+    protected function registered(Request $request, $user)
+    {
+        // Eliminar el autologin
+        $this->guard()->logout();
+
+        // Retornar una respuesta o redirigir a una página
+        return redirect('/verify'); // Reemplaza '/ruta-de-redireccion' con la ruta a la página a la que deseas redirigir al usuario después del registro.
+    }
+
 }

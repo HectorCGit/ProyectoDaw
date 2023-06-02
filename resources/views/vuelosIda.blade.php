@@ -12,7 +12,7 @@
 
 @extends('layouts.app')
 @section('content')
-    <div class="container d-block">
+    <div class="container">
         <div>
             <div class="formu">
                 <h1>Vuelos de ida</h1>
@@ -24,21 +24,22 @@
                                     @if(($i->num_seats - $i->num_passengers)>=$numBilletes )
                                         <table class="tablaFormu">
                                             <tr>
-                                                <td><h5>{{ $i->company}}</h5></td>
+                                                <td><h4>{{ $i->company}}</h4></td>
                                             </tr>
                                             <tr>
-                                                <td>Ciudad de orígen: {{ $i->origin}}</td>
+                                                <td>Ciudad de orígen: <h5>{{ $i->origin}}</h5></td>
 
                                             </tr>
                                             <tr>
-                                                <td>Ciudad de destino: {{ $i->destination}}</td>
+                                                <td>Ciudad de destino: <h5>{{ $i->destination}}</h5></td>
                                             </tr>
                                             <tr>
                                                 <td>Asientos
-                                                    disponibles: {{ ($i->num_seats - $i->num_passengers) }}</td>
+                                                    disponibles: <h5>{{ ($i->num_seats - $i->num_passengers) }}</h5>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td>Fecha y hora: {{ $i->departing}}</td>
+                                                <td>Fecha y hora: <h5>{{ $i->departing}}</h5></td>
                                             </tr>
                                         </table>
                                     @else
@@ -46,26 +47,41 @@
                                             PRUEBE CON OTRA FECHA </h2>
                                     @endif
                                 </div>
-                                <div class="w-30 h-50 p-3">
-                                    @auth
-                                        <form action="{{route('getBilletesIda')}}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="idFlight" value="{{$i->id_flight}}">
-                                            <input type="hidden" name="fechaVuelta" value="{{$fechaVuelta}}">
-                                            <input type="hidden" name="numBilletes" value="{{$numBilletes}}">
-                                            <label>Precio</label>
-                                            <select name="precioIda" id="precioIda">
-                                                <option value="{{$i->economic_price}}">
-                                                    Económico: {{$i->economic_price}}</option>
-                                                <option value="{{$i->business_price}}">
-                                                    Business: {{$i->business_price}}</option>
-                                            </select><br><br>
-                                            <input type="submit" value="Agregar">
-                                        </form>
-                                    @else
-                                        <button><a href="{{route('login')}}"
-                                                   style="text-decoration: none; color: white">Agregar </a></button>
-                                    @endauth
+                                <div class="divGen ">
+                                    <table class="tablaFormu ">
+                                        @auth
+                                            <form action="{{route('getBilletesIda')}}" method="post">
+                                                @csrf
+                                                <tr>
+                                                    <td><input type="hidden" name="idFlight" value="{{$i->id_flight}}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="hidden" name="fechaVuelta"
+                                                               value="{{$fechaVuelta}}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="hidden" name="numBilletes"
+                                                               value="{{$numBilletes}}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label>Precio</label></td><td>
+                                                        <select name="precioIda" id="precioIda" class="styled-select">
+                                                            <option value="{{$i->economic_price}}">
+                                                                Económico: {{$i->economic_price}}</option>
+                                                            <option value="{{$i->business_price}}">
+                                                                Business: {{$i->business_price}}</option>
+                                                        </select></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="submit" value="Agregar"></td>
+                                                </tr>
+                                            </form>
+                                        @else
+                                            <button><a href="{{route('login')}}"
+                                                       style="text-decoration: none; color: white">Agregar </a></button>
+                                        @endauth
+                                    </table>
                                 </div>
                             </div>
                         @endforeach
@@ -126,6 +142,7 @@
         <div style="width: 400px; height: 400px">
         </div>
     </div>
+
     @endif
 @endsection
 </body>
