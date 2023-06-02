@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
@@ -23,7 +19,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection|FlightRating[] $flight_ratings
  * @property Collection|Flight[] $flights
  *
- * @package App\Models
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class UserCompany extends User
 {
@@ -32,6 +29,14 @@ class UserCompany extends User
 	protected $primaryKey = 'id_company';
 	public $timestamps = false;
 
+    static $rules = [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'password' => ['required', 'string', 'min:8'],
+        'telephone' => ['required', 'min:10000000', 'max:1000000000', 'integer'],
+    ];
+
+    protected $perPage = 20;
 	protected $casts = [
 		'id_users' => 'int',
 		'telephone' => 'int'
@@ -60,4 +65,3 @@ class UserCompany extends User
 
 
 }
-

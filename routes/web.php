@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserCompanyController;
+use App\Http\Controllers\UserPassengerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeCompanyController;
@@ -85,6 +87,9 @@ Route::get('/verify', function () {
     return view('auth.verify');
 })->name('verify');
 
+//ZONA ADMIN
+Route::resource('user-passengers', UserPassengerController::class);
+Route::resource('user-companies', UserCompanyController::class);
 
 
 
