@@ -33,12 +33,13 @@
         <div class="formu">
             <div class="formu ">
                 @auth
-                <a style="text-decoration: none" class="bg-warning hover:bg-blue text-black font-bold py-2 px-4 rounded"
-                   onclick='crearTema()'>Crear nueva pregunta</a>
-                <form method="post" action="{{route('crearTemas')}}">
-                    @csrf
-                    <div id="formularioTemas"></div>
-                </form>
+                    <a style="text-decoration: none"
+                       class="bg-warning hover:bg-blue text-black font-bold py-2 px-4 rounded"
+                       onclick='crearTema()'>Crear nueva pregunta</a>
+                    <form method="post" action="{{route('crearTemas')}}">
+                        @csrf
+                        <div id="formularioTemas"></div>
+                    </form>
 
                 @endauth
             </div>
@@ -54,6 +55,9 @@
                                 <input type="hidden" name="idTema" value="{{$tema->id_topic}}">
                                 <input type="submit" value="Ver Tema">
                             </td>
+                            @if( Auth::user()->hasRole('admin'))
+                                <a href="{{route('borrarTemas')}}">BORRAR</a>
+                            @endif
                         </tr>
                     </table>
                 </form>
