@@ -15,30 +15,52 @@
 }
 
 .tablaFormu {
-    border: 1px white solid;
-    align-items: center;
     width: 100%;
-    height: 40%;
-    background-color: #fffbf1;
-    box-shadow: 5px 5px 5px gray;
-
+    border-collapse: collapse;
 }
 
-.buscar {
-    background-color: #e28743;
+.tablaFormu th,
+.tablaFormu td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tablaFormu th {
+    background-color: #f2f2f2;
+}
+
+.tablaFormu tr {
+    background-color: #f5f5f5;
+}
+
+.tablaFormu label {
+    font-weight: bold;
+}
+
+.tablaFormu input[list],
+.tablaFormu input[type="date"],
+.tablaFormu input[type="number"],
+.tablaFormu input[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.tablaFormu input[type="submit"] {
+    background-color: #bc634f;
     color: white;
-    padding: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.buscar:hover {
-    background-color: darkorange;
+.tablaFormu input[type="submit"]:hover {
+    background-color: #e6c199;
 }
-
-#campoVuelta {
-    display: none;
-}
-
 
 #error {
     display: none;
@@ -47,7 +69,12 @@
     border: 1px solid transparent;
     padding-right: 35px;
     background-color: #f8beb6;
+    color: red;
 
+}
+
+#campoVuelta {
+    display: none;
 }
 
 #titulovuelta {
@@ -62,14 +89,11 @@ label.idayvuelta {
     display: block;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 900px) {
 
-}
-@media screen and (max-width: 768px) {
-    .tablaFormu {
-        width: 100%;
+    .formu{
+        top:70%;
     }
-
     table thead {
         display: none;
     }
@@ -81,26 +105,27 @@ label.idayvuelta {
 
     table td {
         display: block;
-        text-align: left;
+        text-align: center;
         padding: 5px;
     }
-
 
     td label {
         display: block;
-        float: right;
-    }
-    td#campoVuelta label {
-        display: block;
-        float: right;
     }
 
-    table th {
-        display: block;
-        font-weight: bold;
-        font-size: 14px;
-        padding: 5px;
+    .tablaFormu td,
+    .tablaFormu th {
+        white-space: nowrap;
     }
 
+    #campoIda {
+        width: 260px;
+    }
+    #campoVuelta{
+        width:260px;
+    }
+    .tablaFormu input[type="submit"] {
+        text-align:  center;
+    }
 
 }

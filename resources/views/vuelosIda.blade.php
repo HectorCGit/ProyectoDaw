@@ -4,146 +4,153 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
-    <!-- Styles -->
-    @vite(['resources/css/formularioIda.css'])
-
+    <!-- Estilos -->
+    @vite(['resources/css/formularioIdaVuelta.css'])
 </head>
-<body class="antialiased">
-
+<body>
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div>
-            <div class="formu">
-                <h1>Vuelos de ida</h1>
-                @if($contador==0)
-                    @if(!$ida->isEmpty())
-                        @foreach ($ida as $i)
-                            <div id="divGeneral">
-                                <div class="divGen">
-                                    @if(($i->num_seats - $i->num_passengers)>=$numBilletes )
-                                        <table class="tablaFormu">
-                                            <tr>
-                                                <td><h4>{{ $i->company}}</h4></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ciudad de orígen: <h5>{{ $i->origin}}</h5></td>
+        <div class="m-3">
+            @if($contador==0)
+                @if(!$ida->isEmpty())
+                    <h1>Vuelos de ida</h1>
+                    @foreach ($ida as $i)
+                        <div id="divGeneral">
+                            <div class="divGen">
+                                @if(($i->num_seats - $i->num_passengers)>=$numBilletes )
+                                    <table class="tablaFormu">
+                                        <tr>
+                                            <td><h4>{{ $i->company}}</h4></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ciudad de orígen: <h5>{{ $i->origin}}</h5></td>
 
-                                            </tr>
+                                        </tr>
+                                        <tr>
+                                            <td>Ciudad de destino: <h5>{{ $i->destination}}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Asientos
+                                                disponibles: <h5>{{ ($i->num_seats - $i->num_passengers) }}</h5>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fecha y hora: <h5>{{substr($i->departing,0,16)}}</h5></td>
+                                        </tr>
+                                    </table>
+                                @else
+                                    <div class="alert alert-primary m-3">
+                                        <h2>No hay vuelos de ida disponibles con asientos disponibles con asientos
+                                            disponibles en esta fecha.
+                                            Pruebe con otra fechas</h2>
+                                        <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver</a>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="divGen">
+                                <table class="tablaFormu ">
+                                    @auth
+                                        <form action="{{route('getBilletesIda')}}" method="post">
+                                            @csrf
                                             <tr>
-                                                <td>Ciudad de destino: <h5>{{ $i->destination}}</h5></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Asientos
-                                                    disponibles: <h5>{{ ($i->num_seats - $i->num_passengers) }}</h5>
+                                                <td><input type="hidden" name="idFlight" value="{{$i->id_flight}}">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Fecha y hora: <h5>{{ $i->departing}}</h5></td>
+                                                <td><input type="hidden" name="fechaVuelta"
+                                                           value="{{$fechaVuelta}}"></td>
                                             </tr>
-                                        </table>
+                                            <tr>
+                                                <td><input type="hidden" name="numBilletes"
+                                                           value="{{$numBilletes}}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Precio</label></td>
+                                                <td>
+                                                    <select name="precioIda" id="precioIda" class="select">
+                                                        <option value="{{$i->economic_price}}">
+                                                            Economic Class: {{$i->economic_price}}€</option>
+                                                        <option value="{{$i->business_price}}">
+                                                            Business Class: {{$i->business_price}}€</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><input type="submit" value="Agregar"></td>
+                                            </tr>
+                                        </form>
                                     @else
-                                        <h2>NO HAY VUELOS DE IDA DISPONIBLES CON ASIENTOS DISPONIBLES EN ESTA FECHA.
-                                            PRUEBE CON OTRA FECHA </h2>
-                                    @endif
-                                </div>
-                                <div class="divGen ">
-                                    <table class="tablaFormu ">
-                                        @auth
-                                            <form action="{{route('getBilletesIda')}}" method="post">
-                                                @csrf
-                                                <tr>
-                                                    <td><input type="hidden" name="idFlight" value="{{$i->id_flight}}">
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="hidden" name="fechaVuelta"
-                                                               value="{{$fechaVuelta}}"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="hidden" name="numBilletes"
-                                                               value="{{$numBilletes}}"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><label>Precio</label></td><td>
-                                                        <select name="precioIda" id="precioIda" class="styled-select">
-                                                            <option value="{{$i->economic_price}}">
-                                                                Económico: {{$i->economic_price}}</option>
-                                                            <option value="{{$i->business_price}}">
-                                                                Business: {{$i->business_price}}</option>
-                                                        </select></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="submit" value="Agregar"></td>
-                                                </tr>
-                                            </form>
-                                        @else
-                                            <button><a href="{{route('login')}}"
-                                                       style="text-decoration: none; color: white">Agregar </a></button>
-                                        @endauth
-                                    </table>
-                                </div>
+                                        <button><a href="{{route('login')}}">Agregar </a></button>
+                                    @endauth
+                                </table>
                             </div>
-                        @endforeach
-                    @else
-                        <h2>NO HAY VUELOS DE IDA DISPONIBLES EN ESTA FECHA. PRUEBE CON OTRA FECHA </h2>
-                    @endif
-                @else
-                    @if($numBilletes>1)
-                        <h2>Billetes de ida seleccionados con ÉXITO</h2>
-                    @else
-                        <h2>Billete de ida seleccionado con ÉXITO</h2>
-                    @endif
-                    <div class="formu">
-                        <div id="divGeneral">
-                            <table class="tablaFormu">
-                                <tr>
-                                    <td><h5>{{$billete[0]->company}}</h5></td>
-                                </tr>
-                                <tr>
-                                    <td>Ciudad de orígen: {{$billete[0]->origin}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Ciudad de destino: {{$billete[0]->destination}}</td>
-                                </tr>
-                                @if($numBilletes>1)
-                                    <tr>
-                                        <td>{{$numBilletes}} billetes seleccionados</td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td>{{$numBilletes}} billete seleccionado</td>
-                                    </tr>
-                                @endif
-                                <tr>
-                                    <td>Precio por billete: {{$billete[0]->price}}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{$billete[0]->flight_hours}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Fecha y hora: {{$billete[0]->departing}}</td>
-                                </tr>
-
-                            </table>
                         </div>
+                    @endforeach
+                @else
+                    <div class="alert alert-primary m-3">
+                        <h2>No hay vuelos de ida disponibles de en esta fecha. Pruebe con otra fecha </h2>
+                        <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver</a>
                     </div>
-            </div>
+                @endif
+            @else
+                @if($numBilletes>1)
+                    <h3>Billetes de ida seleccionados con ÉXITO</h3>
+                @else
+                    <h3>Billete de ida seleccionado con ÉXITO</h3>
+                @endif
+                <div class="formu">
+                    <div id="divGeneral">
+                        <table class="tablaFormu">
+                            <tr>
+                                <td><h5>{{$billete[0]->company}}</h5></td>
+                            </tr>
+                            <tr>
+                                <td>{{$billete[0]->origin}} - {{$billete[0]->destination}}</td>
+                            </tr>
+
+                            @if($numBilletes>1)
+                                <tr>
+                                    <td>{{$numBilletes}} billetes seleccionados</td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td>{{$numBilletes}} billete seleccionado</td>
+                                </tr>
+                            @endif
+                            <tr>
+                                <td>Precio por billete: {{$billete[0]->price}}€</td>
+                            </tr>
+                            <tr>
+                                <td>{{$billete[0]->flight_hours}}</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha y hora: {{substr($billete[0]->departing,0,16)}}</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
         </div>
         <form method="post" action={{route('getVuelosVuelta')}}>
-            @csrf
-            <input type="hidden" name="fechaVuelta" value="{{$fechaVuelta}}">
-            <input type="hidden" name="origen" value="{{$billete[0]->destination}}">
-            <input type="hidden" name="destino" value="{{$billete[0]->origin}}">
-            <input type="hidden" name="numBilletes" value="{{$numBilletes}}">
-            <input type="hidden" name="idVueloIda" value="{{$billete[0]->id_flight}}">
-            <input type="submit" value="siguiente">
+            <table>
+                @csrf
+                <tr>
+                    <td>
+                        <input type="hidden" name="fechaVuelta" value="{{$fechaVuelta}}">
+                        <input type="hidden" name="origen" value="{{$billete[0]->destination}}">
+                        <input type="hidden" name="destino" value="{{$billete[0]->origin}}">
+                        <input type="hidden" name="numBilletes" value="{{$numBilletes}}">
+                        <input type="hidden" name="idVueloIda" value="{{$billete[0]->id_flight}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="siguiente"></td>
+                </tr>
+            </table>
         </form>
-        <div style="width: 400px; height: 400px">
-        </div>
     </div>
-
     @endif
+    <div id="footer"></div>
 @endsection
 </body>
 </html>

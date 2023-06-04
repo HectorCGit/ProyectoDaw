@@ -1,29 +1,10 @@
-.formu {
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    margin: 0px;
-}
-h1{
+h1, h2, h3 {
     text-align: center;
     font-family: "blacker";
 }
 
-#divGeneral {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 2px;
-}
-
-.divGen {
-    width: 100%;
-    height: 100%;
-}
 
 .tablaFormu {
-    top: 50px;
     border: 1px black;
     text-align: center;
     margin: 10px;
@@ -31,6 +12,7 @@ h1{
     background-color: #e6c199;
     color: black;
     border-radius: 12px 0px;
+    box-shadow: 5px 5px 5px gray;
 
 }
 
@@ -39,6 +21,7 @@ button {
     right: 50px;
     background-color: black;
     color: white;
+    text-decoration: none;
 }
 
 tr td h5:first-child {
@@ -48,16 +31,17 @@ tr td h5:first-child {
 tr td h4:first-child {
     font-family: "Droid Sans Mono Slashed";
 }
-.styled-select {
+
+.select {
     display: inline-block;
-    width: 80%;
+    width: 70%;
     cursor: pointer;
     padding: 7px 10px;
     height: 42px;
     background: #f0f0f0;
     color: #7b7b7b;
     font-size: 1em;
-    color: #999;
+    color: black;
     font-family: 'Quicksand', sans-serif;
     border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 12px 0px;
@@ -65,22 +49,31 @@ tr td h4:first-child {
     transition: all 0.25s ease;
 }
 
-.styled-select option {
+.select option {
     background-color: #fff;
     color: #333;
 }
-.styled-select select:hover{
-    background: #B1E8CD;
-}
 
-td input{
-    right: 50px;
-    width: 80%;
+td input {
+    text-align: center;
     cursor: pointer;
-    padding: 7px 10px;
-    height: 42px;
-    background: #f0f0f0;
-
+    padding: 7px 7px;
+    height: 38px;
+    background-color: #bc634f;
+    color: white;
+    border-radius: 12px 12px;
 }
 
+#footer {
+    width: 400px;
+    height: 400px;
+}
+
+
+@media screen and (min-width: 800px) and (min-height: 1280px) {
+    #footer {
+        height: 800px;
+        width: 800px;
+    }
+}
 

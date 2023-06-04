@@ -33,44 +33,54 @@
 <body class="min-vh-100 position-relative pb-auto">
 <div id="app">
     <nav class="navbar sticky-top navbar-expand-md navbar-light bg-white shadow-sm">
-        <div id="mySidebar" class="sidebar">
-            <a class="closebtn" onclick="closeNav()">×</a>
-            <a href="{{route('homePassenger')}}">Principal</a>
-            @auth
-               @if( Auth::user()->hasRole('passenger'))
-                <a href="{{ route('ruleta') }}">Ruleta</a>
-                <a href="{{route('billetesCheckIn')}}">Check-in</a>
-                <a href="{{route('billetesPassenger')}}">Mis Billetes</a>
-                @endif
-            @endauth
-            <a href="{{route('foro')}}">Foro</a>
-            <a href="#">Contacto</a>
-            <a href="#">Información</a>
-        </div>
+        <div class="sidebarContainer">
+            <div id="mySidebar" class="sidebar">
+                <a class="closebtn" onclick="closeNav()">×</a>
+                <a href="{{route('homePassenger')}}">Principal</a>
+                @auth
+                    @if( Auth::user()->hasRole('passenger'))
+                        <a href="{{ route('ruleta') }}">Ruleta</a>
+                        <a href="{{route('billetesCheckIn')}}">Check-in</a>
+                        <a href="{{route('billetesPassenger')}}">Mis Billetes</a>
+                    @endif
+                @endauth
+                <a href="{{route('foro')}}">Foro</a>
+                <a href="#">Contacto</a>
+                <a href="#">Información</a>
+            </div>
 
-        <div id="main">
-            <button class="openbtn" onclick="openNav()">☰</button>
+            <div id="main">
+                <button class="openbtn" onclick="openNav()">☰</button>
+            </div>
         </div>
-
         <div class="container">
 
-            <a class="navbar-brand" href="{{ url('/') }}"><img style="width:100px;height:100px" src="{{ asset('imgLogo/logoAeroweb.png') }}" alt="Logo">
-
+            <a class="navbar-brand" href="{{ url('/') }}"><img style="width:100px;height:100px"
+                                                               src="{{ asset('imgLogo/logoAeroweb.png') }}" alt="Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler openbtn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">☰</button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav me-auto">
-
+                <ul class="navbar-nav me-auto listaOculta menu">
+                    <li><a class="nav-link" href="{{route('homePassenger')}}">Principal</a></li>
+                        @auth
+                            @if( Auth::user()->hasRole('passenger'))
+                            <li>      <a class="nav-link" href="{{ route('ruleta') }}">Ruleta</a></li>
+                            <li>     <a class="nav-link" href="{{route('billetesCheckIn')}}">Check-in</a></li>
+                            <li>     <a class="nav-link" href="{{route('billetesPassenger')}}">Mis Billetes</a></li>
+                            @endif
+                        @endauth
+                    <li>  <a class="nav-link" href="{{route('foro')}}">Foro</a></li>
+                    <li>  <a class="nav-link" href="#">Contacto</a></li>
+                    <li>  <a class="nav-link" href="#">Información</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto menu">
                     <!-- Authentication Links -->
                     @guest
                         @if (Route::has('login'))
@@ -127,6 +137,7 @@
     </main>
 
 </div>
+
 @extends('layouts.footer')
 
 </body>

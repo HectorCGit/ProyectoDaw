@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
-    <!-- Styles -->
-
+    <!-- Estilos -->
+    @vite(['resources/css/pago.css'])
 
 </head>
 <body class="antialiased">
@@ -13,14 +13,12 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <div class="formu">
-            <div id="divGeneral">
-                <h2>COMPRA REALIZADA CON EXITO</h2>
-                <a href="{{route('homePassenger')}}">Volver a la página principal</a>
-                <a href="{{route('billetesPassenger')}}">Ver mis billetes</a>
-            </div>
+        <div class="alert alert-success m-3">
+            <h2>Compra realizada con éxito</h2>
+            <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver a la página principal</a><br>
+            <a class="text-decoration-none" href="{{route('billetesPassenger')}}">Ver mis billetes</a>
         </div>
-        <div style="width: 400px; height: 400px">
+        <div style="width: 400px; height: 500px">
         </div>
     </div>
 @endsection

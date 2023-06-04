@@ -8,16 +8,18 @@
     text-align: center;
 }
 .divVueloAleatorio{
-    border: #cc8e43 solid;
+    border: #e6c199 solid;
     background: whitesmoke;
     border-radius: 20px 20px ;
-    box-shadow: 5px 10px 5px #cc8e43;
+    box-shadow: 5px 10px 5px #e6c199;
     margin-left: 40px;
+    transition: background-color 0.3s;
+
 }
 .divVueloAleatorio:hover{
     border: 3px white dotted;
     border-radius: 20px 20px ;
-    background-color: #e28743;
+    background-color: #bc634f;
 }
 .tablaVuelosAleatorios:hover{
     color:white;

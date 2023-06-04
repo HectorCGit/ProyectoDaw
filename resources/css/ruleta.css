@@ -1,20 +1,52 @@
+h1, h2, h3 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+h3 {
+    color: darkred;
+}
+p{
+    color:white;
+}
+#cuerpo{
+    text-align: center;
+}
+body {
+    background-image: url('/public/imgRuleta/cortinas.jpg');
+    background-size: cover;
+    background-position: center;
+}
+#canvasWrapper {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 3px 3px 40px 10px #dbd661;
 
-body
-{
-    font-family: arial, serif;
 }
 
-/* Do some css reset on selected elements */
-h1, p
-{
-    margin: 0;
+@keyframes glowing {
+    0% { text-shadow: 0 0 5px white; }
+    50% { text-shadow: 0 0 20px yellow, 0 0 30px yellow; }
+    100% { text-shadow: 0 0 5px white; }
 }
 
-h1 {
-    font-size: 1.5em;
+.glow-text {
+    animation: glowing 2s ease-in-out infinite;
+    color:white;
+}
+#footer {
+    width: 400px;
+    height: 200px;
 }
 
-p {
-    font-size: 0.8em;
+@media screen and (min-width: 800px) and (min-height: 1280px) {
+    #footer {
+        height: 300px;
+        width: 300px;
+    }
+    footer{
+        display: none;
+    }
 }
-

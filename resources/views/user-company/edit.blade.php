@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid p-3">
         <div class="">
             <div class="col-md-12">
 
@@ -28,4 +28,6 @@
             </div>
         </div>
     </section>
+    <div style="width: 400px; height: 300px"></div>
+
 @endsection

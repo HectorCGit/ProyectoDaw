@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid p-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        
+
                         <div class="form-group">
                             <strong>Id Company:</strong>
                             {{ $userCompany->id_company }}
@@ -42,4 +42,6 @@
             </div>
         </div>
     </section>
+    <div style="width: 400px; height: 300px"></div>
+
 @endsection

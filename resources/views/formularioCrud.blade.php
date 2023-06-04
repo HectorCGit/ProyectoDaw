@@ -14,7 +14,6 @@
         <form method="post" action="{{route('guardarVuelo')}}">
             @csrf
             <table>
-
                 <tr>
                     <td>
                         <label>Origen </label>

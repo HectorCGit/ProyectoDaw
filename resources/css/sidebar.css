@@ -1,4 +1,3 @@
-
 .sidebar {
     height: 100%;
     width: 0;
@@ -6,7 +5,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color:  #e28743 ;
+    background-color:  #e6c199 ;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -40,6 +39,8 @@
     color: white;
     padding: 10px 15px;
     border: none;
+    border-radius: 12px ;
+
 }
 
 .openbtn:hover {
@@ -50,7 +51,36 @@
     transition: margin-left .5s;
     padding: 16px;
 }
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+.listaOculta{
+    visibility: hidden;
+}
+@media screen and (max-width: 767px) {
+    .listaOculta{
+        visibility: visible;
+    }
+    .sidebarContainer{
+        display: none;
+    }
+    .menu li {
+        padding: 10px;
+        background-color: #e6c199;
+        margin-bottom: 5px;
+        border-radius: 12px 12px;
+    }
+    .menu li > a:hover {
+        padding: 15px;
+        color:white;
+        font-size: large;
+    }
+    .menu li div{
+        padding: 5px;
+        background-color: #FFDFBF;
+    }
+    .menu li div:hover{
+        padding: 5px;
+        background-color: white;
+    }
+    .navbar-toggler-icon {
+        background-color: white;
+    }
 }

@@ -77,10 +77,5 @@ class HomePassengerController extends Controller
         }
     }
 
-    public function descuentosPassenger()
-    {
-
-
-    }
 
 }

@@ -1,0 +1,39 @@
+h1, h2, h3 {
+    text-align: center;
+    font-family: "blacker";
+}
+
+.tablaFormu {
+
+    border: 1px black;
+    text-align: center;
+    margin: 10px;
+    width: 100%;
+    background-color: antiquewhite;
+    color: white;
+    border-radius: 12px 12px;
+    box-shadow: 5px 5px 5px 2px saddlebrown;
+
+}
+
+tr td h5:first-child {
+    color: darkred;
+}
+
+tr td h4:first-child {
+    font-family: "Droid Sans Mono Slashed";
+}
+
+#footer {
+    width: 400px;
+    height: 400px;
+}
+
+
+@media screen and (min-width: 800px) and (min-height: 1280px) {
+    #footer {
+        height: 800px;
+        width: 800px;
+    }
+}
+

@@ -27,9 +27,8 @@ Route::get('/phpmyadmin', function () {
 
 //HOME
 Route::middleware(['auth', 'role:company'])->group(function () {
-    //Route::get('/homeCompany', [HomeCompanyController::class, 'mostrarHomeCompany'])->name('homeCompany');
-    Route::get('/homeCompany', 'App\Http\Controllers\HomeCompanyController@mostrarHomeCompany')->name('homeCompany')->middleware('verified');;
     //HOME COMPANY
+    Route::get('/homeCompany', 'App\Http\Controllers\HomeCompanyController@mostrarHomeCompany')->name('homeCompany')->middleware('verified');;
     Route::get('/crearVuelo', 'App\Http\Controllers\HomeCompanyController@crearVuelo')->name('crearVuelo')->middleware('verified');;
     Route::post('/guardarVuelo', 'App\Http\Controllers\HomeCompanyController@guardarVuelo')->name('guardarVuelo')->middleware('verified');;
     Route::post('/eliminarVuelo', 'App\Http\Controllers\HomeCompanyController@eliminarVuelo')->name('eliminarVuelo')->middleware('verified');;
@@ -71,7 +70,9 @@ Route::post('/getVuelosIda', 'App\Http\Controllers\HomePassengerController@getVu
 Route::get('/foro', 'App\Http\Controllers\ForoController@mostrarTemas')->name('foro');
 Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified');
 Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified');
-Route::post('/mostrarMensajes', 'App\Http\Controllers\ForoController@mostrarMensajes')->name('mostrarMensajes');
+Route::post('/mostrarMensajes', 'App\Http\Controllers\ForoController@mostrarMensajes')->name('mostrarMensajes')->middleware('verified');
+
+//Route::get('/accederHome', 'App\Http\Controllers\HomeController@accederHome')->name('accederHome');
 
 
 //AUTENTIFICACIÓN
@@ -83,20 +84,16 @@ Route::post('register/company', 'App\Http\Controllers\Auth\RegisterController@re
 Auth::routes(['verify' => true]);
 
 
-Route::get('/verify', function () {
-    return view('auth.verify');
-})->name('verify');
+Route::get('/verify', function () { return view('auth.verify');})->name('verify');
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     //ZONA ADMIN
+    Route::get('/homeAdmin', 'App\Http\Controllers\AdminController@mostrarHomeAdmin')->name('homeAdmin')->middleware('verified');;
     Route::resource('user-passengers', UserPassengerController::class);
     Route::resource('user-companies', UserCompanyController::class);
     //FORO
-    Route::get('/foro', 'App\Http\Controllers\ForoController@mostrarTemas')->name('foro');
-    Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified');
-    Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified');
-    Route::post('/mostrarMensajes', 'App\Http\Controllers\ForoController@mostrarMensajes')->name('mostrarMensajes');
-//TOPICS
-    Route::get('/borrarTemas', 'App\Http\Controllers\AdminController@borrarTemas')->name('borrarTemas');
+    Route::post('/eliminarTemas', 'App\Http\Controllers\AdminController@eliminarTemas')->name('eliminarTemas')->middleware('verified');;
+    Route::post('/eliminarMensajes', 'App\Http\Controllers\AdminController@eliminarMensajes')->name('eliminarMensajes')->middleware('verified');;
 
 });
 

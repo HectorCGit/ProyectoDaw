@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
-    <!-- Styles -->
-    @vite(['resources/css/formularioIda.css'])
+    <!-- Estilos -->
     @vite(['resources/css/pago.css'])
 
     <script type="text/javascript" defer>
@@ -45,11 +44,7 @@
                 input.setAttribute('required','required');
                 input.value = descuento.value;
                 divDescuento.appendChild(input);
-
             }
-
-
-
         }
     </script>
 </head>
@@ -57,18 +52,15 @@
 
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="formu">
+    <div class="container ">
+        <div class="formu m-4">
             <div id="divGeneral">
                 <table class="tablaFormu">
                     <tr>
                         <td><h5>{{$ida[0]->company}}</h5></td>
                     </tr>
                     <tr>
-                        <td>Ciudad de orígen: {{$ida[0]->origin}}</td>
-                    </tr>
-                    <tr>
-                        <td>Ciudad de destino: {{$ida[0]->destination}}</td>
+                        <td>{{$ida[0]->origin}} - {{$ida[0]->destination}}</td>
                     </tr>
                     <tr>
                         <td>Precio por billete: {{$ida[0]->price}}€</td>
@@ -77,7 +69,7 @@
                         <td>{{$ida[0]->flight_hours}}</td>
                     </tr>
                     <tr>
-                        <td>Fecha y hora: {{$ida[0]->departing}}</td>
+                        <td>Fecha y hora: {{substr($ida[0]->departing,0,16)}}</td>
                     </tr>
                     <tr>
                         <td>PRECIO IDA: {{($ida[0]->price)*$numBilletes }}€</td>
@@ -90,10 +82,7 @@
                             <td><h5>{{$vuelta[0]->company}}</h5></td>
                         </tr>
                         <tr>
-                            <td>Ciudad de orígen: {{$vuelta[0]->origin}}</td>
-                        </tr>
-                        <tr>
-                            <td>Ciudad de destino: {{$vuelta[0]->destination}}</td>
+                            <td>{{$vuelta[0]->origin}} - {{$vuelta[0]->destination}}</td>
                         </tr>
                         <tr>
                             <td>Precio por billete: {{$vuelta[0]->price}}€</td>
@@ -102,10 +91,10 @@
                             <td>{{$vuelta[0]->flight_hours}}</td>
                         </tr>
                         <tr>
-                            <td>Fecha y hora: {{$vuelta[0]->departing}}</td>
+                            <td>Fecha y hora: {{substr($vuelta[0]->departing,0,16)}}</td>
                         </tr>
                         <tr>
-                            <td>PRECIO VUELTA:{{($vuelta[0]->price)*$numBilletes }}€</td>
+                            <td>PRECIO VUELTA: {{($vuelta[0]->price)*$numBilletes }}€</td>
                         </tr>
 
                     </table>
@@ -124,10 +113,13 @@
         </div>
         @if($descuentos!=null)
             <div>
-                <table>
+                <table class="table">
                     <tr>
-                        <td><label>DESCUENTOS</label>
-                            <select name="descuento" id="descuento" onchange="seleccionarDescuento()" >
+                        <th>DESCUENTOS</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="descuento" id="descuento" class="select" onchange="seleccionarDescuento()" >
                                 <option value="0">NINGUN DESCUENTO</option>
                                 @foreach($descuentos as $desc)
                                     @if($desc->percentage==0.85)
@@ -140,26 +132,25 @@
                         </td>
                     </tr>
                 </table>
-
             </div>
         @endif
 
         <!-- Formulario Validación Tarjeta de Crédito -->
-        <div class="row">
+        <div class="">
             <div class="col-75">
-                <div class="container">
+                <div class="pagoContainer">
                     <form action="{{route('pagoFinal')}}" method="post" autocomplete="off"
                           onsubmit="return validar()">
                         @csrf
                         <div class="col-50">
                             <h3>Pago</h3>
-                            <label for="cname">Titular de la tarjeta </label>
+                            <label>Titular de la tarjeta </label>
                             <input type="text" name="titular" id="titular" placeholder="Juan Pérez">
-                            <label for="ccnum">Numero de tarjeta (Sólo VISA aceptada)</label>
+                            <label>Numero de tarjeta (Sólo VISA aceptada)</label>
                             <input type="text" id="numeroTarjeta" name="numeroTarjeta" maxlength="16"
-                                   placeholder="4444222233334444">
-                            <label for="expmonth">Mes de caducidad</label>
-                            <select id="expmonth" name="expmonth">
+                                   placeholder="4444333322221111">
+                            <label>Mes de caducidad</label><br>
+                            <select id="expmonth" name="expmonth" class="select">
                                 <option>Enero</option>
                                 <option>Febrero</option>
                                 <option>Marzo</option>
@@ -174,11 +165,11 @@
                             </select>
                             <div class="row">
                                 <div class="col-50">
-                                    <label for="expyear">Año de caducidad</label>
+                                    <label>Año de caducidad</label>
                                     <input type="text" id="expyear" name="expyear" placeholder="2024" maxlength="4">
                                 </div>
                                 <div class="col-50">
-                                    <label for="cvv">CVV</label>
+                                    <label>CVV</label>
                                     <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3">
                                 </div>
                             </div>
@@ -194,10 +185,9 @@
                 </div>
             </div>
         </div>
-        <div style="width: 400px; height: 400px">
-        </div>
     </div>
-
+    <div id="footer">
+    </div>
 @endsection
 </body>
 </html>

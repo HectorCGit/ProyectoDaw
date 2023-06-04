@@ -36,9 +36,11 @@ class LoginController extends Controller
         if(Auth::user()->email_verified_at){
             if(Auth::user()->hasAnyRole('company')){
                 return $this->redirectTo = route('homeCompany') ;
-
-            }else{
+            }
+            if(Auth::user()->hasAnyRole('passenger')){
                 return $this->redirectTo = route('homePassenger') ;
+            }else{
+                return $this->redirectTo = route('homeAdmin') ;
             }
         }else{
             return $this->redirectTo = route('verify') ;

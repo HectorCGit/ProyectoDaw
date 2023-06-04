@@ -1,10 +1,10 @@
-<footer class="footer bottom-0 w-100 pt-lg-4">{{--fixed-bottom--}}
+<footer class="bottom-0 w-100 pt-lg-4">{{--fixed-bottom--}}
      <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
-        <div class=" w-100 d-flex justify-content-center">
+        <div class=" w-100 d-flex flex-wrap justify-content-center">
             <div class="p-3" >
                 <h5>Contacto</h5>
                 <ul class="list-unstyled">
-                    <li>aeroweb@gmail.com</li>
+                    <li>admin@gmail.com</li>
                     <li>Mvl: (+34) 613 56 71 00</li>
                     <li>Tel: (+34) 91 240 80 48</li>
                 </ul>
@@ -38,7 +38,7 @@
         </div>
      </nav>
     <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white ">
-        <div>
+        <div class="m-4">
             <div class="d-block">
                 <p>©2023 · Todos los derechos reservados.</p>
             </div>

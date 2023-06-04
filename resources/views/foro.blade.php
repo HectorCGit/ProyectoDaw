@@ -6,66 +6,87 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>Aeroweb</title>
-    @vite(['resources/css/formularioIda.css'])
+    @vite(['resources/css/foro.css'])
     <script type="text/javascript" defer>
         function crearTema() {
             let formularioTemas = document.getElementById('formularioTemas');
             let input = document.createElement('input');
             let submit = document.createElement('input');
+            let table =document.createElement('table');
+            let tr1=document.createElement('tr');
+            let td1=document.createElement('td');
+            let tr2=document.createElement('tr');
+            let td2=document.createElement('td');
             formularioTemas.innerHTML = "";
+            table.setAttribute('class','table');
             input.setAttribute('type', 'text');
             input.setAttribute('name', 'tema');
+            input.setAttribute('class','form-control');
             submit.setAttribute('type', 'submit');
-            formularioTemas.appendChild(input);
-            formularioTemas.appendChild(submit);
-
+            submit.setAttribute('value','Añadir');
+            td1.appendChild(input);
+            td2.appendChild(submit);
+            tr1.appendChild(td1);
+            tr2.appendChild(td2);
+            table.appendChild(tr1);
+            table.appendChild(tr2);
+            formularioTemas.appendChild(table);
         }
-
     </script>
 </head>
 <body>
 @extends('layouts.app')
 @section('content')
-    <div class='container'>
-
-        <div class="formu">
-            <div class="formu ">
+    <div class="container">
+        <div class="custom-table">
+            <div class="formu">
                 @auth
-                    <a style="text-decoration: none"
-                       class="bg-warning hover:bg-blue text-black font-bold py-2 px-4 rounded"
-                       onclick='crearTema()'>Crear nueva pregunta</a>
+                    <a class="botonCrear" onclick="crearTema()">Crear nueva pregunta</a><br><br>
                     <form method="post" action="{{route('crearTemas')}}">
                         @csrf
+                        {{--
+                        PROBLEMA AL CREAR TEMAS LA PAGINACIOIN NO VA
+                        EL TEMA NO PUEDE SER EN BLANCO
+                        AL HACER OTRA VEZ CLICK DEBE DESPLEGARSE
+                        --}}
                         <div id="formularioTemas"></div>
                     </form>
-
                 @endauth
             </div>
-            @foreach($temas as $tema)
-                <form action="{{route('mostrarMensajes')}}" method="post">
-                    @csrf
-                    <table>
+            <div class="divTable">
+                <table class="table">
+                    @foreach($temas as $tema)
                         <tr>
+                            <td>{{$tema->content}}</td>
                             <td>
-                                {{$tema->content}}
+                                <form action="{{route('mostrarMensajes')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="idTema" value="{{$tema->id_topic}}">
+                                    <button type="submit" class="botonVer">Ver Tema</button>
+                                </form>
                             </td>
-                            <td>
-                                <input type="hidden" name="idTema" value="{{$tema->id_topic}}">
-                                <input type="submit" value="Ver Tema">
-                            </td>
-                            @if( Auth::user()->hasRole('admin'))
-                                <a href="{{route('borrarTemas')}}">BORRAR</a>
-                            @endif
+                            @auth
+                                @if( Auth::user()->hasRole('admin'))
+                                    <td>
+                                        <form action="{{ route('eliminarTemas')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="idTema" value="{{$tema->id_topic}}">
+                                            <button type="submit" class="botonBorrar">Eliminar</button>
+                                        </form>
+                                    </td>
+                                @endif
+                            @endauth
                         </tr>
-                    </table>
-                </form>
-            @endforeach
+                    @endforeach
+                </table>
+            </div>
         </div>
     </div>
-    <div>{{$temas->links()}}</div>
-    <div style="width: 400px; height: 400px">
+    <div class="pagination">
+        {{$temas->links()}}
+    </div>
+    <div style="width: 400px; height: 200px">
     </div>
 @endsection
 </body>

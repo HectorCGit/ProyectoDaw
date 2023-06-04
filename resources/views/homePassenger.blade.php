@@ -16,10 +16,10 @@
             let inputVuelta = document.getElementById("vuelta");
             if (checkbox.checked === true) {
 
-                campoVuelta.style.display="block";
-                textoVuelta.style.display = "block";
-                campoVuelta.style.position="static";
-                textoVuelta.style.position="static";
+                campoVuelta.style.display="table-cell";
+
+                textoVuelta.style.display = "table-cell";
+
                 inputVuelta.setAttribute("required", "");
                 inputVuelta.required = true;
 
@@ -103,7 +103,7 @@
                         <th>Destino</th>
                         <th>Fecha de ida</th>
                         <th id="titulovuelta">Fecha de vuelta</th>
-                        <th>Billetes</th>
+                        <th colspan="4">Billetes</th>
                     </tr>
                     </thead>
                     <tr>
@@ -115,7 +115,6 @@
                                 @endforeach
                             </datalist>
                         </td>
-
                         <td><label>Destino </label>
                             <input list="destino" name="destino" placeholder="destino" id="campoDestino" required/>
                             <datalist id="destino">
@@ -124,13 +123,13 @@
                                 @endforeach
                             </datalist>
                         </td>
-                        <td><label>Fecha de ida </label>
+                        <td id="campoIda"><label>Fecha de ida </label>
                             <input type="date" name="ida" id="ida" required>
                         </td>
                         <td id="campoVuelta"><label>Fecha de vuelta </label>
                             <input type="date" name="vuelta" id="vuelta">
                         </td>
-                        <td><label>Billetes</label>
+                        <td ><label>Billetes</label>
                             <input type="number" min="1" name="numBilletes" id="numBilletes" required>
                         </td>
                         <td>
@@ -138,7 +137,7 @@
                             <input type="checkbox" name="idayvuelta" id="idayvuelta" onclick="mostrarVuelta()">
                         </td>
                         <td>
-                            <input type="submit" value="Consultar Disponibilidad" class="buscar">
+                            <input type="submit" value="Consultar Disponibilidad">
                         </td>
                     </tr>
 
@@ -220,9 +219,10 @@
                     </div>
                 </div>
                 @endforeach
-                <div style="width: 400px; height: 400px"></div>
+
             </div>
     </div>
+    <div style="width: 400px; height: 100px"></div>
 @endsection
 </body>
 </html>

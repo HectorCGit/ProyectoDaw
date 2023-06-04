@@ -27,4 +27,6 @@
             </div>
         </div>
     </section>
+    <div style="width: 400px; height: 300px"></div>
+
 @endsection

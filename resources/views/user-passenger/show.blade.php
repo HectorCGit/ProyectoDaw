@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <section class="content container-fluid">
+    <section class="content container-fluid p-4">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -14,12 +14,11 @@
                             <span class="card-title">{{ __('Show') }} User Passenger</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('user-passengers.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('user-passengers.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
                             <strong>Id Passenger:</strong>
                             {{ $userPassenger->id_passenger }}
@@ -48,10 +47,11 @@
                             <strong>Points:</strong>
                             {{ $userPassenger->points }}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <div style="width: 400px; height: 300px"></div>
+
 @endsection
