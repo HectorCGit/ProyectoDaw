@@ -6,20 +6,19 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController
 {
-    private string $redirectTo;
     public function accederHome()
     {
         if (Auth::user()) {
             if (Auth::user()->hasAnyRole('company')) {
-                return $this->redirectTo = route('homeCompany');
+                return redirect()->route('homeCompany');
             }
             if (Auth::user()->hasAnyRole('passenger')) {
-                return $this->redirectTo = route('homePassenger');
+                return redirect()->route('homePassenger');
             } else {
-                return $this->redirectTo = route('homeAdmin');
+                return redirect()->route('homeAdmin');
             }
         } else {
-            return $this->redirectTo = route('/');
+            return redirect()->route('/homePassenger');
         }
     }
 

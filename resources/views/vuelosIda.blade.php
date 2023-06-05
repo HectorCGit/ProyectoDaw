@@ -76,11 +76,11 @@
                                                     </select></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="2"><input type="submit" value="Agregar"></td>
+                                                <td colspan="2"><input type="submit"  value="Agregar"></td>
                                             </tr>
                                         </form>
                                     @else
-                                        <button><a href="{{route('login')}}">Agregar </a></button>
+                                        <button><a class="bg-black text-white text-decoration-none" href="{{route('login')}}">Agregar </a></button>
                                     @endauth
                                 </table>
                             </div>

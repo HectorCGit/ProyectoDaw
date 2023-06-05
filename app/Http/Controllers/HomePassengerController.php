@@ -22,7 +22,7 @@ class HomePassengerController extends Controller
             ->get();
 
         $randomFlights = Flight::query()->
-        select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination', 'economic_price', 'business_price')
+        select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination','destination.photo as photo', 'economic_price', 'business_price')
             ->leftJoin("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->leftJoin("cities as destination", "id_destination_city", "=", 'destination.id_city')
             ->leftJoin("user_company", 'user_company.id_company', '=', 'flights.id_company')

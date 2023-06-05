@@ -71,8 +71,13 @@ Route::get('/foro', 'App\Http\Controllers\ForoController@mostrarTemas')->name('f
 Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified');
 Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified');
 Route::post('/mostrarMensajes', 'App\Http\Controllers\ForoController@mostrarMensajes')->name('mostrarMensajes')->middleware('verified');
+//Info
+Route::get('info', 'App\Http\Controllers\TerminosController@info')->name('info');
+//Contacto
+Route::get('contacto', 'App\Http\Controllers\ContactoController@mostrarFormulario')->name('contacto');
+Route::post('enviarContacto', 'App\Http\Controllers\ContactoController@enviarFormulario')->name('enviarContacto');
 
-//Route::get('/accederHome', 'App\Http\Controllers\HomeController@accederHome')->name('accederHome');
+Route::get('/accederHome', 'App\Http\Controllers\HomeController@accederHome')->name('accederHome');
 
 
 //AUTENTIFICACIÓN
@@ -82,6 +87,8 @@ Route::post('register/passenger', 'App\Http\Controllers\Auth\RegisterController@
 Route::get('register/company', 'App\Http\Controllers\Auth\RegisterController@showCompanyRegistrationForm')->name('register.company');
 Route::post('register/company', 'App\Http\Controllers\Auth\RegisterController@registerCompany')->name('register.company.submit');
 Auth::routes(['verify' => true]);
+Route::get('terminosycondiciones', 'App\Http\Controllers\TerminosController@terminosyCondiciones')->name('terminosycondiciones');
+Route::get('privacidad', 'App\Http\Controllers\TerminosController@privacidad')->name('privacidad');
 
 
 Route::get('/verify', function () { return view('auth.verify');})->name('verify');

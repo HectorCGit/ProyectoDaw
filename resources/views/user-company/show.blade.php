@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite(['resources/css/admin.css'])
 
 @section('template_title')
     {{ $userCompany->name ?? "{{ __('Show') User Company" }}
@@ -6,15 +7,15 @@
 
 @section('content')
     <section class="content container-fluid p-4">
-        <div class="row">
+        <div class="row m-3">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} User Company</span>
+                            <span class="card-title">{{ __('Mostrar') }} User Company</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('user-companies.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('user-companies.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 

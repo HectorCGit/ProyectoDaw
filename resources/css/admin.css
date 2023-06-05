@@ -1,0 +1,13 @@
+div.tabla {
+    background-color: #e6c199;
+    border: 1px black solid;
+    margin: 10px;
+    box-shadow: 5px 5px gray;
+    padding: 20px;
+}
+div.tabla:hover {
+    background-color: #bc634f;
+}
+.sidebarContainer{
+    display: none;
+}

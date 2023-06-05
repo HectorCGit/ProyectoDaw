@@ -45,8 +45,8 @@
                     @endif
                 @endauth
                 <a href="{{route('foro')}}">Foro</a>
-                <a href="#">Contacto</a>
-                <a href="#">Información</a>
+                <a href="{{route('contacto')}}">Contacto</a>
+                <a href="{{route('info')}}">Información</a>
             </div>
 
             <div id="main">
@@ -55,7 +55,7 @@
         </div>
         <div class="container">
 
-            <a class="navbar-brand" href="{{ url('/') }}"><img style="width:100px;height:100px"
+            <a class="navbar-brand" href="{{ route('accederHome') }}"><img style="width:100px;height:100px"
                                                                src="{{ asset('imgLogo/logoAeroweb.png') }}" alt="Logo">
             </a>
             <button class="navbar-toggler openbtn" type="button" data-bs-toggle="collapse"

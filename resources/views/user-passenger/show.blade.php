@@ -1,7 +1,8 @@
 @extends('layouts.app')
+@vite(['resources/css/admin.css'])
 
 @section('template_title')
-    {{ $userPassenger->name ?? "{{ __('Show') User Passenger" }}
+    {{ $userPassenger->name ?? "{{ __('Mostrar') User Passenger" }}
 @endsection
 
 @section('content')
@@ -11,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} User Passenger</span>
+                            <span class="card-title">{{ __('Mostrar') }} User Passenger</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('user-passengers.index') }}"> {{ __('Volver') }}</a>

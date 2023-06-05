@@ -17,7 +17,7 @@
                 alert('Debes rellenar tu nombre');
                 return false;
             }
-            if (!((numTarj.value).match('^4[0-9]{12}(?:[0-9]{3})?$'))) {
+            if (!((numTarj.value).match(/^(?:4\d([\- ])?\d{6}\1\d{5}|(?:4\d{3}|5[1-5]\d{2}|6011)([\- ])?\d{4}\2\d{4}\2\d{4})$/))) {
                 alert('Número de tarjeta no válido');
                 return false;
             }
@@ -146,7 +146,7 @@
                             <h3>Pago</h3>
                             <label>Titular de la tarjeta </label>
                             <input type="text" name="titular" id="titular" placeholder="Juan Pérez">
-                            <label>Numero de tarjeta (Sólo VISA aceptada)</label>
+                            <label>Numero de tarjeta (Visa o Mastercard)</label>
                             <input type="text" id="numeroTarjeta" name="numeroTarjeta" maxlength="16"
                                    placeholder="4444333322221111">
                             <label>Mes de caducidad</label><br>

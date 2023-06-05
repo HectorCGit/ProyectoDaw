@@ -1,7 +1,8 @@
 @extends('layouts.app')
+@vite(['resources/css/admin.css'])
 
 @section('template_title')
-    {{ __('Create') }} User Passenger
+    {{ __('Crear') }} User Passenger
 @endsection
 
 @section('content')

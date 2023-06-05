@@ -106,7 +106,7 @@
                             <label for="agree" class="col-md-4 col-form-label text-md-end">{{ __('') }}</label>
 
                             <div class="col-md-6">
-                                <p><input type="checkbox" required name="checkbox" value="check" id="condiciones"> Acepto los <a href="">términos y condiciones de Aeroweb</a> y la  <a href="">Política de privacidad de Aeroweb.</a></p>
+                                <p><input type="checkbox" required name="checkbox" value="check" id="condiciones"> Acepto los <a href="{{route('terminosycondiciones')}}">términos y condiciones de Aeroweb</a> y la  <a href="{{route('privacidad')}}">Política de privacidad de Aeroweb.</a></p>
                             </div>
                         </div>
 

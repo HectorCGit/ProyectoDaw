@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite(['resources/css/admin.css'])
 
 @section('template_title')
     User Passenger

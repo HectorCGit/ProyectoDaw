@@ -10,7 +10,7 @@
 <body class="antialiased">
 @extends('layouts.app')
 @section('content')
-    <div class='container'>
+    <div class='container m-4'>
         <form method="post" action="{{route('guardarVuelo')}}">
             @csrf
             <table>

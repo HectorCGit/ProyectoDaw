@@ -1,7 +1,8 @@
 @extends('layouts.app')
+@vite(['resources/css/admin.css'])
 
 @section('template_title')
-    {{ __('Update') }} User Company
+    {{ __('Actualizar') }} User Company
 @endsection
 
 @section('content')
@@ -13,7 +14,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Update') }} User Company</span>
+                        <span class="card-title">{{ __('Actualizar') }} User Company</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('user-companies.update', $userCompany->id_company) }}"  role="form" enctype="multipart/form-data">

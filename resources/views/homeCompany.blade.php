@@ -11,7 +11,7 @@
 <body>
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container m-3">
         <div class="row justify-content-center">
             <div class="formu">
                 <a href="{{ route('crearVuelo') }}"
@@ -32,8 +32,7 @@
                                             disponibles: {{ ($flights->num_seats - $flights->num_passengers) }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Fecha y hora: {{ $flights->departing}}</td>
-
+                                        <td>Fecha y hora: {{ substr($flights->departing,0,16)}}</td>
                                         <td>
                                             <form action="{{ route('eliminarVuelo')}}" method="post">
                                                 @csrf

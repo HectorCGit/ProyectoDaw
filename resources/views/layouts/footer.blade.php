@@ -12,11 +12,22 @@
             <div class="p-3">
                 <h5>Más Información</h5>
                 <ul class="list-unstyled lwarning">
-                    <li><a href="" >Inicio</a></li>
-                    <li><a href="" >Vuelos</a></li>
-                    <li><a href="" >Preguntas frecuentes</a></li>
-                    <li><a href="" >Trabaja con nosotros</a></li>
-                    <li><a href="" >Contacto</a></li>
+                    @auth
+                        @if(Auth::user()->hasRole('passenger'))
+                            <li><a href="{{route('homePassenger')}}">Inicio</a></li>
+
+                        @elseif(Auth::user()->hasRole('company'))
+                            <li><a href="{{route('homeCompany')}}">Inicio</a></li>
+                        @else
+                            <li><a href="{{route('homeAdmin')}}">Inicio</a></li>
+                        @endif
+                    @else
+                        <li><a href="{{route('homePassenger')}}">Inicio</a></li>
+                    @endauth
+
+                    <li><a href="{{route('foro')}}" >Preguntas frecuentes</a></li>
+                    <li><a href="{{route('info')}}" >Información</a></li>
+                    <li><a href="{{route('contacto')}}" >Contacto</a></li>
                 </ul>
             </div>
             <div class="p-3">
@@ -30,9 +41,8 @@
             <div class="p-3">
                 <h5 >Avisos Legales</h5>
                 <ul class="list-unstyled justify-content-center text-center">
-                    <li><a href="" >Política de Privacidad</a></li>
-                    <li><a href="" >Política de Cookies</a></li>
-                    <li><a href="" >Aviso Legal</a></li>
+                    <li><a href="{{route('privacidad')}}" >Política de Privacidad</a></li>
+                    <li><a href="{{route('terminosycondiciones')}}" >Terminos y condiciones</a></li>
                 </ul>
             </div>
         </div>

@@ -108,8 +108,7 @@
                 </table>
             @endforeach
         </div>
-        <div id="footer">
-        </div>
+        <div id="footer"></div>
     </div>
 @endsection
 </body>

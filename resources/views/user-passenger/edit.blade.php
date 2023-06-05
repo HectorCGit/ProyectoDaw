@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Update') }} User Passenger
+    {{ __('Actualizar') }} User Passenger
 @endsection
+@vite(['resources/css/admin.css'])
 
 @section('content')
     <section class="content container-fluid p-4">
