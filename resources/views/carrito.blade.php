@@ -16,36 +16,47 @@
         <div>
             <div class="formu">
                 @if($billetes->isEmpty())
-                    <h1>NO HAY NADA EN EL CARRITO</h1>
+                    <div class="alert alert-success m-3">
+                        <h1>No tiene ningún billete actualmente</h1>
+                    </div>
                 @else
                     @foreach($billetes as $b)
                         <table class="tablaFormu">
-                            <tr style="visibility: hidden">
-                                <td>{{$b->id_ticket}}</td>
-                            </tr>
                             <tr>
-                                <td colspan="2"><h5>{{$b->origin}} - {{$b->destination}}</h5></td>
+                                <td colspan="2"><h5>{{$b->origin}} ({{$b->countryOrigin}}) - {{$b->destination}} ({{$b->countryDestination}})</h5></td>
                             </tr>
                             <tr>
                                 <td colspan="2">{{$b->flight_hours}}</td>
                             </tr>
                             <tr>
-                                <td>Fecha y hora: </td>
+                                <td>{{$b->company}}</td>
+                                <td>Número de vuelo: {{$b->id_flight}}</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha y hora:</td>
                                 <td>{{substr($b->departing,0,16)}}</td>
                             </tr>
                             <tr>
                             <tr>
-                                <td>Nombre: </td>
+                                <td>Nombre:</td>
                                 <td>{{$b->ticket_name_passenger}}</td>
                             </tr>
                             <tr>
                             <tr>
-                                <td>Apellidos: </td>
+                                <td>Apellidos:</td>
                                 <td>{{$b->ticket_surname_passenger}}</td>
                             </tr>
                             <tr>
+                                <td>Aeropuerto de salida:</td>
+                                <td>{{$b->originAirport}}</td>
+                            </tr>
                             <tr>
-                                <td>{{$b->check_in}}</td>
+                                <td>Aeropuerto de llegada:</td>
+                                <td>{{$b->destinationAirport}}</td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td colspan="2">Puede llevar {{$b->num_suitcases}} maletas. Equipaje de mano y de bodega</td>
                             </tr>
                             <tr>
                                 <td colspan="2">
@@ -60,13 +71,11 @@
                         </table>
                     @endforeach
                 @endif
-
-
             </div>
         </div>
+        <div class="pagination">{{$billetes->links()}}</div>
     </div>
-    <div style="width: 400px; height: 400px"></div>
-
+    <div id="footer" style="width: 400px; height: 200px"></div>
 @endsection
 </body>
 </html>

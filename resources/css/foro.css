@@ -6,10 +6,12 @@
     left: 50%;
     margin-bottom: 20px;
 }
+
 .tablaFormu {
-    width: 100%;
+    width: 50%;
     border-collapse: collapse;
 }
+
 .custom-table {
     padding: 50px;
     border: 2px solid #ccc;
@@ -27,11 +29,14 @@ td input[type="submit"] {
     background-color: black;
     color: white;
 }
-.usuario{
+
+.usuario {
     color: darkred;
+    font-size: medium;
 }
-.mensaje{
-    color:#bc634f;
+
+.mensaje {
+    color: #bc634f;
 }
 
 .container {
@@ -39,11 +44,12 @@ td input[type="submit"] {
     margin: 0 auto;
     padding: 20px;
 }
+
 .botonCrear {
     display: inline-block;
     padding: 10px 20px;
     background-color: #e6c199;
-    color:black;
+    color: black;
     text-decoration: none;
     font-weight: bold;
     border-radius: 4px;
@@ -54,10 +60,12 @@ td input[type="submit"] {
     background-color: darkred;
     color: #fff;
 }
-.divTable{
+
+.divTable {
     border-radius: 5px;
 
 }
+
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -115,7 +123,7 @@ td input[type="submit"] {
 .pagination .page-link {
     padding: 6px 12px;
     margin: 0 2px;
-    background-color: #007bff;
+    background-color: #bc634f;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -123,8 +131,13 @@ td input[type="submit"] {
     transition: background-color 0.3s;
 }
 
+.page-item.active .page-link {
+    background-color: darkred;
+}
+
 .pagination .page-link:hover {
-    background-color: #0056b3;
+    background-color: #e6c199;
+    color: white;
 }
 
 .pagination .page-item.disabled .page-link {

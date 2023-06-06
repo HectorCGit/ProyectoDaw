@@ -3,7 +3,6 @@ h1, h2, h3 {
     font-family: "blacker";
 }
 
-
 .tablaFormu {
     border: 1px black;
     text-align: center;
@@ -14,6 +13,18 @@ h1, h2, h3 {
     border-radius: 12px 0px;
     box-shadow: 5px 5px 5px gray;
 
+}
+tr td{
+    padding: 7px;
+}
+td input{
+    text-align: center;
+    cursor: pointer;
+    margin:5px;
+    height: 38px;
+    background-color: #bc634f;
+    color: white;
+    border-radius: 12px 12px;
 }
 
 button {
@@ -53,15 +64,35 @@ tr td h4:first-child {
     background-color: #fff;
     color: #333;
 }
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
 
-td input {
-    text-align: center;
-    cursor: pointer;
-    padding: 7px 7px;
-    height: 38px;
+.pagination .page-link {
+    padding: 6px 12px;
+    margin: 0 2px;
     background-color: #bc634f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.page-item.active .page-link {
+    background-color: darkred;
+}
+
+.pagination .page-link:hover {
+    background-color: #e6c199;
     color: white;
-    border-radius: 12px 12px;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #ddd;
+    color: #999;
 }
 
 #footer {
@@ -70,7 +101,7 @@ td input {
 }
 
 
-@media screen and (min-width: 800px) and (min-height: 1280px) {
+@media screen and (min-width: 400px) and (min-height: 1280px) {
     #footer {
         height: 800px;
         width: 800px;

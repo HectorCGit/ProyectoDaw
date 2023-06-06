@@ -24,7 +24,7 @@
                 <a class=" text-decoration-none text-black" href="{{route('foro')}}">Foro</a>
             </div>
         </div>
-
+        {{--HAY QUE ARREGLAR LA PAGINACION AL ELIMINAR (OTRA VEZ PASA LO MISMO)--}}
     </div>
     <div style="width: 400px; height: 500px">
     </div>

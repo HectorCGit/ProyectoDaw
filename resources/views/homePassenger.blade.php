@@ -15,11 +15,8 @@
             let campoVuelta = document.getElementById("campoVuelta");
             let inputVuelta = document.getElementById("vuelta");
             if (checkbox.checked === true) {
-
                 campoVuelta.style.display="table-cell";
-
                 textoVuelta.style.display = "table-cell";
-
                 inputVuelta.setAttribute("required", "");
                 inputVuelta.required = true;
 
@@ -120,17 +117,17 @@
                 <div class="carousel-item active">
                     <img
                         src="{{Vite::asset('public/carrusel/carrusel1.jpg')}}"
-                        alt="Playa de Thailandia" class="d-block w-100" style=" height: 70vh">
+                        alt="Playa de Thailandia" class="d-block w-100" style=" height: 80vh">
                 </div>
                 <div class="carousel-item">
                     <img
                         src="{{Vite::asset('public/carrusel/carrusel2.jpg')}}"
-                        alt="Castillo de Liubliana" class="d-block w-100" style="height: 70vh">
+                        alt="Castillo de Liubliana" class="d-block w-100" style="height: 80vh">
                 </div>
                 <div class="carousel-item">
                     <img
                         src="{{Vite::asset('public/carrusel/carrusel3.jpeg')}}"
-                        alt="Vuelo en avión" class="d-block w-100" style="height: 70vh">
+                        alt="Vuelo en avión" class="d-block w-100" style="height: 80vh">
                 </div>
             </div>
             <!-- Left and right controls/icons -->
@@ -180,7 +177,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
     </div>
     <div style="width: 400px; height: 100px"></div>

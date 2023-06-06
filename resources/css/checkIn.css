@@ -23,7 +23,33 @@ tr td h5:first-child {
 tr td h4:first-child {
     font-family: "Droid Sans Mono Slashed";
 }
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.pagination .page-link {
+    padding: 6px 12px;
+    margin: 0 2px;
+    background-color: #bc634f;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.page-item.active .page-link{
+    background-color: darkred;
+}
+.pagination .page-link:hover {
+    background-color: #e6c199;
+    color:white;
+}
 
+.pagination .page-item.disabled .page-link {
+    background-color: #ddd;
+    color: #999;
+}
 #footer {
     width: 400px;
     height: 400px;

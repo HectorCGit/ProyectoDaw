@@ -39,6 +39,9 @@
                 @auth
                     @if( Auth::user()->hasRole('company'))
                         <a href="{{route('homeCompany')}}">Principal</a>
+                    @elseif(Auth::user()->hasRole('passenger'))
+                        <a href="{{route('homePassenger')}}">Principal</a>
+
                     @endif
                 @else
                     <a href="{{route('homePassenger')}}">Principal</a>

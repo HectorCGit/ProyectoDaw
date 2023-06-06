@@ -7,25 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Aeroweb</title>
-    @vite(['resources/css/foro.css'])
+    @auth
+        @if(Auth::user()->hasRole('admin'))
+            @vite(['resources/css/admin.css'])
+        @else
+            @vite(['resources/css/foro.css'])
+        @endif
+    @else
+        @vite(['resources/css/foro.css'])
+    @endauth
     <script type="text/javascript" defer>
         function crearTema() {
             let formularioTemas = document.getElementById('formularioTemas');
             let input = document.createElement('input');
             let submit = document.createElement('input');
-            let table =document.createElement('table');
-            let tr1=document.createElement('tr');
-            let td1=document.createElement('td');
-            let tr2=document.createElement('tr');
-            let td2=document.createElement('td');
+            let table = document.createElement('table');
+            let tr1 = document.createElement('tr');
+            let td1 = document.createElement('td');
+            let tr2 = document.createElement('tr');
+            let td2 = document.createElement('td');
             formularioTemas.innerHTML = "";
-            table.setAttribute('class','table');
+            table.setAttribute('class', 'table');
             input.setAttribute('type', 'text');
             input.setAttribute('name', 'tema');
-            input.setAttribute('minlength','1');
-            input.setAttribute('class','form-control');
+            input.setAttribute('id', 'tema');
+            input.setAttribute('class', 'form-control');
             submit.setAttribute('type', 'submit');
-            submit.setAttribute('value','Añadir');
+            submit.setAttribute('value', 'Añadir');
             td1.appendChild(input);
             td2.appendChild(submit);
             tr1.appendChild(td1);
@@ -33,6 +41,13 @@
             table.appendChild(tr1);
             table.appendChild(tr2);
             formularioTemas.appendChild(table);
+        }
+
+        function validar() {
+            let tema = document.getElementById('tema');
+            if (!/^\S+$/.test(tema.value)) {
+                return false;
+            }
         }
     </script>
 </head>
@@ -44,11 +59,9 @@
             <div class="formu">
                 @auth
                     <a class="botonCrear" onclick="crearTema()">Crear nueva pregunta</a><br><br>
-                    <form method="post" action="{{route('crearTemas')}}">
+                    <form method="post" action="{{route('crearTemas')}}" onsubmit="return validar()">
                         @csrf
                         {{--
-                        PROBLEMA AL CREAR TEMAS LA PAGINACIOIN NO VA
-                        EL TEMA NO PUEDE SER EN BLANCO
                         AL HACER OTRA VEZ CLICK DEBE DESPLEGARSE
                         --}}
                         <div id="formularioTemas"></div>

@@ -56,18 +56,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <label>Nº Maletas</label>
-                        </td>
-                        <td>
-                            {{$ticket->num_suitcases}}
-                        </td>
-                        <td>
-                            <label>Duración Vuelo</label>
-                        </td>
-                        <td>{{$ticket->flight_hours}}</td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label>Fecha</label>
                         </td>
                         <td>{{substr($ticket->departing,0,10)}}</td>
@@ -108,7 +96,8 @@
                 </table>
             @endforeach
         </div>
-        <div id="footer"></div>
+        <div class="pagination">{{$tickets->links()}}</div>
+        <div id="footer" style="width: 400px; height: 150px"></div>
     </div>
 @endsection
 </body>
