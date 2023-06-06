@@ -31,9 +31,11 @@ class HomeCompanyController extends Controller
     {
         $queryIdCompany = UserCompany::query()->select('id_company')->where('id_users', '=', Auth::id())->get();
         $idCompany = $queryIdCompany[0]['id_company'];
-        $companyFlights = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin', 'destination.name as destination', 'economic_price', 'business_price')
+        $companyFlights = Flight::query()->select('id_flight', 'user_company.name as company', 'num_passengers', 'num_seats', 'num_check_in', 'departing', 'origin.name as origin','origin.airport as originAirport', 'destination.name as destination','destination.airport as destinationAirport','countryOrigin.name as countryOrigin','countryDestination.name as countryDestination', 'economic_price', 'business_price')
             ->join("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->join("cities as destination", "id_destination_city", "=", 'destination.id_city')
+            ->join('countries as countryOrigin', 'origin.id_country', '=', 'countryOrigin.id_country')
+            ->join('countries as countryDestination', 'destination.id_country', '=', 'countryDestination.id_country')
             ->join("user_company", 'user_company.id_company', '=', 'flights.id_company')
             ->join("flights_price", 'flights_price.id_price', '=', 'flights.id_price')
             ->where('flights.id_company', '=', $idCompany)->orderBy('departing')->paginate(10);

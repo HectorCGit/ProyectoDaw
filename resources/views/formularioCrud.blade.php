@@ -5,19 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
     <!-- Styles -->
-
+    @vite(['resources/css/billetesCompany.css'])
+    <script defer>
+        function validacionDestino() {
+            let origen = document.getElementById("campoOrigen");
+            let destino = document.getElementById("campoDestino");
+            let error = document.getElementById("error");
+            if (origen.value === destino.value) {
+                error.style.display = "block";
+                return false;
+            } else {
+                error.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </head>
 <body class="antialiased">
 @extends('layouts.app')
 @section('content')
-    <div class='container m-4'>
-        <form method="post" action="{{route('guardarVuelo')}}">
+    <div class='container p-3'>
+        <h1 align="center">Vuelo</h1>
+        <form autocomplete="off" method="post" action="{{route('guardarVuelo')}}" onsubmit="return validacionDestino()">
+            <div class="alert alert-danger m-3" id="error" style="display: none">
+                <div >
+                    Destino y origen no deben coincidir
+                </div>
+            </div>
             @csrf
-            <table>
+            <table class="table custom-table m-3">
                 <tr>
                     <td>
-                        <label>Origen </label>
-                        <input list="origen" name="origen" placeholder="origen" id="campoOrigen" required/>
+                        <label>Origen </label></td>
+                        <td><input list="origen" class="form-control" name="origen" placeholder="origen" id="campoOrigen" required/>
                         <datalist id="origen">
                             @foreach ($cities as $city)
                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -27,8 +47,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Destino </label>
-                        <input list="destino" name="destino" placeholder="destino" id="campoDestino" required/>
+                        <label>Destino </label></td><td>
+                        <input list="destino" class="form-control" name="destino" placeholder="destino" id="campoDestino" required/>
                         <datalist id="destino">
                             @foreach ($cities as $city)
                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -38,34 +58,38 @@
                 </tr>
                 <tr>
                     <td>
-                        <label> Nº Asientos </label>
-                        <input type="number" id="asientos" name="asientos" placeholder="200" maxlength="3">
+                        <label> Nº Asientos </label></td>
+                    <td>
+                        <input type="number"  class="form-control" id="asientos" name="asientos" placeholder="200" maxlength="3" min="1">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Fecha y hora de salida</label>
-                        <input type="datetime-local" id="fecha" name="fecha">
+                        <label>Fecha y hora de salida</label></td>
+                    <td>
+                        <input class="form-control" type="datetime-local" id="fecha" name="fecha" >
                     </td>
                 </tr>
                 <tr>
-
+                    <td >
+                        <label>Duracion</label></td>
                     <td>
-                        <label>Duracion</label>
-                        Horas: <input type="number" id="horas" name="horas" placeholder="3" maxlength="2">
-                        Minutos: <input type="number" id="minutos" name="minutos" placeholder="30" maxlength="2">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Precio económico </label>
-                        <input type="number" id="economico" name="economico" placeholder="200" maxlength="5">
+                        Horas: <input type="number" class="form-control" id="horas" name="horas" placeholder="3" maxlength="2" min="0">
+                        Minutos: <input type="number" class="form-control" id="minutos" name="minutos" placeholder="30" maxlength="2" min="0">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label>Precio business</label>
-                        <input type="number" id="business" name="business" placeholder="300" maxlength="5">
+                        <label>Precio económico </label></td>
+                    <td>
+                        <input type="number" id="economico" class="form-control" name="economico" placeholder="200" maxlength="5">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Precio business</label></td>
+                    <td>
+                        <input type="number" id="business" class="form-control" name="business" placeholder="300" maxlength="5">
                     </td>
                 </tr>
                 <tr>
@@ -73,9 +97,9 @@
                 </tr>
             </table>
         </form>
-        <div style="width: 400px; height: 400px">
-        </div>
+
     </div>
+    <div id="footer" style="width: 400px; height: 200px"></div>
 @endsection
 </body>
 

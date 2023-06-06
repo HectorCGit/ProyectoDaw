@@ -17,23 +17,29 @@ class ForoController extends Controller
     public function crearTemas()
     {
         Topic::query()->insert(['content' => request('tema')]);
-        $temas = Topic::query()->select()->paginate(5);
-        return view('foro',compact('temas'));
+        return redirect()->route('foro');
     }
 
     public function mostrarMensajes()
     {
-        $temaElegido=Topic::query()->select()->where('id_topic','=',request('idTema'))->get();
+        if(session('contador')===0){
+            $idTema = session('idTema');
+        }else{
+            $idTema = request('idTema');
+        }
+        $temaElegido=Topic::query()->select()->where('id_topic','=',$idTema)->get();
         $mensajes = Message::query()->select('users.name','content','id_message')->
         join('users','id_users','=','id')->
-        where('id_topic', '=', request('idTema'))->paginate(10);
+        where('id_topic', '=', $idTema)->paginate(10);
         return view('tema', compact('mensajes','temaElegido'));
     }
 
     public function crearMensajes()
     {
         Message::query()->insert(['id_users' => Auth::id(), 'id_topic' => request('idTema'), 'content' => request('contenido')]);
-        return $this->mostrarMensajes();
+        $idTema=request('idTema');
+        $contador=0;
+        return redirect()->route('mostrarMensajes')->with(['idTema' => $idTema,'contador'=>$contador]);
     }
 }
 

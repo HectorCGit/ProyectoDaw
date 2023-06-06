@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForoController;
 use App\Http\Controllers\UserCompanyController;
 use App\Http\Controllers\UserPassengerController;
 use Illuminate\Support\Facades\Auth;
@@ -70,7 +71,7 @@ Route::post('/getVuelosIda', 'App\Http\Controllers\HomePassengerController@getVu
 Route::get('/foro', 'App\Http\Controllers\ForoController@mostrarTemas')->name('foro');
 Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified');
 Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified');
-Route::post('/mostrarMensajes', 'App\Http\Controllers\ForoController@mostrarMensajes')->name('mostrarMensajes')->middleware('verified');
+Route::match(['get', 'post'], '/mostrarMensajes', [ForoController::class, 'mostrarMensajes'])->name('mostrarMensajes');
 //Info
 Route::get('info', 'App\Http\Controllers\TerminosController@info')->name('info');
 //Contacto

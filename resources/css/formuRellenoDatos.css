@@ -8,6 +8,7 @@ h1, h2, h3 {
     margin: 15px;
 
 }
+
 tr td h5:first-child {
     color: darkred;
 }
@@ -38,7 +39,7 @@ td input#submit{
     width: 100%;
 }
 .custom-table td {
-    padding: 10px;
+    padding: 20px;
 }
 
 

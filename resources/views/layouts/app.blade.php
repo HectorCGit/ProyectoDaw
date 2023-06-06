@@ -36,7 +36,13 @@
         <div class="sidebarContainer">
             <div id="mySidebar" class="sidebar">
                 <a class="closebtn" onclick="closeNav()">×</a>
-                <a href="{{route('homePassenger')}}">Principal</a>
+                @auth
+                    @if( Auth::user()->hasRole('company'))
+                        <a href="{{route('homeCompany')}}">Principal</a>
+                    @endif
+                @else
+                    <a href="{{route('homePassenger')}}">Principal</a>
+                @endauth
                 @auth
                     @if( Auth::user()->hasRole('passenger'))
                         <a href="{{ route('ruleta') }}">Ruleta</a>

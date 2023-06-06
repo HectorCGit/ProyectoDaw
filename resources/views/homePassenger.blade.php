@@ -30,10 +30,21 @@
 
             }
         }
-
+        function validacionDestino() {
+            let origen = document.getElementById("campoOrigen");
+            let destino = document.getElementById("campoDestino");
+            let error = document.getElementById("error");
+            if (origen.value === destino.value) {
+                error.style.display = "block";
+                return false;
+            } else {
+                error.style.display = "none";
+                return true;
+            }
+        }
     </script>
 </head>
-<body onload="imagenAleatoria()">
+<body>
 
 @extends('layouts.app')
 @section('content')
@@ -74,10 +85,10 @@
                             </datalist>
                         </td>
                         <td id="campoIda"><label>Fecha de ida </label>
-                            <input type="date" name="ida" id="ida" required>
+                            <input type="date" name="ida" id="ida"  min="<?=date('Y-m-d');?>" required>
                         </td>
                         <td id="campoVuelta"><label>Fecha de vuelta </label>
-                            <input type="date" name="vuelta" id="vuelta">
+                            <input type="date" name="vuelta" id="vuelta"  min="<?=date('Y-m-d');?>">
                         </td>
                         <td ><label>Billetes</label>
                             <input type="number" min="1" name="numBilletes" id="numBilletes" required>

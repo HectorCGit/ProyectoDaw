@@ -6,34 +6,48 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aeroweb</title>
-    @vite(['resources/css/formularioIdaVuelta.css'])
+    @vite(['resources/css/billetesCompany.css'])
 </head>
 <body>
 @extends('layouts.app')
 @section('content')
-    <div class="container m-3">
-        <div class="row justify-content-center">
-            <div class="formu">
+    <div class="container mt-4">
+        <div>
+            <div class=" m-3">
                 <a href="{{ route('crearVuelo') }}"
-                   class="text-bg-success hover:bg-blue text-white font-bold py-2 px-4 rounded">CREAR</a>
+                   class="text-bg-success hover:bg-blue text-white font-bold py-2 px-4 rounded text-decoration-none">CREAR</a>
                 @if(!$companyFlights->isEmpty())
                     @foreach ($companyFlights as $flights)
-                        <div id="divGeneral">
+
                             <div class="divGen">
-                                <table class="tablaFormu">
+                                <table class="table tablaFormu m-3 ">
                                     <tr>
-                                        <td><h5>{{ $flights->company}}</h5></td>
+                                        <td colspan="6"><h5>{{ $flights->company}}</h5></td>
                                     </tr>
                                     <tr>
-                                        <td><h1>{{ $flights->origin}}-{{ $flights->destination}}</h1></td>
+                                        <td colspan="3"><h3>{{$flights->countryOrigin}}-{{$flights->origin}}</h3></td>
+                                        <td colspan="3"><h3>{{$flights->countryDestination}}-{{$flights->destination}}</h3></td>
                                     </tr>
                                     <tr>
-                                        <td>Asientos
-                                            disponibles: {{ ($flights->num_seats - $flights->num_passengers) }}</td>
+                                        <td colspan="3"><strong>{{$flights->originAirport}}</strong></td>
+                                        <td colspan="3"><strong>{{ $flights->destinationAirport}}</strong></td>
                                     </tr>
                                     <tr>
-                                        <td>Fecha y hora: {{ substr($flights->departing,0,16)}}</td>
-                                        <td>
+                                        <td colspan="6">Numéro de vuelo: <strong>{{ $flights->id_flight}}</strong></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="6">Personas que han realizado el check-in <strong>{{$flights->num_check_in}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6">Asientos
+                                            disponibles: <strong>{{$flights->num_seats - $flights->num_passengers}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6">Fecha y hora: {{ substr($flights->departing->format('d-m-Y H:i:s'),0,16)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
                                             <form action="{{ route('eliminarVuelo')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
@@ -42,7 +56,7 @@
                                                        value="ELIMINAR">
                                             </form>
                                         </td>
-                                        <td>
+                                        <td colspan="3">
                                             <form action="{{ route('verBilletes')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
@@ -54,15 +68,17 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>
+
                     @endforeach
                 @else
+                    <div class="alert alert-success m-3">
                     <h2>NO HAY VUELOS</h2>
+                    </div>
                 @endif
             </div>
         </div>
-        <div>{{$companyFlights->links()}}</div>
-        <div style="width: 400px; height: 400px">
+        <div class="pagination">{{$companyFlights->links()}}</div>
+        <div id="footer" style="width: 400px; height: 100px;">
         </div>
     </div>
 

@@ -22,6 +22,7 @@
             table.setAttribute('class','table');
             input.setAttribute('type', 'text');
             input.setAttribute('name', 'tema');
+            input.setAttribute('minlength','1');
             input.setAttribute('class','form-control');
             submit.setAttribute('type', 'submit');
             submit.setAttribute('value','Añadir');

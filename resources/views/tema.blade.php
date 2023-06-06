@@ -45,21 +45,22 @@
                         @endif
                     </div>
                 @endforeach
-                @auth
-                    <form action="{{route('crearMensajes')}}" method="post" autocomplete="off">
-                        @csrf
-                        <table>
-                            <tr>
-                                <td><input type="hidden" name="idTema" value="{{$temaElegido[0]->id_topic}}"></td>
-                                <td><input class="form-control" type="text" name="contenido"></td>
-                                <td><input type="submit" value="Responder"></td>
-                            </tr>
-                        </table>
-                    </form>
-                @endauth
+
             </div>
-            <div>{{$mensajes->links()}}</div>
+            <div>{{ $mensajes->appends(['idTema' => $temaElegido[0]->id_topic])->links() }}</div>
         </div>
+        @auth
+            <form action="{{route('crearMensajes')}}" method="post" autocomplete="off">
+                @csrf
+                <table>
+                    <tr>
+                        <td><input type="hidden" name="idTema" value="{{$temaElegido[0]->id_topic}}"></td>
+                        <td><input class="form-control" type="text" name="contenido"></td>
+                        <td><input type="submit" value="Responder"></td>
+                    </tr>
+                </table>
+            </form>
+        @endauth
     </div>
     <div style="width: 400px; height: 400px">
     </div>
