@@ -14,19 +14,21 @@
 @section('content')
     <div class='container'>
         <div class="table m-3 ">
-            <div class="form-control text-center tabla">
-                <a class="text-decoration-none text-black" href="{{route('user-passengers.index')}}">Usuarios pasajeros</a>
-            </div>
-            <div class="form-control text-center tabla">
-                <a class=" text-decoration-none text-black" href="{{route('user-companies.index')}}">Usuarios compañias</a>
-            </div>
-            <div class="form-control text-center tabla">
-                <a class=" text-decoration-none text-black" href="{{route('foro')}}">Foro</a>
-            </div>
+            <div><h1>Bienvenido {{Auth::user()->name}}</h1>
+                <p>Gestionar:</p></div>
+            <a class="text-decoration-none text-black" href="{{route('user-passengers.index')}}">
+                <div class="form-control text-center tabla">Pasajeros</div>
+            </a>
+            <a class=" text-decoration-none text-black" href="{{route('user-companies.index')}}">
+                <div class="form-control text-center tabla">Compañias
+                </div>
+            </a>
+            <a class=" text-decoration-none text-black" href="{{route('foro')}}">
+                <div class="form-control text-center tabla">Foro</div>
+            </a>
         </div>
-        {{--HAY QUE ARREGLAR LA PAGINACION AL ELIMINAR (OTRA VEZ PASA LO MISMO)--}}
     </div>
-    <div style="width: 400px; height: 500px">
+    <div style="width: 400px; height: 200px">
     </div>
 @endsection
 </body>

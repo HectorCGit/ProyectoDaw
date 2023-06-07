@@ -1,11 +1,13 @@
+@vite(['resources/css/auth.css'])
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 m-3">
             <div class="card">
-                <div class="card-header">{{ __('Verifique su correo electrónico') }}</div>
+                <div class="card-header bg-dark text-white">{{ __('Verifique su correo electrónico') }}</div>
 
                 <div class="card-body">
                     @if (session('resent'))

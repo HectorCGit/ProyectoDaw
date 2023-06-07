@@ -1,11 +1,13 @@
+@vite(['resources/css/auth.css'])
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 m-3">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+                <div class="card-header bg-dark text-white">{{ __('Registro') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register.company.submit') }}">
@@ -85,7 +87,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn">
                                     {{ __('Registro') }}
                                 </button>
                             </div>
@@ -95,6 +97,7 @@
             </div>
         </div>
     </div>
-    <div style="width: 400px; height: 400px"></div>
 </div>
+<div style="width: 400px; height: 400px"></div>
+
 @endsection

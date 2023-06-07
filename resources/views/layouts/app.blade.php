@@ -41,7 +41,8 @@
                         <a href="{{route('homeCompany')}}">Principal</a>
                     @elseif(Auth::user()->hasRole('passenger'))
                         <a href="{{route('homePassenger')}}">Principal</a>
-
+                        @else
+                        <a href="{{route('homeAdmin')}}">Principal</a>
                     @endif
                 @else
                     <a href="{{route('homePassenger')}}">Principal</a>
@@ -53,9 +54,15 @@
                         <a href="{{route('billetesPassenger')}}">Mis Billetes</a>
                     @endif
                 @endauth
+                @auth
+                    @if( Auth::user()->hasRole('admin'))
+                        <a href="{{route('user-passengers.index')}}">Pasajeros</a>
+                        <a href="{{route('user-companies.index')}}">Compañias</a>
+                    @endif
+                @endauth
                 <a href="{{route('foro')}}">Foro</a>
-                <a href="{{route('contacto')}}">Contacto</a>
-                <a href="{{route('info')}}">Información</a>
+                <a href="{{route('contacto')}}" id="contactos">Contacto</a>
+                <a href="{{route('info')}}" id="informacion">Información</a>
             </div>
 
             <div id="main">

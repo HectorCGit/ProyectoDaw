@@ -1,5 +1,9 @@
+h1, p{
+    font-family: "blacker";
+}
 div.tabla {
     background-color: #e6c199;
+    font-size: large;
     border: 1px black solid;
     margin: 10px;
     box-shadow: 5px 5px gray;
@@ -8,8 +12,8 @@ div.tabla {
 div.tabla:hover {
     background-color: #bc634f;
 }
-.sidebarContainer{
-    display: none;
+a#contactos, a#informacion{
+    visibility: hidden;
 }
 
 .formu {

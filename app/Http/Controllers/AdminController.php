@@ -15,13 +15,14 @@ class AdminController extends Controller
     {
         Message::query()->where('id_topic','=',request('idTema'))->delete();
         Topic::query()->find(request('idTema'))->delete();
-        $temas = Topic::query()->select()->paginate(5);
-        return view('foro',compact('temas'));
+        return redirect()->route('foro');
+
     }
     function eliminarMensajes(){
         Message::query()->find(request('idMensaje'))->delete();
-        $temas = Topic::query()->select()->paginate(5);
-        return view('foro',compact('temas'));
+        $idTema=request('idTema');
+        $contador=0;
+        return redirect()->route('mostrarMensajes')->with(['idTema' => $idTema,'contador'=>$contador]);
     }
 
 }

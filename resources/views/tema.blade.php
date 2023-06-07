@@ -40,7 +40,6 @@
                         <table class="tablaFormu ">
                             <tr>
                                 <td class="usuario"><strong>{{$mensaje->name}}</strong></td>
-
                             </tr>
                             <tr>
                                 <td class="mensaje">{{$mensaje->content}}</td>
@@ -55,7 +54,7 @@
                                     @csrf
                                     <tr>
                                         <td><input type="hidden" name="idMensaje" value="{{$mensaje->id_message}}"></td>
-                                        <td><input type="hidden" name="temaElegido" value="{{$temaElegido}}"></td>
+                                        <td><input type="hidden" name="idTema" value="{{$temaElegido[0]->id_topic}}"></td>
                                         <td><input type="submit" id="botonBorrarTema" value="Eliminar"></td>
                                     </tr>
                                 </table>

@@ -71,7 +71,7 @@ Route::post('/getVuelosIda', 'App\Http\Controllers\HomePassengerController@getVu
 Route::get('/foro', 'App\Http\Controllers\ForoController@mostrarTemas')->name('foro');
 Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified');
 Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified');
-Route::match(['get', 'post'], '/mostrar-mensajes', [ForoController::class, 'mostrarMensajes'])->name('mostrarMensajes')->middleware('verified');
+Route::match(['get', 'post'], '/mostrarMensajes', [ForoController::class, 'mostrarMensajes'])->name('mostrarMensajes')->middleware('verified');
 //Info
 Route::get('info', 'App\Http\Controllers\TerminosController@info')->name('info');
 //Contacto
