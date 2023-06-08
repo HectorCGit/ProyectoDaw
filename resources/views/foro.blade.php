@@ -49,6 +49,14 @@
                 return false;
             }
         }
+
+        function confirmacion(){
+            if(confirm('¿Seguro que desea eliminar este tema?')===true){
+                return true;
+            }else{
+                return false;
+            }
+        }
     </script>
 </head>
 <body>
@@ -69,7 +77,7 @@
                 @endauth
             </div>
             <div class="divTable">
-                <table class="table">
+                <table class="table tablaForo">
                     @foreach($temas as $tema)
                         <tr>
                             <td>{{$tema->content}}</td>
@@ -83,7 +91,7 @@
                             @auth
                                 @if( Auth::user()->hasRole('admin'))
                                     <td>
-                                        <form action="{{ route('eliminarTemas')}}" method="POST">
+                                        <form action="{{ route('eliminarTemas')}}" method="POST" onsubmit="return confirmacion()">
                                             @csrf
                                             <input type="hidden" name="idTema" value="{{$tema->id_topic}}">
                                             <button type="submit" class="botonBorrar">Eliminar</button>

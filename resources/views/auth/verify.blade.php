@@ -20,7 +20,7 @@
                     {{ __('Si no lo recibe.') }}
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Pinche aquí para recibir otro') }}</button>.
+                        <button type="submit" class="btn bg-white btn-link p-0 m-0 align-baseline">{{ __('Pinche aquí para recibir otro') }}</button>.
                     </form>
                 </div>
             </div>

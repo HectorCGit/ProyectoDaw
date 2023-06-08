@@ -4,9 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aeroweb</title>
-    <!-- Styles -->
-    @vite(['resources/css/misBilletes.css'])
-
+    <!-- Estilos -->
+    @vite(['resources/css/carrito.css'])
+<script type="text/javascript" defer>
+    function confirmacion(){
+        if(confirm('¿Está seguro que desea cancelar su vuelo?')===true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 </head>
 <body class="min-vh-100 position-relative pb-xxl-5">
 
@@ -55,12 +63,11 @@
                                 <td>{{$b->destinationAirport}}</td>
                             </tr>
                             <tr>
-                            <tr>
                                 <td colspan="2">Puede llevar {{$b->num_suitcases}} maletas. Equipaje de mano y de bodega</td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <form action="{{route('cancelarBillete')}}" method="post">
+                                    <form action="{{route('cancelarBillete')}}" method="post" onsubmit="return confirmacion()">
                                         @csrf
                                         <input type="hidden" name="idTicket" value="{{$b->id_ticket}}">
                                         <input type="submit" value="Cancelar vuelo">

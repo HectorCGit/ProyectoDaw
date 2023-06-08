@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_message
  * @property int|null $id_users
  * @property int|null $id_topic
- * @property Carbon|null $dateAndTime
  * @property string|null $content
+ * @property Carbon|null $dateAndTime
  * 
  * @property User|null $user
  * @property Topic|null $topic
@@ -38,8 +38,8 @@ class Message extends Model
 	protected $fillable = [
 		'id_users',
 		'id_topic',
-		'dateAndTime',
-		'content'
+		'content',
+		'dateAndTime'
 	];
 
 	public function user()

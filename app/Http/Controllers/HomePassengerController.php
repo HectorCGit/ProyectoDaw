@@ -34,7 +34,7 @@ class HomePassengerController extends Controller
     }
 
     /**
-     * Devuelve los resultados de la busqueda de vuelos, tanto ida como vuelta
+     * Devuelve los resultados de la busqueda de vuelos
      *
      */
     public function getVuelosIda()

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Flight
- *
+ * 
  * @property int $id_flight
  * @property int|null $id_company
  * @property int|null $num_passengers
@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_destination_city
  * @property string $flight_hours
  * @property int $id_price
- *
+ * 
  * @property City $city
  * @property UserCompany|null $user_company
  * @property FlightsPrice $flights_price

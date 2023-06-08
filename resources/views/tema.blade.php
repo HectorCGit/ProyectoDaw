@@ -22,6 +22,13 @@
                 return false;
             }
         }
+        function confirmacion(){
+            if(confirm('¿Seguro que desea  eliminar este mensaje?')===true){
+                return true;
+            }else{
+                return false;
+            }
+        }
     </script>
 </head>
 <body>
@@ -49,7 +56,7 @@
                     </form>
                     <div>
                         @if( Auth::user()->hasRole('admin'))
-                            <form action="{{ route('eliminarMensajes') }}" method="POST">
+                            <form action="{{ route('eliminarMensajes') }}" method="POST" onsubmit="return confirmacion()">
                                 <table>
                                     @csrf
                                     <tr>

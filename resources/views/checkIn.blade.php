@@ -7,7 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aeroweb</title>
     @vite(['resources/css/checkIn.css'])
-
+<script type="text/javascript" defer>
+    function confirmar(){
+        if(confirm('¿Seguro que desea realizar ahora el check in? Solo tendrá validez si lo realiza 2 horas antes de la hora de embarque')===true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
 </head>
 <body>
 @extends('layouts.app')
@@ -18,7 +26,7 @@
                 <table class="tablaFormu table">
                     <tr>
                         <td>
-                            <label>Nº Ticket</label>
+                            <label>Nº Billete</label>
                         </td>
                         <td>
                             {{$ticket->id_ticket}}
@@ -47,7 +55,7 @@
                         </td>
                         <td>
                             @if($ticket->check_in===1)
-                                <h5>Check_in Realizado</h5>
+                                <h5>Check_In Realizado</h5>
                             @else
                                 <h5>Check_In Pendiente</h5>
                             @endif
@@ -83,7 +91,7 @@
                     @if($ticket->check_in!=1)
                         <tr>
                             <td colspan="4">
-                                <form action="{{ route('checkIn')}}" method="post">
+                                <form action="{{ route('checkIn')}}" method="post" onsubmit=" return confirmar()">
                                     @csrf
                                     <input type="hidden" name="idBillete" value="{{$ticket->id_ticket}}">
                                     <input type="submit"

@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class Topic
  * 
  * @property int $id_topic
- * @property Carbon|null $dateAndTime
  * @property string|null $content
+ * @property Carbon|null $dateAndTime
  * 
  * @property Collection|Message[] $messages
  *
@@ -32,8 +32,8 @@ class Topic extends Model
 	];
 
 	protected $fillable = [
-		'dateAndTime',
-		'content'
+		'content',
+		'dateAndTime'
 	];
 
 	public function messages()

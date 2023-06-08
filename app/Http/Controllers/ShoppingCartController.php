@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
 use App\Models\Flight;
 use App\Models\Ticket;
 use App\Models\UserPassenger;
@@ -35,5 +36,12 @@ class ShoppingCartController extends Controller
         $idTicket = request('idTicket');
         Ticket::query()->find($idTicket)->delete();
         return back();
+    }
+
+    public function mostrarDescuentos(){
+        $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
+        $idPassenger = $queryIdPassenger[0]['id_passenger'];
+        $descuentos=Discount::query()->select('id_discount','percentage')->where('id_passenger','=',$idPassenger)->get();
+        return view('descuentos',compact('descuentos'));
     }
 }

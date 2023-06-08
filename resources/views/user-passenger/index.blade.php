@@ -3,6 +3,7 @@
 
 @section('template_title')
     User Passenger
+
 @endsection
 
 @section('content')
@@ -57,10 +58,10 @@
                                             <td><a class="btn btn-sm btn-primary " href="{{ route('user-passengers.show',$userPassenger->id_passenger) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a></td>
                                             <td><a class="btn btn-sm btn-success" href="{{ route('user-passengers.edit',$userPassenger->id_passenger) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a></td>
                                             <td>
-                                                <form action="{{ route('user-passengers.destroy',$userPassenger->id_users) }}" method="POST">
+                                                <form action="{{ route('user-passengers.destroy',$userPassenger->id_users) }}" method="POST" onsubmit="return confirmacion()">
                                                 @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Borrar') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -75,4 +76,13 @@
         </div>
     </div>
     <div style="width: 400px; height: 300px"></div>
+    <script type="text/javascript" defer>
+        function confirmacion(){
+            if(confirm('¿Seguro que desea eliminar este usuario?')===true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
 @endsection

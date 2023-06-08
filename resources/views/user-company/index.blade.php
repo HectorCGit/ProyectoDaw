@@ -54,7 +54,7 @@
                                             <td><a class="btn btn-sm btn-primary " href="{{ route('user-companies.show',$userCompany->id_company) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a></td>
                                             <td><a class="btn btn-sm btn-success" href="{{ route('user-companies.edit',$userCompany->id_company) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a></td>
                                             <td>
-                                                <form action="{{ route('user-companies.destroy',$userCompany->id_users) }}" method="POST">
+                                                <form action="{{ route('user-companies.destroy',$userCompany->id_users) }}" method="POST"onsubmit="return confirmacion()">
                                                 @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
@@ -72,5 +72,13 @@
         </div>
     </div>
     <div style="width: 400px; height: 300px"></div>
-
+    <script type="text/javascript" defer>
+        function confirmacion(){
+            if(confirm('¿Seguro que desea eliminar este usuario?')===true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
 @endsection

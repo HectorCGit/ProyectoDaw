@@ -12,6 +12,10 @@ class ContactoController extends Controller
     public function mostrarFormulario(){
         return view('contacto');
     }
+    /**
+     *
+     *Envia un correo al admin con la direccion del usuario
+     */
     public function enviarFormulario(){
         Mail::raw(request('mensaje'),function ($message) {
             $message

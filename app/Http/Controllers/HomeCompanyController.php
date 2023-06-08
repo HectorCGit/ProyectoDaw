@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeCompanyController extends Controller
 {
     /**
-     * Create a new controller instance.
+     *
      *
      * @return void
      */
@@ -22,11 +22,7 @@ class HomeCompanyController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return
-     */
+
     public function mostrarHomeCompany()
     {
         $queryIdCompany = UserCompany::query()->select('id_company')->where('id_users', '=', Auth::id())->get();
@@ -91,10 +87,12 @@ class HomeCompanyController extends Controller
     public function verBilletes()
     {
         $tickets = Ticket::query()
-            ->select('id_ticket', 'tickets.id_flight', 'id_discount', 'check_in', 'num_suitcases', 'departing','ticket_name_passenger', 'ticket_surname_passenger', 'price','num_check_in','origin.name as origin', 'destination.name as destination','flight_hours')
+            ->select('id_ticket', 'tickets.id_flight', 'id_discount', 'check_in', 'num_suitcases', 'departing','ticket_name_passenger', 'ticket_surname_passenger', 'price','num_check_in','origin.name as origin', 'origin.airport as originAirport','destination.name as destination','destination.airport as destinationAirport','countryOrigin.name as countryOrigin','countryDestination.name as countryDestination','flight_hours')
             ->leftJoin('flights','flights.id_flight','=','tickets.id_flight')
             ->leftJoin("cities as origin", "id_origin_city", "=", 'origin.id_city')
             ->leftJoin("cities as destination", "id_destination_city", "=", 'destination.id_city')
+            ->leftJoin('countries as countryOrigin', 'origin.id_country', '=', 'countryOrigin.id_country')
+            ->leftJoin('countries as countryDestination', 'destination.id_country', '=', 'countryDestination.id_country')
             ->where(['tickets.id_flight' => request('idFlight'),'active'=>1])
             ->get();
         return view('billetesVuelos', compact('tickets'));

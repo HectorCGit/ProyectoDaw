@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_country
  * @property string|null $name
  * @property string|null $airport
+ * @property string $photo
  * 
  * @property Country $country
  * @property Collection|Flight[] $flights
@@ -35,7 +36,8 @@ class City extends Model
 	protected $fillable = [
 		'id_country',
 		'name',
-		'airport'
+		'airport',
+		'photo'
 	];
 
 	public function country()

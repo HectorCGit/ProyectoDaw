@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class UserPassenger extends Model
+class UserPassenger extends User
 {
     use HasFactory;
     protected $table = 'user_passenger';
@@ -37,45 +37,32 @@ class UserPassenger extends Model
     static $rules = [
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255'],
-        'password' => ['required', 'string', 'min:8'],
         'telephone' => ['required', 'min:10000000', 'max:1000000000', 'integer'],
         'dni' => ['required', 'regex:/^[0-9]{8}[A-Z]{1}$/'],
         'points' =>['required','numeric'],
     ];
-
     protected $perPage = 20;
+	protected $fillable = [
+		'id_users',
+		'name',
+		'surname',
+		'telephone',
+		'dni',
+		'points'
+	];
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['id_passenger','id_users','name','surname','telephone','dni','points'];
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'id_users');
+	}
 
+	public function discounts()
+	{
+		return $this->hasMany(Discount::class, 'id_passenger');
+	}
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function discounts()
-    {
-        return $this->hasMany('App\Models\Discount', 'id_passenger', 'id_passenger');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function tickets()
-    {
-        return $this->hasMany('App\Models\Ticket', 'id_passenger', 'id_passenger');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function user()
-    {
-        return $this->hasOne('App\Models\User', 'id', 'id_users');
-    }
-
-
+	public function tickets()
+	{
+		return $this->hasMany(Ticket::class, 'id_passenger');
+	}
 }

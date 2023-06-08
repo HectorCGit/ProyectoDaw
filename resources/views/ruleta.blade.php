@@ -11,27 +11,17 @@
     <script>
         let theWheel;
         let puntos = {{$puntos[0]->points}};
-        // -----------------------------------------------------------------
-        // Called by the onClick of the canvas, starts the spinning.
         function startSpin() {
             if (puntos >= 500) {
-                // Stop any current animation.
                 theWheel.stopAnimation(false);
 
-                // Reset the rotation angle to less than or equal to 360 so spinning again
-                // works as expected. Setting to modulus (%) 360 keeps the current position.
                 theWheel.rotationAngle = theWheel.rotationAngle % 360;
 
                 theWheel.startAnimation();
             }
-            // Start animation.
 
         }
 
-        // -------------------------------------------------------
-        // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters
-        // note the indicated segment is passed in as a parmeter as 99% of the time you will want to know this to inform the user of their prize.
-        // -------------------------------------------------------
         function alertPrize(indicatedSegment) {
             alert("TU PREMIO: " + indicatedSegment.text);
             let formulario = document.getElementById('formulario');
@@ -62,10 +52,10 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             theWheel = new Winwheel({
-                'numSegments': 8,     // Specify number of segments.
-                'textFontSize': 28,    // Set font size as desired.
-                'responsive': true,  // This wheel is responsive!
-                'segments':        // Define segments including colour and text.
+                'numSegments': 8,
+                'textFontSize': 28,
+                'responsive': true,
+                'segments':
                     [
                         {'fillStyle': '#dbd661', 'text': 'DESC 15%'},
                         {'fillStyle': '#bd5d5c', 'text': 'SIN PREMIO'},
@@ -79,13 +69,13 @@
                 'pins':
                     {
                         'outerRadius': 4,
-                        'responsive': true, // This must be set to true if pin size is to be responsive, if not just location is.
+                        'responsive': true,
                     },
-                'animation':           // Specify the animation to use.
+                'animation':
                     {
                         'type': 'spinToStop',
-                        'duration': 5,     // Duration in seconds.
-                        'spins': 8,     // Number of complete spins.
+                        'duration': 5,
+                        'spins': 8,
                         'callbackFinished': alertPrize
                     }
             });
@@ -101,12 +91,14 @@
 @section('content')
     <div class="container mt-3">
         <div id="cuerpo">
-            <div class="fs-1"><h1 class="glow-text">RULETA DE PREMIOS</h1></div>
+            <div class="fs-1">
+                <h1 class="glow-text">RULETA DE PREMIOS</h1>
+                <h5 class="text-white">Juega a la ruleta y gana desde un billete de avión totalmente gratis hasta un descuento del 20% a cualquier destino que tu decidas</h5>
+            </div>
             <div class="alert alert-info bg-body h-25">
                 <h5>Puntos disponibles: {{$puntos[0]->points}} pts</h5>
                 <h5>Coste de la tirada: 500 pts</h5>
             </div>
-            <!-- Always set canvas to largest desired size, i.e. desktop PC size, it will be scaled down for smaller devices but never scaled up -->
             <div id="canvasContainer">
                 <img id="prizePointer" src="{{Vite::asset('/public/imgRuleta/prize_pointer.png')}}" alt="V"/>
                 <div id="canvasWrapper">

@@ -123,6 +123,10 @@ class ShoppingController extends Controller
 
     }
 
+    /**
+     * Inserciones de puntos, actualizaciones de ticket a activo(comprado) y actualizaciones de número de pasajeros en un vuelo
+     *
+     */
     public function pagarFinal()
     {
         $idDescuento = request('descuento');
@@ -139,7 +143,8 @@ class ShoppingController extends Controller
         $idPassenger = $queryIdPassenger[0]['id_passenger'];
         $queryPuntosActuales = UserPassenger::query()->select('points')->where('id_passenger', '=', $idPassenger)->get();
         $puntosActuales = $queryPuntosActuales[0]['points'];
-        $puntosTotales = request('total') * 0.25 + $puntosActuales;
+        $puntosGanados = request('total') * 0.25;
+        $puntosTotales = $puntosGanados + $puntosActuales;
         UserPassenger::query()->find($idPassenger)->update(['points' => $puntosTotales]);
         $queryIda = Ticket::query()->select('id_ticket', 'price')
             ->where(['id_flight' => $idVueloIda, 'active' => 0, 'id_passenger' => $idPassenger])
@@ -167,7 +172,7 @@ class ShoppingController extends Controller
             }
         }
 
-        return view('pagoFinal');
+        return view('pagoFinal', compact('puntosGanados'));
     }
 
 

@@ -12,9 +12,6 @@ div.tabla {
 div.tabla:hover {
     background-color: #bc634f;
 }
-a#contactos, a#informacion{
-    visibility: hidden;
-}
 
 .formu {
     padding: 10px;
@@ -95,7 +92,8 @@ td input[type="submit"] {
     border: 1px solid #ccc;
 }
 
-.table td:first-child {
+
+.tablaForo td:first-child {
     width: 70%;
 }
 
@@ -162,3 +160,11 @@ td input[type="submit"] {
     background-color: #ddd;
     color: #999;
 }
+a#contactos, a#informacion{
+    visibility: hidden;
+}
+
+li#contactos2, li#informacion2{
+    display: none;
+}
+

@@ -33,7 +33,6 @@ class VerificationController extends Controller
     //protected $redirectTo = '/';
     public function redirectTo(): string
     {
-
             if(Auth::user()->hasAnyRole('company')){
                 return $this->redirectTo = route('homeCompany') ;
 

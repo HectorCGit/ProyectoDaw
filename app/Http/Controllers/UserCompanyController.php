@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Flight;
+use App\Models\FlightsPrice;
+use App\Models\Message;
+use App\Models\Ticket;
 use App\Models\User;
 use App\Models\UserCompany;
 use Illuminate\Contracts\Foundation\Application;
@@ -43,20 +47,20 @@ class UserCompanyController extends Controller
     /**
      * Guardar
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         request()->validate(UserCompany::$rules);
-        $user=User::create([
+        $user = User::create([
             'name' => request('name') . " " . request('surname'),
             'email' => request('email'),
-            'password' =>Hash::make($request['password']),
+            'password' => Hash::make($request['password']),
         ]);
         $user->save();
         $user->assignRole('company');
-        $userPassenger =  UserCompany::create([
+        $userPassenger = UserCompany::create([
             'id_users' => $user->id,
             'name' => request('name'),
             'telephone' => request('telephone'),
@@ -70,7 +74,7 @@ class UserCompanyController extends Controller
     /**
      * Mostrar
      *
-     * @param  int $id
+     * @param int $id
      * @return Application|Factory|\Illuminate\Foundation\Application|View
      */
     public function show($id)
@@ -83,7 +87,7 @@ class UserCompanyController extends Controller
     /**
      * Editar
      *
-     * @param  int $id
+     * @param int $id
      * @return Application|Factory|\Illuminate\Foundation\Application|View
      */
     public function edit($id)
@@ -96,8 +100,8 @@ class UserCompanyController extends Controller
     /**
      * Actualizar
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  UserCompany $userCompany
+     * @param \Illuminate\Http\Request $request
+     * @param UserCompany $userCompany
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, UserCompany $userCompany)
@@ -105,11 +109,10 @@ class UserCompanyController extends Controller
         request()->validate(UserCompany::$rules);
 
         $userCompany->update($request->all());
-        User::query()->where('id','=',$userCompany->id_users)->update([
-            'name' =>$request['name'],
-            'email' =>$request['email'],
-            'password' =>Hash::make($request['password']),
-
+        User::query()->where('id', '=', $userCompany->id_users)->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
         ]);
 
         return redirect()->route('user-companies.index')
@@ -117,13 +120,26 @@ class UserCompanyController extends Controller
     }
 
     /**
+     * Borrar
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function destroy($idUsers)
     {
-        UserCompany::query()->where('id_users','=',$idUsers)->delete();
+        Message::query()->where('id_users', '=', $idUsers)->delete();
+        $queryIdCompany = UserCompany::query()->select('id_company')->where('id_users', '=', $idUsers)->get();
+        $idCompany = $queryIdCompany[0]['id_company'];
+        $vuelos = Flight::query()->where('id_company', '=', $idCompany)->get();
+
+        foreach ($vuelos as $vuelo) {
+            Ticket::query()->where('id_flight', '=', $vuelo->id_flight)->delete();
+        }
+        Flight::query()->where('id_company', '=', $idCompany)->delete();
+        foreach ($vuelos as $vuelo) {
+            FlightsPrice::query()->where('id_price', '=', $vuelo->id_price)->delete();
+        }
+        UserCompany::query()->where('id_users', '=', $idUsers)->delete();
         User::find($idUsers)->delete();
 
         return redirect()->route('user-companies.index')

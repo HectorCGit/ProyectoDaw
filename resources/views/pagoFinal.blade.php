@@ -15,8 +15,9 @@
     <div class="container">
         <div class="alert alert-success m-3">
             <h2>Compra realizada con éxito</h2>
+            <h3>Has ganado: {{$puntosGanados}} puntos para la ruleta</h3>
             <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver a la página principal</a><br>
-            <a class="text-decoration-none" href="{{route('billetesPassenger')}}">Ver mis billetes</a>
+            <a class="text-decoration-none" href="{{route('ruleta')}}">Jugar a la ruleta</a>
         </div>
         <div style="width: 400px; height: 500px">
         </div>

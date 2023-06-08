@@ -17,7 +17,6 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/sidebar.css'])
-    @vite(['resources/css/footer.css'])
     <script type="text/javascript" defer>
         function openNav() {
             document.getElementById('mySidebar').style.width = '250px';
@@ -41,7 +40,7 @@
                         <a href="{{route('homeCompany')}}">Principal</a>
                     @elseif(Auth::user()->hasRole('passenger'))
                         <a href="{{route('homePassenger')}}">Principal</a>
-                        @else
+                    @else
                         <a href="{{route('homeAdmin')}}">Principal</a>
                     @endif
                 @else
@@ -52,6 +51,7 @@
                         <a href="{{ route('ruleta') }}">Ruleta</a>
                         <a href="{{route('billetesCheckIn')}}">Check-in</a>
                         <a href="{{route('billetesPassenger')}}">Mis Billetes</a>
+                        <a href="{{route('descuentosPassenger')}}">Mis Descuentos</a>
                     @endif
                 @endauth
                 @auth
@@ -72,27 +72,46 @@
         <div class="container">
 
             <a class="navbar-brand" href="{{ route('accederHome') }}"><img style="width:100px;height:100px"
-                                                               src="{{ asset('imgLogo/logoAeroweb.png') }}" alt="Logo">
+                                                                           src="{{ asset('imgLogo/logoAeroweb.png') }}"
+                                                                           alt="Logo">
             </a>
             <button class="navbar-toggler openbtn" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">☰</button>
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">☰
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav me-auto listaOculta menu">
-                    <li><a class="nav-link" href="{{route('homePassenger')}}">Principal</a></li>
-                        @auth
-                            @if( Auth::user()->hasRole('passenger'))
-                            <li>      <a class="nav-link" href="{{ route('ruleta') }}">Ruleta</a></li>
-                            <li>     <a class="nav-link" href="{{route('billetesCheckIn')}}">Check-in</a></li>
-                            <li>     <a class="nav-link" href="{{route('billetesPassenger')}}">Mis Billetes</a></li>
-                            @endif
-                        @endauth
-                    <li>  <a class="nav-link" href="{{route('foro')}}">Foro</a></li>
-                    <li>  <a class="nav-link" href="#">Contacto</a></li>
-                    <li>  <a class="nav-link" href="#">Información</a>
-                    </li>
+                    @auth
+                        @if( Auth::user()->hasRole('company'))
+                            <li><a class="nav-link" href="{{route('homeCompany')}}">Principal</a></li>
+                        @elseif(Auth::user()->hasRole('passenger'))
+                            <li><a class="nav-link" href="{{route('homePassenger')}}">Principal</a></li>
+                        @else
+                            <li><a class="nav-link" href="{{route('homeAdmin')}}">Principal</a></li>
+                        @endif
+                    @else
+                        <li><a class="nav-link" href="{{route('homePassenger')}}">Principal</a></li>
+                    @endauth
+
+                    @auth
+                        @if( Auth::user()->hasRole('passenger'))
+                            <li><a class="nav-link" href="{{ route('ruleta') }}">Ruleta</a></li>
+                            <li><a class="nav-link" href="{{route('billetesCheckIn')}}">Check-in</a></li>
+                            <li><a class="nav-link" href="{{route('billetesPassenger')}}">Mis Billetes</a></li>
+                                <li><a class="nav-link" href="{{route('descuentosPassenger')}}">Mis Descuentos</a></li>
+                        @endif
+                    @endauth
+                    @auth
+                        @if( Auth::user()->hasRole('admin'))
+                                <li><a class="nav-link" href="{{route('user-passengers.index')}}">Pasajeros</a></li>
+                                <li> <a class="nav-link" href="{{route('user-companies.index')}}">Compañias</a></li>
+                        @endif
+                    @endauth
+                    <li><a class="nav-link" href="{{route('foro')}}">Foro</a></li>
+                    <li id="contactos2"><a class="nav-link" href="{{route('contacto')}}"  >Contacto</a></li>
+                    <li id="informacion2"><a class="nav-link" href="{{route('info')}}" >Información</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

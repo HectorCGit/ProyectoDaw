@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Discount;
+use App\Models\Message;
+use App\Models\Ticket;
 use App\Models\User;
 use App\Models\UserPassenger;
 use Illuminate\Contracts\Foundation\Application as ApplicationAlias;
@@ -126,6 +129,11 @@ class UserPassengerController extends Controller
      */
     public function destroy($idUsers): \Illuminate\Http\RedirectResponse
     {
+        Message::query()->where('id_users','=',$idUsers)->delete();
+        $queryIdPassenger=UserPassenger::query()->select('id_passenger')->where('id_users','=',$idUsers)->get();
+        $idPassenger=$queryIdPassenger[0]['id_passenger'];
+        Discount::query()->where('id_passenger','=',$idPassenger)->delete();
+        Ticket::query()->where('id_passenger','=',$idPassenger)->delete();
         UserPassenger::query()->where('id_users','=',$idUsers)->delete();
         User::find($idUsers)->delete();
 

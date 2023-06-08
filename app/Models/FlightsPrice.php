@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_price
  * @property int|null $economic_price
  * @property int|null $business_price
- * @property int|null $id_discount
  * 
  * @property Collection|Flight[] $flights
  *
@@ -29,14 +28,12 @@ class FlightsPrice extends Model
 
 	protected $casts = [
 		'economic_price' => 'int',
-		'business_price' => 'int',
-		'id_discount' => 'int'
+		'business_price' => 'int'
 	];
 
 	protected $fillable = [
 		'economic_price',
-		'business_price',
-		'id_discount'
+		'business_price'
 	];
 
 	public function flights()

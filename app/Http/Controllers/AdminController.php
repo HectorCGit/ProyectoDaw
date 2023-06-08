@@ -8,6 +8,7 @@ use App\Models\Topic;
 
 class AdminController extends Controller
 {
+
     function mostrarHomeAdmin(){
         return view('homeAdmin');
     }
