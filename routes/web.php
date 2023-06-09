@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\CheckInController;
 use App\Http\Controllers\ForoController;
 use App\Http\Controllers\UserCompanyController;
 use App\Http\Controllers\UserPassengerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 
 
 /*
@@ -20,14 +20,13 @@ Route::get('/phpmyadmin', function () {
 });
 
 //HOME SIN LOGUEARSE
-Route::get('/', 'App\Http\Controllers\HomePassengerController@listarVuelosAleatorios')->name('homePassenger');
+Route::get('/', 'App\Http\Controllers\HomePassengerController@listarVuelosAleatorios')->name('home');
 Route::post('/getVuelosIda', 'App\Http\Controllers\HomePassengerController@getVuelosIda')->name('getVuelosIda');
 
 //FORO
 Route::get('/foro', 'App\Http\Controllers\ForoController@mostrarTemas')->name('foro');
-Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified');
-Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified');
-Route::match(['get', 'post'], '/mostrarMensajes', [ForoController::class, 'mostrarMensajes'])->name('mostrarMensajes')->middleware('verified');
+
+Route::match(['get', 'post'], '/mostrarMensajes', [ForoController::class, 'mostrarMensajes'])->name('mostrarMensajes');
 
 //Info
 Route::get('info', 'App\Http\Controllers\TerminosController@info')->name('info');
@@ -48,7 +47,9 @@ Route::get('register/company', 'App\Http\Controllers\Auth\RegisterController@sho
 Route::post('register/company', 'App\Http\Controllers\Auth\RegisterController@registerCompany')->name('register.company.submit');
 
 Auth::routes(['verify' => true]);
-Route::get('/verify', function () { return view('auth.verify');})->name('verify');
+Route::get('/verify', function () {
+    return view('auth.verify');
+})->name('verify');
 
 
 Route::middleware(['auth', 'role:company'])->group(function () {
@@ -79,15 +80,16 @@ Route::middleware(['auth', 'role:passenger'])->group(function () {
     Route::get('/descuentosPassenger', 'App\Http\Controllers\ShoppingCartController@mostrarDescuentos')->name('descuentosPassenger')->middleware('verified');
     Route::post('/cancelarBillete', 'App\Http\Controllers\ShoppingCartController@cancelarBillete')->name('cancelarBillete')->middleware('verified');
 //CHECK IN
-    Route::get('/billetesCheckIn', 'App\Http\Controllers\CheckInController@mostrarBilletesCheckIn')->name('billetesCheckIn')->middleware('verified');
-    Route::post('/checkIn', 'App\Http\Controllers\CheckInController@checkIn')->name('checkIn');
+    //Route::post('/checkIn', 'App\Http\Controllers\CheckInController@checkIn')->name('checkIn')->middleware('verified');
+    Route::match(['get', 'post'], '/checkIn', [CheckInController::class, 'checkIn'])->name('checkIn')->middleware('verified');
+
     Route::get('/billetesCheckIn', 'App\Http\Controllers\CheckInController@mostrarBilletesCheckIn')->name('billetesCheckIn')->middleware('verified');
 
 
 //RULETA
     Route::get('/ruleta', 'App\Http\Controllers\RuletaController@mostrarRuleta')->name('ruleta')->middleware('verified');
     Route::post('/premio', 'App\Http\Controllers\RuletaController@generarPremio')->name('premio')->middleware('verified');
-    Route::get('/contacto', 'App\Http\Controllers\ContactController@mostrarcontacto')->name('contacto')->middleware('verified');
+
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -101,6 +103,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 });
 
+Route::post('/crearTemas', 'App\Http\Controllers\ForoController@crearTemas')->name('crearTemas')->middleware('verified')->middleware('auth');;
+Route::post('/crearMensajes', 'App\Http\Controllers\ForoController@crearMensajes')->name('crearMensajes')->middleware('verified')->middleware('auth');;
 
 
 

@@ -18,7 +18,7 @@ class HomeController
                 return redirect()->route('homeAdmin');
             }
         } else {
-            return redirect()->route('homePassenger');
+            return redirect()->route('home');
         }
     }
 

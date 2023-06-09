@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Discount;
 use App\Models\Flight;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Auth;
 
 class HomePassengerController extends Controller
@@ -39,6 +40,7 @@ class HomePassengerController extends Controller
      */
     public function getVuelosIda()
     {
+     $this->eliminarVuelosCaducados();
         $fechaVuelta = request('vuelta');
         $numBilletes = request('numBilletes');
         $contador = 0;
@@ -77,5 +79,12 @@ class HomePassengerController extends Controller
         }
     }
 
+    public function eliminarVuelosCaducados(){
+        $vuelosCaducados=Flight::query()->select('id_flight')->where('departing','<',now())->get();
+        foreach ($vuelosCaducados as $v){
+            Ticket::query()->where('id_flight','=',$v['id_flight'])->delete();
+        }
+        Flight::query()->where('departing','<',now())->delete();
+    }
 
 }

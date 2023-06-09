@@ -22,10 +22,11 @@
                 return false;
             }
         }
-        function confirmacion(){
-            if(confirm('¿Seguro que desea  eliminar este mensaje?')===true){
+
+        function confirmacion() {
+            if (confirm('¿Seguro que desea  eliminar este mensaje?') === true) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -54,20 +55,24 @@
                         </table>
                         <hr>
                     </form>
+                @auth
                     <div>
                         @if( Auth::user()->hasRole('admin'))
-                            <form action="{{ route('eliminarMensajes') }}" method="POST" onsubmit="return confirmacion()">
+                            <form action="{{ route('eliminarMensajes') }}" method="POST"
+                                  onsubmit="return confirmacion()">
                                 <table>
                                     @csrf
                                     <tr>
                                         <td><input type="hidden" name="idMensaje" value="{{$mensaje->id_message}}"></td>
-                                        <td><input type="hidden" name="idTema" value="{{$temaElegido[0]->id_topic}}"></td>
+                                        <td><input type="hidden" name="idTema" value="{{$temaElegido[0]->id_topic}}">
+                                        </td>
                                         <td><input type="submit" id="botonBorrarTema" value="Eliminar"></td>
                                     </tr>
                                 </table>
                             </form>
                         @endif
                     </div>
+                    @endauth
                 @endforeach
 
             </div>

@@ -1,4 +1,4 @@
-<footer class="bottom-0 w-100 pt-lg-4">{{--fixed-bottom--}}
+<footer class="bottom-0 w-100 pt-lg-4" style="width: 100%;">{{--fixed-bottom--}}
      <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white " >
         <div class=" w-100 d-flex flex-wrap justify-content-center">
             <div class="p-3" >
@@ -22,7 +22,7 @@
                             <li><a href="{{route('homeAdmin')}}">Inicio</a></li>
                         @endif
                     @else
-                        <li><a href="{{route('homePassenger')}}">Inicio</a></li>
+                        <li><a href="{{route('home')}}">Inicio</a></li>
                     @endauth
 
                     <li><a href="{{route('foro')}}" >Preguntas frecuentes</a></li>
@@ -47,7 +47,7 @@
             </div>
         </div>
      </nav>
-    <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white ">
+    <nav class="navbar w-100 navbar-expand-md navbar-light bg-dark shadow-sm text-white" style="width: 100%;">
         <div class="m-4">
             <div class="d-block">
                 <p>©2023 · Todos los derechos reservados.</p>

@@ -16,7 +16,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int|null $telephone
  *
  * @property User|null $user
- * @property Collection|FlightRating[] $flight_ratings
  * @property Collection|Flight[] $flights
  *
  * @package App
@@ -53,10 +52,6 @@ class UserCompany extends User
 		return $this->belongsTo(User::class, 'id_users');
 	}
 
-	public function flight_ratings()
-	{
-		return $this->hasMany(FlightRating::class, 'id_company');
-	}
 
 	public function flights()
 	{

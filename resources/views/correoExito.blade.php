@@ -14,8 +14,8 @@
 @section('content')
     <div class="container">
         <div class="alert alert-success m-3">
-            <h2>Correo enviado con exito</h2>
-            <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver a la página principal</a><br>
+            <h2>Correo enviado con éxito</h2>
+            <a class="text-decoration-none" href="{{route('home')}}">Volver a la página principal</a><br>
         </div>
         <div style="width: 400px; height: 500px">
         </div>

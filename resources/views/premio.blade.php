@@ -44,7 +44,7 @@
         @case('puntos')
             <div class="alert alert-success m-3">
                 <h1>HAS RECUPERADO TUS 500 PUNTOS, VUELVE A LA RULETA PARA TIRAR OTRA VEZ</h1>
-                <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver a la página principal</a>
+                <a class="text-decoration-none" href="{{route('homePassenger')}}">Volver a la página principal</a><br>
                 <a class="text-decoration-none" href="{{route('ruleta')}}">Ruleta</a>
             </div>
             @break

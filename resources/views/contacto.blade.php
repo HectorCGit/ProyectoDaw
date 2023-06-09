@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacta con nosotros</title>
+    <title>Aeroweb</title>
     @vite(['resources/css/contacto.css'])
 
 </head>
@@ -31,7 +31,7 @@
             <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe lo que quieras"></textarea>
         </div>
 
-        <input type="submit" name="Enviar" class="btn btn-primary">
+        <input type="submit" value="Enviar" class="btn btn-primary">
     </form>
 </div>
 <div id="footer"></div>

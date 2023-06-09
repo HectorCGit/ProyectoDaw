@@ -52,13 +52,13 @@ tr td h4:first-child {
 }
 #footer {
     width: 400px;
-    height: 400px;
+    height: 420px;
 }
 
 
 @media screen and (min-width: 800px) and (min-height: 1280px) {
     #footer {
-        height: 800px;
+        height: 900px;
         width: 800px;
     }
 }

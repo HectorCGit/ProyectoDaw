@@ -7,6 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aeroweb</title>
     @vite(['resources/css/billetesCompany.css'])
+    <script type="text/javascript" defer>
+        function confirmacion(){
+            if(confirm('¿Está seguro que desea eliminar el billete?')===true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 @extends('layouts.app')
@@ -48,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <form action="{{ route('eliminarVuelo')}}" method="post">
+                                            <form action="{{ route('eliminarVuelo')}}" method="post" onsubmit="return confirmacion()">
                                                 @csrf
                                                 <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
                                                 <input type="submit"
@@ -78,7 +87,7 @@
             </div>
         </div>
         <div class="pagination">{{$companyFlights->links()}}</div>
-        <div id="footer" style="width: 400px; height: 100px;">
+        <div id="footer">
         </div>
     </div>
 

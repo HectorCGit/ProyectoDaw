@@ -69,9 +69,6 @@
                     <a class="botonCrear" onclick="crearTema()">Crear nueva pregunta</a><br><br>
                     <form method="post" action="{{route('crearTemas')}}" onsubmit="return validar()">
                         @csrf
-                        {{--
-                        AL HACER OTRA VEZ CLICK DEBE DESPLEGARSE
-                        --}}
                         <div id="formularioTemas"></div>
                     </form>
                 @endauth

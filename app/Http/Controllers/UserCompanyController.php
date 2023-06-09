@@ -60,7 +60,7 @@ class UserCompanyController extends Controller
         ]);
         $user->save();
         $user->assignRole('company');
-        $userPassenger = UserCompany::create([
+        UserCompany::create([
             'id_users' => $user->id,
             'name' => request('name'),
             'telephone' => request('telephone'),

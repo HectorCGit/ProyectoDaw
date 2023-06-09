@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <div id="footer" style="width: 400px; height: 200px"></div>
+    <div id="footer" ></div>
 @endsection
 </body>
 </html>

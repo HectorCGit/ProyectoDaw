@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name', 'Aeroweb') }}</title>
 
-    <!-- Fonts -->
+    <!-- Estilos -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
@@ -44,7 +44,7 @@
                         <a href="{{route('homeAdmin')}}">Principal</a>
                     @endif
                 @else
-                    <a href="{{route('homePassenger')}}">Principal</a>
+                    <a href="{{route('home')}}">Principal</a>
                 @endauth
                 @auth
                     @if( Auth::user()->hasRole('passenger'))
@@ -81,7 +81,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left Side Of Navbar -->
+                <!-- Lado izquierdo del Navbar -->
                 <ul class="navbar-nav me-auto listaOculta menu">
                     @auth
                         @if( Auth::user()->hasRole('company'))
@@ -92,7 +92,7 @@
                             <li><a class="nav-link" href="{{route('homeAdmin')}}">Principal</a></li>
                         @endif
                     @else
-                        <li><a class="nav-link" href="{{route('homePassenger')}}">Principal</a></li>
+                        <li><a class="nav-link" href="{{route('home')}}">Principal</a></li>
                     @endauth
 
                     @auth
@@ -114,9 +114,9 @@
                     <li id="informacion2"><a class="nav-link" href="{{route('info')}}" >Información</a></li>
                 </ul>
 
-                <!-- Right Side Of Navbar -->
+                <!-- Lado derecho del navbar -->
                 <ul class="navbar-nav ms-auto menu">
-                    <!-- Authentication Links -->
+                    <!--Links de autentificación-->
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

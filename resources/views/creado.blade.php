@@ -15,12 +15,14 @@
     <div class="container">
         @if($tipo==='crear')
             <div class="alert alert-success m-3">
-            <h1>Creado con éxito</h1>
+                <h1>Creado con éxito</h1>
                 <a class="text-decoration-none" href="{{route('homeCompany')}}">Volver a la página principal</a><br>
             </div>
         @else
             <div class="alert alert-danger m-3">
-            <h1>Eliminado con éxito</h1>
+                <h1>Eliminado con éxito</h1>
+                <a class="text-decoration-none" href="{{route('homeCompany')}}">Volver a la página principal</a><br>
+
             </div>
         @endif
 
