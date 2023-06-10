@@ -15,7 +15,7 @@ class CheckInController extends Controller
     public function mostrarBilletesCheckIn(){
         $queryIdPassenger = UserPassenger::query()->select('id_passenger')->where('id_users', '=', Auth::id())->get();
         $idPassenger = $queryIdPassenger[0]['id_passenger'];
-        $tickets= Ticket::query()->select( 'id_ticket','flights.id_flight','id_discount','check_in','departing','ticket_name_passenger','ticket_surname_passenger','origin.name as origin', 'destination.name as destination')
+        $tickets= Ticket::query()->select( 'id_ticket','flights.id_flight','discount','check_in','departing','ticket_name_passenger','ticket_surname_passenger','origin.name as origin', 'destination.name as destination')
             ->leftJoin('flights', 'tickets.id_flight', '=', 'flights.id_flight')
             ->leftJoin("cities as origin", "flights.id_origin_city", "=", 'origin.id_city')
             ->leftJoin("cities as destination", "flights.id_destination_city", "=", 'destination.id_city')
