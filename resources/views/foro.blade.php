@@ -45,7 +45,7 @@
 
         function validar() {
             let tema = document.getElementById('tema');
-            if (!/^\S+$/.test(tema.value)) {
+            if (!/^\S/.test(tema.value)) {
                 return false;
             }
         }

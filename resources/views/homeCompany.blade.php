@@ -56,22 +56,31 @@
                                         <td colspan="6">Fecha y hora: {{ substr($flights->departing->format('d-m-Y H:i:s'),0,16)}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3">
-                                            <form action="{{ route('eliminarVuelo')}}" method="post" onsubmit="return confirmacion()">
-                                                @csrf
-                                                <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
-                                                <input type="submit"
-                                                       class="bg-danger hover:bg-blue text-white font-bold py-2 px-4 rounded"
-                                                       value="ELIMINAR">
-                                            </form>
-                                        </td>
-                                        <td colspan="3">
+                                        <td colspan="2">
                                             <form action="{{ route('verBilletes')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
                                                 <input type="submit"
                                                        class="bg-warning hover:bg-blue text-white font-bold py-2 px-4 rounded"
                                                        value="BILLETES">
+                                            </form>
+                                        </td>
+                                        <td colspan="2">
+                                            <form action="{{ route('editarVuelo')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
+                                                <input type="submit"
+                                                       class="bg-dark hover:bg-blue text-white font-bold py-2 px-4 rounded"
+                                                       value="EDITAR">
+                                            </form>
+                                        </td>
+                                        <td colspan="2">
+                                            <form action="{{ route('eliminarVuelo')}}" method="post" onsubmit="return confirmacion()">
+                                                @csrf
+                                                <input type="hidden" name="idFlight" value="{{$flights->id_flight}}">
+                                                <input type="submit"
+                                                       class="bg-danger hover:bg-blue text-white font-bold py-2 px-4 rounded"
+                                                       value="ELIMINAR">
                                             </form>
                                         </td>
                                     </tr>

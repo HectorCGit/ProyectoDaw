@@ -21,12 +21,19 @@
                     </div>
                 @else
                     @foreach($descuentos as $d)
-                        <table class="table table-responsive m-3 bg-success bg-opacity-50 text-black">
-                            <tr>
-                                <td colspan="2">Descuento del {{$d->percentage*100}}% </td>
-                            </tr>
-
-                        </table>
+                        @if($d->percentage===0.80)
+                            <table class="table table-responsive m-3 bg-success bg-opacity-50 text-black">
+                                <tr>
+                                    <td colspan="2">Descuento del 20% </td>
+                                </tr>
+                            </table>
+                        @else
+                            <table class="table table-responsive m-3 bg-success bg-opacity-50 text-black">
+                                <tr>
+                                    <td colspan="2">Descuento del 15% </td>
+                                </tr>
+                            </table>
+                        @endif
                     @endforeach
                 @endif
             </div>

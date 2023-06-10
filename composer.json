@@ -17,8 +17,10 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",
+        "beyondcode/laravel-er-diagram-generator": "^2.0",
         "fakerphp/faker": "^1.9.1",
         "ibex/crud-generator": "^1.4",
+        "kevincobain2000/laravel-erd": "^1.6",
         "laravel/homestead": "^14.3",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.21",

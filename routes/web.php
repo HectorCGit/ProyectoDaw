@@ -57,6 +57,8 @@ Route::middleware(['auth', 'role:company'])->group(function () {
     Route::get('/homeCompany', 'App\Http\Controllers\HomeCompanyController@mostrarHomeCompany')->name('homeCompany')->middleware('verified');
     Route::get('/crearVuelo', 'App\Http\Controllers\HomeCompanyController@crearVuelo')->name('crearVuelo')->middleware('verified');
     Route::post('/guardarVuelo', 'App\Http\Controllers\HomeCompanyController@guardarVuelo')->name('guardarVuelo')->middleware('verified');
+    Route::post('/editarVuelo', 'App\Http\Controllers\HomeCompanyController@editarVuelo')->name('editarVuelo')->middleware('verified');
+    Route::post('/vuelosActualizar', 'App\Http\Controllers\HomeCompanyController@vuelosActualizar')->name('vuelosActualizar')->middleware('verified');
     Route::post('/eliminarVuelo', 'App\Http\Controllers\HomeCompanyController@eliminarVuelo')->name('eliminarVuelo')->middleware('verified');
     Route::post('/verBilletes', 'App\Http\Controllers\HomeCompanyController@verBilletes')->name('verBilletes')->middleware('verified');
     Route::post('/eliminarBillete', 'App\Http\Controllers\HomeCompanyController@eliminarBillete')->name('eliminarBillete')->middleware('verified');

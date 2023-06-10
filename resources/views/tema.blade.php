@@ -18,7 +18,7 @@
     <script defer>
         function validar() {
             let mensaje = document.getElementById('mensaje');
-            if (!/^\S+$/.test(mensaje.value)) {
+            if (!/^\S/.test(mensaje.value)) {
                 return false;
             }
         }

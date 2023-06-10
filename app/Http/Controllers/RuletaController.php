@@ -53,7 +53,6 @@ class RuletaController extends Controller
                 $premio="puntos";
                 break;
         }
-        $puntos = UserPassenger::query()->select('id_users', 'points')->where('id_users', '=', Auth::id())->get();
 
         return view('premio',compact('premio'));
     }

@@ -28,7 +28,7 @@
         <h1 align="center">Vuelo</h1>
         <form autocomplete="off" method="post" action="{{route('guardarVuelo')}}" onsubmit="return validacionDestino()">
             <div class="alert alert-danger m-3" id="error" style="display: none">
-                <div >
+                <div>
                     Destino y origen no deben coincidir
                 </div>
             </div>
@@ -37,7 +37,8 @@
                 <tr>
                     <td>
                         <label>Origen </label></td>
-                        <td><input list="origen" class="form-control" name="origen" placeholder="origen" id="campoOrigen" required/>
+                    <td><input list="origen" class="form-control" name="origen" placeholder="origen" id="campoOrigen"
+                               required/>
                         <datalist id="origen">
                             @foreach ($cities as $city)
                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -47,8 +48,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <label>Destino </label></td><td>
-                        <input list="destino" class="form-control" name="destino" placeholder="destino" id="campoDestino" required/>
+                        <label>Destino </label></td>
+                    <td>
+                        <input list="destino" class="form-control" name="destino" placeholder="destino"
+                               id="campoDestino" required/>
                         <datalist id="destino">
                             @foreach ($cities as $city)
                                 <option value={{ $city->city}}>{{ $city->city.' ('.$city->country.')'}}</option>
@@ -60,36 +63,41 @@
                     <td>
                         <label> Nº Asientos </label></td>
                     <td>
-                        <input type="number"  class="form-control" id="asientos" name="asientos" placeholder="200" maxlength="3" min="1">
+                        <input type="number" class="form-control" id="asientos" name="asientos" placeholder="200"
+                               maxlength="3" min="1">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Fecha y hora de salida</label></td>
                     <td>
-                        <input class="form-control" type="datetime-local" id="fecha" name="fecha" >
+                        <input class="form-control" type="datetime-local" id="fecha" name="fecha">
                     </td>
                 </tr>
                 <tr>
-                    <td >
+                    <td>
                         <label>Duracion</label></td>
                     <td>
-                        Horas: <input type="number" class="form-control" id="horas" name="horas" placeholder="3" maxlength="2" min="0">
-                        Minutos: <input type="number" class="form-control" id="minutos" name="minutos" placeholder="30" maxlength="2" min="0">
+                        Horas: <input type="number" class="form-control" id="horas" name="horas" placeholder="3"
+                                      maxlength="2" min="0">
+                        Minutos: <input type="number" class="form-control" id="minutos" name="minutos" placeholder="30"
+                                        maxlength="2" min="0">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Precio económico </label></td>
                     <td>
-                        <input type="number" id="economico" class="form-control" name="economico" placeholder="200" maxlength="5">
+                        <input type="number" id="economico" class="form-control" name="economico" placeholder="200"
+                               maxlength="5">
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <label>Precio business</label></td>
                     <td>
-                        <input type="number" id="business" class="form-control" name="business" placeholder="300" maxlength="5">
+                        <input type="number" id="business" class="form-control" name="business" placeholder="300"
+                               maxlength="5">
                     </td>
                 </tr>
                 <tr>

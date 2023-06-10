@@ -159,7 +159,7 @@ class ShoppingController extends Controller
             $numPassengers = ($numPassengersIda[0]->num_passengers);
             Flight::query()->select('id_flight', 'num_passengers')->where('id_flight', '=', $idVueloIda)->update(['num_passengers' => $numPassengers + 1]);
             if ($descuento != 0) {
-                Ticket::query()->select('id_ticket', 'id_discount')->where('id_ticket', '=', $q->id_ticket)->update(['id_discount' => $descuento, 'price' => $q->price * $descuento]);
+                Ticket::query()->select('id_ticket')->where('id_ticket', '=', $q->id_ticket)->update(['discount' => 1, 'price' => $q->price * $descuento]);
             }
         }
         foreach ($queryVuelta as $q) {
@@ -168,8 +168,11 @@ class ShoppingController extends Controller
             $numPassengers = ($numPassengersIda[0]->num_passengers);
             Flight::query()->select('id_flight', 'num_passengers')->where('id_flight', '=', $idVueloVuelta)->update(['num_passengers' => $numPassengers + 1]);
             if ($descuento != 0) {
-                Ticket::query()->select('id_ticket', 'id_discount')->where('id_ticket', '=', $q->id_ticket)->update(['id_discount' => $descuento, 'price' => $q->price * $descuento]);
+                Ticket::query()->select('id_ticket')->where('id_ticket', '=', $q->id_ticket)->update(['discount' => 1, 'price' => $q->price * $descuento]);
             }
+        }
+        if ($descuento != 0) {
+            Discount::query()->find($idDescuento)->delete();
         }
 
         return view('pagoFinal', compact('puntosGanados'));
